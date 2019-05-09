@@ -1,5 +1,8 @@
 extends Area2D
 
+const JOYSTICK_DEAD_ZONE = 0.15
+const SCREEN_BOUNDARIES = 35
+
 var screensize
 var last_shoot = 0.2
 export (int) var speed
@@ -7,17 +10,39 @@ export (int) var speed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screensize = get_viewport_rect().size
-#	hide()
+
+	if (Input.is_joy_known(0)):
+		print("Input recognised: " + Input.get_joy_name(0))
+#		var axis_string = Input.get_joy_axis_string(JOY_AXIS_3)
+#		var axis_index = Input.get_joy_axis_index_from_string("Right Stick Y")
+#		print(axis_string)
+#		print(axis_index)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	## ROTATION
+	# JOY_AXIS_0 L-> | JOY_AXIS_1 L^ | JOY_AXIS_2 R-> | JOY_AXIS_3 R^
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_2)
+	var yAxis = Input.get_joy_axis(0, JOY_AXIS_3)
+	var rot = Vector2(xAxis, yAxis)
+
+#	@todo: Add mouse aim position (it shouldn't affect when playing with controller).
+#	self.set_rotation_degrees(90 + rad2deg(get_global_mouse_position().angle_to_point(position)))
+#	http://docs.godotengine.org/en/stable/classes/class_control.html might be of help,
+#	as it has mouse_entered() and mouse_exited() events.
+	if Input.is_action_pressed("aim_down") || Input.is_action_pressed("aim_top") || Input.is_action_pressed("aim_left") || Input.is_action_pressed("aim_right"):
+		if rot.length_squared() > JOYSTICK_DEAD_ZONE:
+	#		The ship's default direction is upwards. That's equivalent -90º, given 
+	#		Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
+			self.set_rotation_degrees(90 + rad2deg(rot.angle()))
+
+	## MOVEMENT.
 	last_shoot += delta;
 	var velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
-
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
@@ -32,17 +57,20 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 
 	position += velocity * delta
-	position.x = clamp(position.x, 0, screensize.x);
-	position.y = clamp(position.y, 0, screensize.y);
+	
+	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
+	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
 
 func shoot_bullet():
 	var bullet = preload("res://Bullet.tscn").instance()
 
-	# the child scene is keeping the parent position and velocity.
-	bullet.position = 	Vector2(0, 0)
-	bullet.velocity = Vector2(0, -300)
-	.add_child(bullet)
-
+	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
+	bullet.position = $Sprite.global_position
+	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
+	var bulletDirX = cos(self.rotation - deg2rad(90.0))
+	var bulletDirY = sin(self.rotation - deg2rad(90.0))
+	bullet.velocity = 700 * Vector2(bulletDirX, bulletDirY)
+	get_parent().add_child(bullet)
 
 #
 #func _process(delta):
