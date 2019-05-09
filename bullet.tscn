@@ -4,12 +4,10 @@
 [ext_resource path="res://assets/effects/BlueCannonBall.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 6.33881
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -18,4 +16,8 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.405685, 0.434812 )
+scale = Vector2( 0.90638, 0.902219 )
+rect = Rect2( -8, -8, 15, 15 )
 
+[connection signal="body_entered" from="." to="." method="_on_Bullet_collision"]
