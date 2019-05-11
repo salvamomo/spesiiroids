@@ -7,9 +7,9 @@
 radius = 21.8936
 height = 21.7452
 
-[node name="Area2D" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Area2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
+speed = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

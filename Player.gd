@@ -100,3 +100,15 @@ func shoot_bullet():
 #	position = pos
 #	show()
 #	$CollisionShape2D.disabled = false
+
+func _on_Player_collision(body):
+	# This method will have to include power-ups fetching, too.
+	if body.has_method('hit_by_player'):
+		body.hit_by_player()
+		# Assume for now it's always an enemy.
+		# @todo: kill player.
+
+
+
+
+
