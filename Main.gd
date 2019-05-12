@@ -21,22 +21,3 @@ func _ready():
 	.add_child(enemy2)
 	.add_child(enemy3)
 	.add_child(enemy4)
-
-func _process(delta):
-	pass
-
-
-func _on_PowerUpTimer_timeout():
-	# @todo: Randomize type of power up.
-	var powerUp = preload("res://PowerUp.tscn")
-	var random = RandomNumberGenerator.new()
-	random.randomize()
-	
-	powerUp = powerUp.instance()
-	powerUp.position = Vector2(
-		lerp(screen_size.x * 0.1, screen_size.x * 0.9, random.randf()),
-		lerp(screen_size.y * 0.1, screen_size.y * 0.9, random.randf())
-	)
-	
-	.add_child(powerUp)
-	

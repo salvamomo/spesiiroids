@@ -1,7 +1,10 @@
 extends Area2D
 
-const MIN_RESPAWN_TIME = 6000
-const MAX_RESPAWN_TIME = 12000
+var velocity = Vector2(15, 30)
 
 func _ready():
 	pass # Replace with function body.
+
+func _process(delta):
+	translate(velocity * delta)
+	# @todo: Remove when off-screen.
