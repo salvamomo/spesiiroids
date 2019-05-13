@@ -1,11 +1,11 @@
 extends "res://PowerUp.gd"
 
-const TYPE = 0
+const TYPE = 2
 
 func _ready():
 	pass
 
-func _on_PowerUp_Chiquito_area_entered(area):
+func _on_PowerUp_Teresiica_area_entered(area):
 	if (area.is_in_group("Ship")):
 		area.add_power_up(self)
 		# @todo: implement a "grant power up" function to be called when the player activates the power up.
@@ -14,4 +14,4 @@ func _on_PowerUp_Chiquito_area_entered(area):
 		# body.shooting_speed += @todo
 
 func grant_effects(player):
-	print("activated chiquito")
+	print("activated teresiica")

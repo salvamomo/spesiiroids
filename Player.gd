@@ -3,9 +3,14 @@ extends Area2D
 const JOYSTICK_DEAD_ZONE = 0.15
 const SCREEN_BOUNDARIES = 35
 
+enum POWER_UP_INDX {CHIQUITO, VICENTIN, TERESIICA, MRT}
+var availablePowerUps = [null, null, null, null]
+
 var screensize
-var last_shoot = 0.2
+var last_shoot = 0.3
+var shooting_speed = 0.3
 export (int) var speed
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +41,8 @@ func _process(delta):
 	#		Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
 			self.set_rotation_degrees(90 + rad2deg(rot.angle()))
 
+	_handle_power_up_usage(delta)
+
 	## MOVEMENT.
 	last_shoot += delta;
 	var velocity = Vector2()
@@ -48,7 +55,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 	if Input.is_action_pressed("shoot"):
-		if (last_shoot >= 0.2):
+		if (last_shoot >= shooting_speed):
 			# Is there a need to yield until shoot_bullet is finished?
 			last_shoot = 0;
 			shoot_bullet()
@@ -60,6 +67,16 @@ func _process(delta):
 	
 	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
 	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
+
+func _handle_power_up_usage(delta):
+	if Input.is_action_pressed("PowerUp_1"):
+		activate_power_up(POWER_UP_INDX.CHIQUITO)
+	if Input.is_action_pressed("PowerUp_2"):
+		activate_power_up(POWER_UP_INDX.VICENTIN)
+	if Input.is_action_pressed("PowerUp_3"):
+		activate_power_up(POWER_UP_INDX.TERESIICA)
+	if Input.is_action_pressed("PowerUp_4"):
+		activate_power_up(POWER_UP_INDX.MRT)
 
 func shoot_bullet():
 	var bullet = preload("res://Bullet.tscn").instance()
@@ -100,6 +117,20 @@ func shoot_bullet():
 #	position = pos
 #	show()
 #	$CollisionShape2D.disabled = false
+
+func add_power_up(powerUp):
+	# @todo: Emit signal to update HUD with powerUp?
+	if (availablePowerUps[powerUp.TYPE] == null):
+		availablePowerUps[powerUp.TYPE] = powerUp
+		print("added pw type: " + powerUp.TYPE as String)
+	
+func activate_power_up(powerUpIdx):
+	# @todo: prevent activation when power up is in use.
+	if availablePowerUps[powerUpIdx] != null:
+		availablePowerUps[powerUpIdx].grant_effects(self)
+		print("activating pw type: " + availablePowerUps[powerUpIdx].TYPE as String)
+		availablePowerUps[powerUpIdx] = null
+	# @todo: wait for effect disappear.
 
 func _on_Player_collision(body):
 	if body.has_method('hit_by_player'):

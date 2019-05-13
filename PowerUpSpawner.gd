@@ -7,7 +7,9 @@ var screen_size
 
 const powerUps = [
 	preload("res://PowerUp_Chiquito.tscn"),
-	preload("res://PowerUp_Vicentin.tscn")
+	preload("res://PowerUp_Vicentin.tscn"),
+	preload("res://PowerUp_Mrt.tscn"),
+	preload("res://PowerUp_Teresiica.tscn")
 ]
 
 func _ready():
