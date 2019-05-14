@@ -21,3 +21,7 @@ func _ready():
 	.add_child(enemy2)
 	.add_child(enemy3)
 	.add_child(enemy4)
+
+
+func _on_Player_powerup_activated(powerup):
+	print("MAIN NODE: Activated power up type: ", powerup.TYPE)

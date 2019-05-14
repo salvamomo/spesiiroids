@@ -7,7 +7,6 @@ func _ready():
 	alive = true
 	yield($VisibilityNotifier, "screen_exited")
 	queue_free()
-	pass
 
 func _process(delta):
 	if (alive):

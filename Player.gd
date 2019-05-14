@@ -4,7 +4,9 @@ const JOYSTICK_DEAD_ZONE = 0.15
 const SCREEN_BOUNDARIES = 35
 
 enum POWER_UP_INDX {CHIQUITO, VICENTIN, TERESIICA, MRT}
-var availablePowerUps = [null, null, null, null]
+var acquiredPowerUps = [null, null, null, null]
+
+signal powerup_activated(powerup)
 
 var screensize
 var last_shoot = 0.3
@@ -41,7 +43,7 @@ func _process(delta):
 	#		Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
 			self.set_rotation_degrees(90 + rad2deg(rot.angle()))
 
-	_handle_power_up_usage(delta)
+	_handle_power_up_usage()
 
 	## MOVEMENT.
 	last_shoot += delta;
@@ -68,7 +70,7 @@ func _process(delta):
 	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
 	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
 
-func _handle_power_up_usage(delta):
+func _handle_power_up_usage():
 	if Input.is_action_pressed("PowerUp_1"):
 		activate_power_up(POWER_UP_INDX.CHIQUITO)
 	if Input.is_action_pressed("PowerUp_2"):
@@ -120,16 +122,19 @@ func shoot_bullet():
 
 func add_power_up(powerUp):
 	# @todo: Emit signal to update HUD with powerUp?
-	if (availablePowerUps[powerUp.TYPE] == null):
-		availablePowerUps[powerUp.TYPE] = powerUp
+	if (acquiredPowerUps[powerUp.TYPE] == null):
+		acquiredPowerUps[powerUp.TYPE] = powerUp
 		print("added pw type: " + powerUp.TYPE as String)
+	
+func has_power_up(powerUpType):
+	return acquiredPowerUps[powerUpType] != null
 	
 func activate_power_up(powerUpIdx):
 	# @todo: prevent activation when power up is in use.
-	if availablePowerUps[powerUpIdx] != null:
-		availablePowerUps[powerUpIdx].grant_effects(self)
-		print("activating pw type: " + availablePowerUps[powerUpIdx].TYPE as String)
-		availablePowerUps[powerUpIdx] = null
+	if acquiredPowerUps[powerUpIdx] != null:
+		emit_signal("powerup_activated", acquiredPowerUps[powerUpIdx])
+		acquiredPowerUps[powerUpIdx].grant_effects(self)
+		acquiredPowerUps[powerUpIdx] = null
 	# @todo: wait for effect disappear.
 
 func _on_Player_collision(body):

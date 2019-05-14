@@ -8,10 +8,7 @@ func _ready():
 func _on_PowerUp_MrT_area_entered(area):
 	if (area.is_in_group("Ship")):
 		area.add_power_up(self)
-		# @todo: implement a "grant power up" function to be called when the player activates the power up.
-		hide()
-#		queue_free()
-		# body.shooting_speed += @todo
+		set_state_acquired()
 
 func grant_effects(player):
-	print("activated mrt")
+	reset()
