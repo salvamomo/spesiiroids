@@ -39,6 +39,7 @@ speed = 400
 ]]
 texture = ExtResource( 2 )
 hframes = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" groups=[
 "Ship",

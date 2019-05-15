@@ -18,4 +18,5 @@ position = Vector2( 438, 279 )
 
 [node name="PowerUpSpawner" parent="." instance=ExtResource( 5 )]
 
+[connection signal="powerup_acquired" from="Player" to="." method="_on_Player_powerup_acquired"]
 [connection signal="powerup_activated" from="Player" to="." method="_on_Player_powerup_activated"]

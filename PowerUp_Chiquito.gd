@@ -11,4 +11,6 @@ func _on_PowerUp_Chiquito_area_entered(area):
 		set_state_acquired()
 
 func grant_effects(player):
+	yield(get_tree().create_timer(2.5), "timeout")
+	fade()
 	reset()

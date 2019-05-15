@@ -1,6 +1,6 @@
 extends "res://PowerUp.gd"
 
-const TYPE = 2
+const TYPE = 3
 
 func _ready():
 	pass
@@ -11,4 +11,6 @@ func _on_PowerUp_Teresiica_area_entered(area):
 		set_state_acquired()
 
 func grant_effects(player):
+	yield(get_tree().create_timer(2.5), "timeout")
+	fade()
 	reset()

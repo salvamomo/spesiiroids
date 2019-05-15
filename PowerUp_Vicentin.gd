@@ -14,6 +14,7 @@ func grant_effects(player):
 	player.speed += 400
 	player.shooting_speed = 0.1
 	yield(get_tree().create_timer(2.5), "timeout")
+	fade()
 	player.speed -= 400
 	player.shooting_speed = 0.3
 	reset()

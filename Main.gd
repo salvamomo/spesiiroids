@@ -22,6 +22,14 @@ func _ready():
 	.add_child(enemy3)
 	.add_child(enemy4)
 
-
 func _on_Player_powerup_activated(powerup):
-	print("MAIN NODE: Activated power up type: ", powerup.TYPE)
+	.get_node("HUD/acquired_powerups/powerup_" + (powerup.TYPE + 1) as String).hide()
+	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).show()
+
+
+func _on_Player_powerup_acquired(powerup):
+	.get_node("HUD/acquired_powerups/powerup_" + (powerup.TYPE + 1) as String).show()
+
+func _on_PowerUp_effects_expired(powerup):
+	print("MAIN: Power up faded.")
+	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).hide()

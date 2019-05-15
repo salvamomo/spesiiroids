@@ -6,6 +6,7 @@ const SCREEN_BOUNDARIES = 35
 enum POWER_UP_INDX {CHIQUITO, VICENTIN, TERESIICA, MRT}
 var acquiredPowerUps = [null, null, null, null]
 
+signal powerup_acquired(powerup)
 signal powerup_activated(powerup)
 
 var screensize
@@ -121,14 +122,14 @@ func shoot_bullet():
 #	$CollisionShape2D.disabled = false
 
 func add_power_up(powerUp):
-	# @todo: Emit signal to update HUD with powerUp?
 	if (acquiredPowerUps[powerUp.TYPE] == null):
 		acquiredPowerUps[powerUp.TYPE] = powerUp
-		print("added pw type: " + powerUp.TYPE as String)
+		emit_signal("powerup_acquired", powerUp)
 	
 func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
 	
+
 func activate_power_up(powerUpIdx):
 	# @todo: prevent activation when power up is in use.
 	if acquiredPowerUps[powerUpIdx] != null:
@@ -136,6 +137,12 @@ func activate_power_up(powerUpIdx):
 		acquiredPowerUps[powerUpIdx].grant_effects(self)
 		acquiredPowerUps[powerUpIdx] = null
 	# @todo: wait for effect disappear.
+
+func powerup_desactivated(powerUpIdx):
+	pass	
+
+
+
 
 func _on_Player_collision(body):
 	if body.has_method('hit_by_player'):

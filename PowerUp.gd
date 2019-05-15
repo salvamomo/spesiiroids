@@ -1,6 +1,9 @@
 extends Area2D
 
 var velocity = Vector2(0, 0)
+export var duracion = 3
+
+signal powerup_effects_expired(powerup)
 
 const MIN_VEL = -20
 const MAX_VEL = 20
@@ -12,6 +15,8 @@ var currentState
 
 func _ready():
 	currentState = State.RESPAWN_READY
+	var main = get_tree().get_root().get_node("Main")
+	self.connect("powerup_effects_expired", main, "_on_PowerUp_effects_expired")
 	hide()
 
 func _process(delta):
@@ -36,3 +41,7 @@ func respawn():
 	
 func is_ready_for_respawn():
 	return currentState == State.RESPAWN_READY
+	
+func fade():
+	print("Power up faded.")
+	emit_signal("powerup_effects_expired", self)
