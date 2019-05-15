@@ -14,6 +14,7 @@ var last_shoot = 0.3
 var shooting_speed = 0.3
 export (int) var speed
 
+var powerUpInUse = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -130,11 +131,17 @@ func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
 	
 
+func _on_PowerUp_effects_expired(powerUp):
+	powerUpInUse = false
+
 func activate_power_up(powerUpIdx):
+	if powerUpInUse:
+		return
 	# @todo: prevent activation when power up is in use.
 	if acquiredPowerUps[powerUpIdx] != null:
 		emit_signal("powerup_activated", acquiredPowerUps[powerUpIdx])
 		acquiredPowerUps[powerUpIdx].grant_effects(self)
+		powerUpInUse = true
 		acquiredPowerUps[powerUpIdx] = null
 	# @todo: wait for effect disappear.
 

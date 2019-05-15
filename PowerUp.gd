@@ -15,8 +15,10 @@ var currentState
 
 func _ready():
 	currentState = State.RESPAWN_READY
-	var main = get_tree().get_root().get_node("Main")
-	self.connect("powerup_effects_expired", main, "_on_PowerUp_effects_expired")
+	var Main = get_tree().get_root().get_node("Main")
+	var Player = get_tree().get_root().get_node("Main/Player")
+	self.connect("powerup_effects_expired", Main, "_on_PowerUp_effects_expired")
+	self.connect("powerup_effects_expired", Player, "_on_PowerUp_effects_expired")
 	hide()
 
 func _process(delta):
