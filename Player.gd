@@ -12,6 +12,16 @@ signal powerup_activated(powerup)
 var screensize
 var last_shoot = 0.3
 var shooting_speed = 0.3
+
+## START BULLETS
+enum BULLET_TYPE {DEFAULT, FIREBALL}
+export (BULLET_TYPE) var current_bullet_type
+var availableBullets = {
+    BULLET_TYPE.DEFAULT: preload("res://Bullet.tscn"),
+    BULLET_TYPE.FIREBALL: preload("res://bullet_fire.tscn"),
+}
+## END BULLETS
+
 export (int) var speed
 
 var powerUpInUse = false
@@ -82,45 +92,15 @@ func _handle_power_up_usage():
 	if Input.is_action_pressed("PowerUp_4"):
 		activate_power_up(POWER_UP_INDX.MRT)
 
-func shoot_bullet():
-	var bullet = preload("res://Bullet.tscn").instance()
-
-	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
+func shoot_bullet():	
+	var bullet = availableBullets[current_bullet_type].instance()
 	bullet.position = $Sprite.global_position
 	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
 	var bulletDirX = cos(self.rotation - deg2rad(90.0))
 	var bulletDirY = sin(self.rotation - deg2rad(90.0))
 	bullet.velocity = 700 * Vector2(bulletDirX, bulletDirY)
+	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
 	get_parent().add_child(bullet)
-
-#
-#func _process(delta):
-#	if velocity.length() > 0:
-#		$AnimatedSprite.play()
-#	else:
-#		$AnimatedSprite.stop()
-#
-#	position += velocity * delta
-#	position.x = clamp(position.x, 0, screensize.x)
-#	position.y = clamp(position.y, 0, screensize.y)
-#
-#	if velocity.x != 0:
-#		$AnimatedSprite.animation = "right"
-#		$AnimatedSprite.flip_v = false
-#		$AnimatedSprite.flip_h = velocity.x < 0
-#	elif velocity.y != 0:
-#		$AnimatedSprite.animation = "up"
-#		$AnimatedSprite.flip_v = velocity.y > 0
-#
-#func _on_Player_body_entered(body):
-#	hide()
-#	emit_signal('hit')
-#	$CollisionShape2D.disabled = true
-#
-#func start(pos):
-#	position = pos
-#	show()
-#	$CollisionShape2D.disabled = false
 
 func add_power_up(powerUp):
 	if (acquiredPowerUps[powerUp.TYPE] == null):
@@ -144,12 +124,6 @@ func activate_power_up(powerUpIdx):
 		powerUpInUse = true
 		acquiredPowerUps[powerUpIdx] = null
 	# @todo: wait for effect disappear.
-
-func powerup_desactivated(powerUpIdx):
-	pass	
-
-
-
 
 func _on_Player_collision(body):
 	if body.has_method('hit_by_player'):

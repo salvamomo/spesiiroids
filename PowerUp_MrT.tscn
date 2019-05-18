@@ -6,8 +6,8 @@
 
 [node name="PowerUp_MrT" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+duracion = 6
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
 
-[connection signal="area_entered" from="." to="." method="_on_PowerUp_MrT_area_entered"]
