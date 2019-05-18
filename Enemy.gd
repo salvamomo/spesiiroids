@@ -5,10 +5,8 @@ const DEG2RAD90 = 1.5708
 var playerIdx
 export (int) var speed
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	playerIdx = get_parent().get_child(2)
-	pass # Replace with function body.
 
 func _process(delta):
 	var player = get_parent().get_child(2)
@@ -21,7 +19,10 @@ func _process(delta):
 	position += velocity * delta
 
 func die():
-	# @todo: Play death animation.
+	# @todo: Finish explosion effect.
+	$Explosion.emitting = true
+	$Sprite.hide()
+	yield(get_tree().create_timer(1), "timeout")
 	queue_free()
 
 func hit_by_bullet():

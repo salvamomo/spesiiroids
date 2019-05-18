@@ -8,7 +8,7 @@
 radius = 21.8936
 height = 21.7452
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=2]
 
 [sub_resource type="Image" id=8]
 data = {
@@ -19,7 +19,7 @@ data = {
 "width": 2048
 }
 
-[sub_resource type="ImageTexture" id=5]
+[sub_resource type="ImageTexture" id=4]
 flags = 0
 flags = 0
 image = SubResource( 8 )
@@ -34,16 +34,16 @@ data = {
 "width": 2048
 }
 
-[sub_resource type="ImageTexture" id=7]
+[sub_resource type="ImageTexture" id=6]
 flags = 0
 flags = 0
 image = SubResource( 9 )
 size = Vector2( 2048, 1 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 4
-emission_point_texture = SubResource( 7 )
-emission_normal_texture = SubResource( 5 )
+emission_point_texture = SubResource( 6 )
+emission_normal_texture = SubResource( 4 )
 emission_point_count = 230
 flag_disable_z = true
 spread = 180.0
@@ -68,12 +68,13 @@ texture = ExtResource( 2 )
 position = Vector2( -2, 1 )
 shape = SubResource( 1 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
-material = SubResource( 3 )
+[node name="Explosion" type="Particles2D" parent="."]
+material = SubResource( 2 )
+emitting = false
 amount = 16
 lifetime = 2.0
 explosiveness = 1.0
 visibility_rect = Rect2( 0, 0, 0, 196.091 )
-process_material = SubResource( 2 )
+process_material = SubResource( 7 )
 texture = ExtResource( 3 )
 
