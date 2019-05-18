@@ -13,7 +13,9 @@ signal powerup_activated(powerup)
 
 var screensize
 export (int) var speed
+
 var powerUpInUse = false
+export (int) var lives = 3
 
 ## START SHOOTING
 var last_shoot = 0.3
@@ -123,12 +125,15 @@ func activate_power_up(powerUpIdx):
 		acquiredPowerUps[powerUpIdx] = null
 
 func _on_Player_collision(body):
-	if body.has_method('hit_by_player'):
-		body.hit_by_player()
-		# Assume for now it's always an enemy.
-		# @todo: kill player.
+	if body.is_in_group("Enemies"):
+		_hit_by_enemy(body)
 
-
-
-
-
+func _hit_by_enemy(body):
+	body.hit_by_player()
+		
+	if (lives > 0):
+		# Play live lost animation.
+		print("@todo: ", lives, " lives: hit animation")
+		lives -= 1
+	else:
+		print("@todo: 0 lives: die")

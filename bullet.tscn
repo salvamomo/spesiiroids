@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/effects/BlueCannonBall.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 54.2312
+radius = 6.43841
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource( 1 )
