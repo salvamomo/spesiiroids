@@ -22,7 +22,7 @@ func die():
 	# @todo: Finish explosion effect.
 	$Explosion.emitting = true
 	$Sprite.hide()
-	yield(get_tree().create_timer(1), "timeout")
+#	yield(get_tree().create_timer(1), "timeout")
 	queue_free()
 
 func hit_by_bullet():
