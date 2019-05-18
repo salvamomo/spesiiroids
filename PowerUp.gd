@@ -34,7 +34,6 @@ func _process(delta):
 		translate(velocity * delta)
 
 func _on_VisibilityNotifier2D_screen_exited():
-	print_debug("Removing PW")
 	reset()
 
 func reset():
