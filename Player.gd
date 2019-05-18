@@ -1,7 +1,9 @@
 extends Area2D
 
+## START GAME SETTINGS
 const JOYSTICK_DEAD_ZONE = 0.15
 const SCREEN_BOUNDARIES = 35
+## START GAME SETTINGS
 
 enum POWER_UP_INDX {CHIQUITO, VICENTIN, TERESIICA, MRT}
 var acquiredPowerUps = [null, null, null, null]
@@ -10,23 +12,21 @@ signal powerup_acquired(powerup)
 signal powerup_activated(powerup)
 
 var screensize
+export (int) var speed
+var powerUpInUse = false
+
+## START SHOOTING
 var last_shoot = 0.3
 var shooting_speed = 0.3
 
-## START BULLETS
 enum BULLET_TYPE {DEFAULT, FIREBALL}
 export (BULLET_TYPE) var current_bullet_type
 var availableBullets = {
     BULLET_TYPE.DEFAULT: preload("res://Bullet.tscn"),
     BULLET_TYPE.FIREBALL: preload("res://bullet_fire.tscn"),
 }
-## END BULLETS
+## END SHOOTING
 
-export (int) var speed
-
-var powerUpInUse = false
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	screensize = get_viewport_rect().size
 
@@ -37,7 +37,6 @@ func _ready():
 #		print(axis_string)
 #		print(axis_index)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	## ROTATION
 	# JOY_AXIS_0 L-> | JOY_AXIS_1 L^ | JOY_AXIS_2 R-> | JOY_AXIS_3 R^
@@ -109,7 +108,6 @@ func add_power_up(powerUp):
 	
 func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
-	
 
 func _on_PowerUp_effects_expired(powerUp):
 	powerUpInUse = false
@@ -117,13 +115,12 @@ func _on_PowerUp_effects_expired(powerUp):
 func activate_power_up(powerUpIdx):
 	if powerUpInUse:
 		return
-	# @todo: prevent activation when power up is in use.
+
 	if acquiredPowerUps[powerUpIdx] != null:
 		emit_signal("powerup_activated", acquiredPowerUps[powerUpIdx])
 		acquiredPowerUps[powerUpIdx].grant_effects(self)
 		powerUpInUse = true
 		acquiredPowerUps[powerUpIdx] = null
-	# @todo: wait for effect disappear.
 
 func _on_Player_collision(body):
 	if body.has_method('hit_by_player'):

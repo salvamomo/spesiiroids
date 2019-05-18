@@ -4,10 +4,9 @@
 [ext_resource path="res://PowerUp_Chiquito.gd" type="Script" id=2]
 [ext_resource path="res://assets/powerups/powerup1.png" type="Texture" id=3]
 
-[node name="PowerUp_Chiquito" instance=ExtResource( 1 )]
+[node name="PowerUp_Chiquito" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
 
-[connection signal="area_entered" from="." to="." method="_on_PowerUp_Chiquito_area_entered"]
