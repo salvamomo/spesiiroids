@@ -43,6 +43,7 @@ func _on_Enemy_death(enemy):
 	if pointsUntilNextLife <= 0:
 		pointsUntilNextLife = 10000
 		$Player.lives += 1
+		$HUD.update_lives()
 	
 
 func _on_Player_powerup_activated(powerup):
@@ -70,3 +71,6 @@ func _on_Player_powerup_acquired(powerup):
 
 func _on_PowerUp_effects_expired(powerup):
 	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).hide()
+
+func _on_Player_hit_by_enemy():
+	$HUD.update_lives()

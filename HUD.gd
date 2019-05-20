@@ -8,16 +8,12 @@ func _ready():
 	time_start = OS.get_unix_time()
 	Main = get_tree().get_root().get_node("Main")
 	Player = get_tree().get_root().get_node("Main/Player")
-
+	update_lives()
 
 func _process(delta):
 	$top_bar/Kills.text = "Kills: " + Main.kills as String
 	$top_bar/Score.text = "Score: " + Main.score as String
-	
 	update_timer()
-	
-	# @todo: update_lives only when they actually change.
-	update_lives()
 
 func update_timer():
 	$top_bar/Timer.text = "Time: " + (OS.get_unix_time() - time_start) as String		

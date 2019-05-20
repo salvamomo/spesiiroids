@@ -10,6 +10,7 @@ var acquiredPowerUps = [null, null, null, null]
 
 signal powerup_acquired(powerup)
 signal powerup_activated(powerup)
+signal hit_by_enemy
 
 var screensize
 export (int) var speed
@@ -130,6 +131,8 @@ func _on_Player_collision(body):
 
 func _hit_by_enemy(body):
 	body.hit_by_player()
+	
+	emit_signal("hit_by_enemy")	
 		
 	if (lives > 0):
 		# Play live lost animation.
