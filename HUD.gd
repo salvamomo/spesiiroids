@@ -1,12 +1,13 @@
 extends Control
 
 var Main
+var Player
 var time_start = 0
-var time_elapsed = 0
 
 func _ready():
 	time_start = OS.get_unix_time()
 	Main = get_tree().get_root().get_node("Main")
+	Player = get_tree().get_root().get_node("Main/Player")
 
 
 func _process(delta):
@@ -14,8 +15,23 @@ func _process(delta):
 	$top_bar/Score.text = "Score: " + Main.score as String
 	
 	update_timer()
+	
+	# @todo: update_lives only when they actually change.
+	update_lives()
 
 func update_timer():
 	$top_bar/Timer.text = "Time: " + (OS.get_unix_time() - time_start) as String		
 	yield(get_tree().create_timer(1), "timeout")
 	update_timer()
+
+func update_lives():
+	if Player.lives > 3:
+		$bottom/ship_life_plus/total_lives.text = "x" + Player.lives as String
+		$bottom/ship_life_plus/total_lives.show()
+	elif Player.lives < 3:
+		$bottom/ship_life_plus/total_lives.hide()
+		for i in range(1,4):
+			if Player.lives >= i:
+				.get_node("bottom/ship_life_" + i as String).show()
+			else:
+				.get_node("bottom/ship_life_" + i as String).hide()

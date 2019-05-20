@@ -66,30 +66,43 @@ text = "Score"
 align = 1
 
 [node name="bottom" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.77
-anchor_right = 0.5
-anchor_bottom = 0.77
-margin_left = -400.0
-margin_right = -150.0
-margin_bottom = 130.0
+anchor_top = 0.878
+anchor_right = 0.312
+anchor_bottom = 1.0
+margin_top = 0.200012
+margin_right = 0.399994
+margin_bottom = -2.0
 rect_min_size = Vector2( 250, 0 )
 alignment = 1
 
-[node name="naveminiatura" type="Sprite" parent="bottom"]
-position = Vector2( 30.9948, 97.6898 )
+[node name="ship_life_icon" type="Sprite" parent="bottom"]
+position = Vector2( 30.995, 40 )
 texture = ExtResource( 2 )
 
-[node name="navevidas" type="Sprite" parent="bottom"]
-position = Vector2( 73.1389, 108.128 )
+[node name="ship_life_1" type="Sprite" parent="bottom"]
+position = Vector2( 73.139, 50 )
 texture = ExtResource( 3 )
 
-[node name="navevidas2" type="Sprite" parent="bottom"]
-position = Vector2( 108.139, 108.128 )
+[node name="ship_life_2" type="Sprite" parent="bottom"]
+position = Vector2( 108.139, 50 )
 texture = ExtResource( 3 )
+
+[node name="ship_life_3" type="Sprite" parent="bottom"]
+position = Vector2( 142.139, 50 )
+texture = ExtResource( 3 )
+
+[node name="ship_life_plus" type="Sprite" parent="bottom"]
+position = Vector2( 176.139, 50 )
+
+[node name="total_lives" type="Label" parent="bottom/ship_life_plus"]
+visible = false
+margin_left = -8.0
+margin_top = -6.0
+text = "x5"
+align = 1
+valign = 1
 
 [node name="acquired_powerups" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.45
 anchor_top = 0.9
 anchor_right = 0.45
@@ -132,7 +145,6 @@ margin_bottom = 40.0
 texture = ExtResource( 7 )
 
 [node name="powerup_animation" type="HBoxContainer" parent="."]
-editor/display_folded = true
 margin_left = 698.4
 margin_top = 462.0
 margin_right = 798.4
