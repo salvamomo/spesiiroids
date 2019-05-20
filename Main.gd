@@ -3,8 +3,14 @@ extends Node
 var screen_size
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 
+var kills
+var score
+var pointsUntilNextLife = 10000
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	score = 0
+	kills = 0
 	screen_size = get_viewport().get_visible_rect().size
 	_spawn_test_enemies()
 
@@ -25,6 +31,19 @@ func _spawn_test_enemies():
 func _process(delta):
 	if Input.is_action_just_pressed("Spawn_Enemy"):
 		_spawn_test_enemies()
+
+func _on_Enemy_death(enemy):
+	var playerPointBonus = 1
+	var enemType = 1
+	var addedPoints = (10 * playerPointBonus * 1) * (pow(1 + enemType / 8, 2) + 1)
+	kills += 1
+	score += addedPoints
+	pointsUntilNextLife -= addedPoints
+	
+	if pointsUntilNextLife <= 0:
+		pointsUntilNextLife = 10000
+		$Player.lives += 1
+	
 
 func _on_Player_powerup_activated(powerup):
 	# HUD Updates.
