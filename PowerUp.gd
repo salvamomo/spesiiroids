@@ -2,6 +2,7 @@ extends Area2D
 
 var velocity = Vector2(0, 0)
 export var duracion = 3
+export var time_available = 7
 
 signal powerup_effects_expired(powerup)
 
@@ -47,6 +48,13 @@ func set_state_acquired():
 func respawn():
 	currentState = State.PICKABLE
 	show()
+	
+	yield(get_tree().create_timer(time_available), "timeout")
+	# Allow to stay on the map for a limited amount of time.
+	# State is checked here because it may have changed between
+	# the moment it was set, and the moment the timer returned.
+	if currentState == State.PICKABLE:
+		reset()
 	
 func is_ready_for_respawn():
 	return currentState == State.RESPAWN_READY

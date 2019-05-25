@@ -24,7 +24,7 @@ func update_lives():
 	if Player.lives > 3:
 		$bottom/ship_life_plus/total_lives.text = "x" + Player.lives as String
 		$bottom/ship_life_plus/total_lives.show()
-	elif Player.lives < 3:
+	elif Player.lives <= 3:
 		$bottom/ship_life_plus/total_lives.hide()
 		for i in range(1,4):
 			if Player.lives >= i:
