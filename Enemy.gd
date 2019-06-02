@@ -1,25 +1,34 @@
 extends KinematicBody2D
+class_name Enemy
 
 const DEG2RAD90 = 1.5708
 
 signal enemy_died(enemy)
 
-var player
+var Player
+var Main
+
+enum State {SPAWNING, ALIVE, DYING}
+var currentState = 0
+var can_shoot = 0
 export (int) var speed
 
 func _ready():
-	var Main = get_tree().get_root().get_node("Main")
-	player = get_tree().get_root().get_node("Main/Player")
+	Main = get_tree().get_root().get_node("Main")
+	Player = get_tree().get_root().get_node("Main/Player")
 	self.connect("enemy_died", Main, "_on_Enemy_death")
 
 func _process(delta):
 	var velocity = Vector2()
-	var toPlayerDirection = (player.position - self.position)
+	var toPlayerDirection = (Player.position - self.position)
 	var direction = toPlayerDirection.normalized()
 	rotation = toPlayerDirection.angle() - DEG2RAD90
 
 	velocity = direction * speed
 	position += velocity * delta
+
+func set_texture(texture):
+	$Sprite.set_texture(texture)
 
 func die():
 	# @todo: Finish explosion effect.
