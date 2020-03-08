@@ -16,9 +16,11 @@ var enemyTypesTextures = {
 	7: preload("res://assets/enemies/Enemy8.png"),
 }
 
+var Main
 var screen_size
 
 func _ready():
+	Main = get_tree().get_root().get_node("Main")
 	screen_size = get_viewport().get_visible_rect().size
 	spawn()
 
@@ -40,8 +42,7 @@ func spawn():
 	spawn()
 
 func _resolve_new_enemy_type():
-	# @todo: Move level management to Main scene / Level manager.
-	var level = 15
+	var level = Main.level
 
 	if level <= 2:
 		return 0

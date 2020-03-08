@@ -4,6 +4,7 @@ var screen_size
 
 var kills
 var score
+export (int) var level = 1
 var pointsUntilNextLife = 10000
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func _process(delta):
 
 func _on_Enemy_death(enemy):
 	var playerPointBonus = 1
+	# @todo: Get enemy type correctly.
 	var enemType = 1
 	var addedPoints = (10 * playerPointBonus * 1) * (pow(1 + enemType / 8, 2) + 1)
 	kills += 1
@@ -28,6 +30,11 @@ func _on_Enemy_death(enemy):
 		$Player.lives += 1
 		$HUD.update_lives()
 	
+	check_level_completed()
+
+func check_level_completed():
+	level = int(score / 10);
+	return
 
 func _on_Player_powerup_activated(powerup):
 	# HUD Updates.

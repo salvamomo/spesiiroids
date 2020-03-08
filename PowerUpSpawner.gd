@@ -58,6 +58,7 @@ func spawn_powerup():
 		)
 		nextPowerUp.respawn()
 
+    # @todo: this shouldn't call start if there's no available powerUps to respawn?
 	$RespawnTimer.start(rand_range(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME))
 
 func _on_RespawnTimer_timeout():
