@@ -11,7 +11,7 @@ var availablePowerUps = [null, null, null, null]
 const powerUps = [
 	preload("res://PowerUp_Chiquito.tscn"),
 	preload("res://PowerUp_Vicentin.tscn"),
-	preload("res://PowerUp_Mrt.tscn"),
+	preload("res://PowerUp_MrT.tscn"),
 	preload("res://PowerUp_Teresiica.tscn")
 ]
 
@@ -58,7 +58,7 @@ func spawn_powerup():
 		)
 		nextPowerUp.respawn()
 
-    # @todo: this shouldn't call start if there's no available powerUps to respawn?
+	# @todo: this shouldn't call start if there's no available powerUps to respawn?
 	$RespawnTimer.start(rand_range(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME))
 
 func _on_RespawnTimer_timeout():
