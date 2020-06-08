@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/chiquito8.wav-c3cf07eea30ea7f09161cabe999a1b47.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/chiquito/chiquito8.wav"
+dest_files=[ "res://.import/chiquito8.wav-c3cf07eea30ea7f09161cabe999a1b47.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

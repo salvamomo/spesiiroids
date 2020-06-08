@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/missilelaunch.wav-72654ad3459ef6ff49d8b6f39b5a3aa1.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/missilelaunch.wav"
+dest_files=[ "res://.import/missilelaunch.wav-72654ad3459ef6ff49d8b6f39b5a3aa1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
