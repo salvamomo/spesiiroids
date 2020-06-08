@@ -23,12 +23,26 @@ func _ready():
 	hide()
 
 func grant_effects(player):
+	var BackgroundMusic = get_tree().get_root().get_node("Main/BackgroundMusic")
+		
 	if self.has_method("grant_bonus_to_player"):
 		self.call("grant_bonus_to_player", player)
+		
+		BackgroundMusic.set_stream_paused(true)
+		play_sound_effect()
+		
 		yield(get_tree().create_timer(self.duracion), "timeout")
+		BackgroundMusic.set_stream_paused(false)
+
 		self.call("remove_bonus_from_player", player)
 		fade()
 		reset()
+
+func play_sound_effect():
+	if self.has_method("play_sound_effect"):
+		self.call("play_sound_effect")
+	else:
+		$AudioStreamPlayer.play()
 
 func _process(delta):
 	if currentState == State.PICKABLE:
