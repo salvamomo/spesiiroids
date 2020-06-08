@@ -96,6 +96,7 @@ func _handle_power_up_usage():
 
 func shoot_bullet():	
 	var bullet = availableBullets[current_bullet_type].instance()
+
 	bullet.position = $Sprite.global_position
 	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
 	var bulletDirX = cos(self.rotation - deg2rad(90.0))

@@ -5,6 +5,7 @@ var alive: bool
 
 func _ready():
 	alive = true
+	$AudioStreamPlayer.play()
 	yield($VisibilityNotifier, "screen_exited")
 	queue_free()
 

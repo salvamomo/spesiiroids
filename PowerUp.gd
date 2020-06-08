@@ -29,7 +29,7 @@ func grant_effects(player):
 		self.call("grant_bonus_to_player", player)
 		
 		BackgroundMusic.set_stream_paused(true)
-		play_sound_effect()
+		handle_powerup_sound_effect()
 		
 		yield(get_tree().create_timer(self.duracion), "timeout")
 		BackgroundMusic.set_stream_paused(false)
@@ -38,7 +38,7 @@ func grant_effects(player):
 		fade()
 		reset()
 
-func play_sound_effect():
+func handle_powerup_sound_effect():
 	if self.has_method("play_sound_effect"):
 		self.call("play_sound_effect")
 	else:
