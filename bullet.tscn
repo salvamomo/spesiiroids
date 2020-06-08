@@ -20,5 +20,5 @@ position = Vector2( 0.405685, 0.434812 )
 scale = Vector2( 0.90638, 0.902219 )
 rect = Rect2( -8, -8, 15, 15 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ShootingSound" type="AudioStreamPlayer" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_collision"]

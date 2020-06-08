@@ -17,5 +17,5 @@ texture = ExtResource( 3 )
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="AudioStreamPlayer" parent="." index="3"]
+[node name="ShootingSound" parent="." index="3"]
 stream = ExtResource( 4 )
