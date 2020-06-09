@@ -20,10 +20,13 @@ var Main
 var Player
 var screen_size
 
+var current_target_node
+
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	Player = get_tree().get_root().get_node("Main/Player")
 	screen_size = get_viewport().get_visible_rect().size
+	current_target_node = Player
 	spawn()
 
 func spawn():
@@ -44,7 +47,7 @@ func spawn():
 	spawn()
 
 func get_target_position():
-	return Player.position
+	return current_target_node.position
 
 func _resolve_new_enemy_type():
 	var level = Main.level
@@ -72,6 +75,8 @@ func _resolve_new_enemy_type():
 	elif level >= 25:
 		return 7
 
-
-
-
+func _on_Teresiica_Beacon_Created(beacon):
+	current_target_node = beacon
+	
+func _on_Teresiica_Beacon_Destroyed(beacon):
+	current_target_node = Player
