@@ -4,4 +4,3 @@
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource( 1 )
-

@@ -7,6 +7,7 @@ signal enemy_died(enemy)
 
 var Player
 var Main
+var EnemyManager
 
 enum State {SPAWNING, ALIVE, DYING}
 var currentState = 0
@@ -16,13 +17,14 @@ export (int) var speed
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	Player = get_tree().get_root().get_node("Main/Player")
+	EnemyManager = get_tree().get_root().get_node("Main/EnemyManager")
 	self.connect("enemy_died", Main, "_on_Enemy_death")
 
 func _process(delta):
 	var velocity = Vector2()
-	var toPlayerDirection = (Player.position - self.position)
-	var direction = toPlayerDirection.normalized()
-	rotation = toPlayerDirection.angle() - DEG2RAD90
+	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
+	var direction = toTargetDirection.normalized()
+	rotation = toTargetDirection.angle() - DEG2RAD90
 
 	velocity = direction * speed
 	position += velocity * delta

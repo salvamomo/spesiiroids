@@ -17,10 +17,12 @@ var enemyTypesTextures = {
 }
 
 var Main
+var Player
 var screen_size
 
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
+	Player = get_tree().get_root().get_node("Main/Player")
 	screen_size = get_viewport().get_visible_rect().size
 	spawn()
 
@@ -40,6 +42,9 @@ func spawn():
 	
 	yield(get_tree().create_timer(2), "timeout")
 	spawn()
+
+func get_target_position():
+	return Player.position
 
 func _resolve_new_enemy_type():
 	var level = Main.level
