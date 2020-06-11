@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DevControls.gd" type="Script" id=1]
+
+[node name="DevControls" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 247.0
+margin_bottom = 287.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -108.0
+margin_right = 108.0
+margin_bottom = 136.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="Panel/VBoxContainer"]
+margin_right = 216.0
+margin_bottom = 40.0
+text = "Toggle Bounce Shield"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="GenerateChiquito" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 44.0
+margin_right = 216.0
+margin_bottom = 64.0
+text = "Generate Chiquito"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GenerateVicentin" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 68.0
+margin_right = 216.0
+margin_bottom = 88.0
+text = "Generate Vicentin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GenerateMrT" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 92.0
+margin_right = 216.0
+margin_bottom = 112.0
+text = "Generate MrT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GenerateTeresiica" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 116.0
+margin_right = 216.0
+margin_bottom = 136.0
+text = "Generate Teresiica"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="Panel/VBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
