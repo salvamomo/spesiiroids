@@ -27,7 +27,14 @@ func _process(delta):
 	rotation = toTargetDirection.angle() - DEG2RAD90
 
 	velocity = direction * speed
+	
+	Player.overlaps_body(self)
+	
+	if (Player.has_bouncing_shield_enabled() && Player.overlaps_body(self)):
+		velocity = -velocity * 2
+		
 	position += velocity * delta
+	
 
 func set_texture(texture):
 	$Sprite.set_texture(texture)
@@ -45,7 +52,3 @@ func hit_by_bullet():
 	
 func hit_by_player():
 	die()
-
-
-
-

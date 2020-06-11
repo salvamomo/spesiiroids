@@ -3,10 +3,10 @@ extends "res://PowerUp.gd"
 const TYPE = 0
 	
 func grant_bonus_to_player(player):
-	print("chiquito + ")
+	player.activate_bouncing_shield()
 	
 func remove_bonus_from_player(player):
-	print("chiquito -")
+	player.deactivate_bouncing_shield()
 
 func play_sound_effect():
 	var effect_to_play = randi() % 21
