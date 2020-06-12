@@ -17,6 +17,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
+		get_tree().paused = self.visible
 
 func _on_CheckButton_toggled(button_pressed):	
 	if (button_pressed):
