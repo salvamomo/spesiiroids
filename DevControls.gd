@@ -45,3 +45,10 @@ func _on_GenerateTeresiica_pressed():
 	var powerUp = powerUps[3].instance()
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
+
+
+func _on_LevelUp_pressed():
+	Main.set_level(Main.level + 1)
+
+func _on_LevelDown_pressed():
+	Main.set_level(Main.level - 1)

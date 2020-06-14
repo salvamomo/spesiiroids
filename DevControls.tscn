@@ -73,8 +73,28 @@ text = "Generate Teresiica"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LevelUp" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 140.0
+margin_right = 216.0
+margin_bottom = 160.0
+text = "Level Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelDown" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 164.0
+margin_right = 216.0
+margin_bottom = 184.0
+text = "Level Down"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="toggled" from="Panel/VBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateChiquito" to="." method="_on_GenerateChiquito_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateVicentin" to="." method="_on_GenerateVicentin_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateMrT" to="." method="_on_GenerateMrT_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateTeresiica" to="." method="_on_GenerateTeresiica_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/LevelUp" to="." method="_on_LevelUp_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/LevelDown" to="." method="_on_LevelDown_pressed"]
