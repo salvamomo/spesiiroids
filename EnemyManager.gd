@@ -2,6 +2,7 @@ extends Node
 
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 
+const RESPAWN_TIME = 2
 const MIN_VEL = 200
 const MAX_VEL = 380
 
@@ -43,7 +44,7 @@ func spawn():
 	new_enemy.set_texture(enemyTypesTextures[_resolve_new_enemy_type()]);
 	.add_child(new_enemy)
 	
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(RESPAWN_TIME), "timeout")
 	spawn()
 
 func get_target_position():
