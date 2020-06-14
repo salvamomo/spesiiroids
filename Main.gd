@@ -4,6 +4,11 @@ var screen_size
 
 var kills
 var score
+
+var baseLevelPoints = 200
+var extraPointsPerLevel = 175
+var maxLevelPoints
+
 export (int) var level = 1
 var pointsUntilNextLife = 10000
 
@@ -11,6 +16,7 @@ var pointsUntilNextLife = 10000
 func _ready():
 	score = 0
 	kills = 0
+	maxLevelPoints = baseLevelPoints
 	screen_size = get_viewport().get_visible_rect().size
 
 func _process(delta):
@@ -32,9 +38,13 @@ func _on_Enemy_death(enemy):
 	
 	check_level_completed()
 
+func set_level(new_level):
+	level = new_level
+	maxLevelPoints = level * baseLevelPoints + (level * extraPointsPerLevel)
+
 func check_level_completed():
-	level = int(score / 10);
-	return
+	if (score > maxLevelPoints):
+		set_level(level + 1)
 
 func _on_Player_powerup_activated(powerup):
 	# HUD Updates.

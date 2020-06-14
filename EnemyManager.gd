@@ -59,19 +59,19 @@ func _resolve_new_enemy_type():
 	elif level == 4:
 		return 1
 	elif level == 5:
-		return rand_range(1, 2) as int
+		return round(rand_range(1, 2)) as int
 	elif level == 6:
-		return rand_range(2, 3) as int
+		return round(rand_range(2, 3)) as int
 	elif level == 7:
-		return rand_range(2, 4) as int
+		return round(rand_range(2, 4)) as int
 	elif level == 8:
-		return rand_range(3, 5) as int
+		return round(rand_range(3, 5)) as int
 	elif level == 9:
-		return rand_range(4, 5) as int
+		return round(rand_range(4, 5)) as int
 	elif level >= 10 and level < 15:
-		return rand_range(4, 6) as int
-	elif level >= 15:
-		return rand_range(5, 6) as int
+		return round(rand_range(4, 6)) as int
+	elif level >= 15 and level < 25:
+		return round(rand_range(5, 6)) as int
 	elif level >= 25:
 		return 7
 
