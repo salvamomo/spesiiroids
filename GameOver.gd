@@ -5,4 +5,4 @@ func _process(delta):
 		self.queue_free()
 		get_tree().change_scene("res://Main.tscn")
 	if (Input.is_action_pressed("Exit_Back")):
-		pass
+		get_tree().quit()
