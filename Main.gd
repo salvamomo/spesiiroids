@@ -20,7 +20,16 @@ func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 
 func _process(delta):
-	pass
+	if (Input.is_action_just_pressed("Start_Pause")):
+		get_tree().paused = !get_tree().paused
+		$PauseText.visible = !$PauseText.visible
+	if (Input.is_action_pressed("Exit_Back") and get_tree().paused):
+		self.queue_free()
+		get_tree().change_scene("res://MainMenu.tscn")
+#	@todo: Entire OS crashes when doing this several times.		
+#	if (Input.is_action_pressed("FullScreen")):
+#		OS.window_fullscreen = !OS.window_fullscreen
+ 
 
 func _on_Enemy_death(enemy):
 	var playerPointBonus = 1
@@ -74,7 +83,6 @@ func _on_PowerUp_effects_expired(powerup):
 
 func _on_Player_hit_by_enemy():
 	$HUD.update_lives()
-
 
 func _on_Player_player_dies():
 	$EnemyManager.free()
