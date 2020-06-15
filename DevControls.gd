@@ -30,7 +30,6 @@ func _on_GenerateChiquito_pressed():
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
 
-
 func _on_GenerateVicentin_pressed():
 	var powerUp = powerUps[1].instance()
 	.add_child(powerUp)
@@ -52,3 +51,6 @@ func _on_LevelUp_pressed():
 
 func _on_LevelDown_pressed():
 	Main.set_level(Main.level - 1)
+
+func _on_GrantLife_pressed():
+	Main.grant_life_to_player()

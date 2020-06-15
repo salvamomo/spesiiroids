@@ -41,11 +41,14 @@ func _on_Enemy_death(enemy):
 	pointsUntilNextLife -= addedPoints
 	
 	if pointsUntilNextLife <= 0:
-		pointsUntilNextLife = 10000
-		$Player.lives += 1
-		$HUD.update_lives()
+		grant_life_to_player()
 	
 	check_level_completed()
+
+func grant_life_to_player():
+	pointsUntilNextLife = 10000
+	$Player.lives += 1
+	$HUD.update_lives()
 
 func set_level(new_level):
 	level = new_level
