@@ -32,6 +32,12 @@ tracks/0/keys = {
 margin_right = 800.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RefreshTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="top_bar" type="HBoxContainer" parent="."]
 anchor_left = 0.5
@@ -40,6 +46,9 @@ margin_left = -390.0
 margin_top = 10.0
 margin_right = 400.0
 margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Kills" type="Label" parent="top_bar"]
 margin_right = 240.0
@@ -189,4 +198,4 @@ margin_left = 117.0
 margin_right = 217.0
 margin_bottom = 141.0
 texture = ExtResource( 11 )
-
+[connection signal="timeout" from="RefreshTimer" to="." method="_on_RefreshTimer_timeout"]

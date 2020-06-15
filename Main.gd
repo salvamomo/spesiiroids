@@ -74,3 +74,10 @@ func _on_PowerUp_effects_expired(powerup):
 
 func _on_Player_hit_by_enemy():
 	$HUD.update_lives()
+
+
+func _on_Player_player_dies():
+	$EnemyManager.free()
+	$HUD.free()
+	self.queue_free()
+	get_tree().change_scene("res://GameOver.tscn")

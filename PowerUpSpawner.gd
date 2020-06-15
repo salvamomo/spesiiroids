@@ -29,9 +29,6 @@ func _ready():
 	.add_child(availablePowerUps[2])
 	.add_child(availablePowerUps[3])
 	
-	yield(get_tree().create_timer(2), "timeout")
-	spawn_powerup()
-	
 func spawn_powerup():
 	randomize()	
 	

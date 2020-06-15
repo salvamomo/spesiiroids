@@ -11,6 +11,7 @@ var acquiredPowerUps = [null, null, null, null]
 signal powerup_acquired(powerup)
 signal powerup_activated(powerup)
 signal hit_by_enemy
+signal player_dies
 
 var screensize
 export (int) var speed
@@ -153,4 +154,4 @@ func _hit_by_enemy(body):
 		print("@todo: ", lives, " lives: hit animation")
 		lives -= 1
 	else:
-		print("@todo: 0 lives: die")
+		emit_signal("player_dies")	
