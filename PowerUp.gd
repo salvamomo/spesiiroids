@@ -31,7 +31,7 @@ func grant_effects(player):
 		BackgroundMusic.set_stream_paused(true)
 		handle_powerup_sound_effect()
 		
-		yield(get_tree().create_timer(self.duracion), "timeout")
+		yield(get_tree().create_timer(self.duracion, false), "timeout")
 		BackgroundMusic.set_stream_paused(false)
 
 		self.call("remove_bonus_from_player", player)
@@ -63,7 +63,7 @@ func respawn():
 	currentState = State.PICKABLE
 	show()
 	
-	yield(get_tree().create_timer(time_available), "timeout")
+	yield(get_tree().create_timer(time_available, false), "timeout")
 	# Allow to stay on the map for a limited amount of time.
 	# State is checked here because it may have changed between
 	# the moment it was set, and the moment the timer returned.
