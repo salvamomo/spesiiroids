@@ -147,11 +147,11 @@ func _on_Player_collision(body):
 func _hit_by_enemy(body):
 	body.hit_by_player()
 	
-	emit_signal("hit_by_enemy")	
-		
+	lives -= 1
+	emit_signal("hit_by_enemy")
+	
 	if (lives > 0):
 		# Play live lost animation.
 		print("@todo: ", lives, " lives: hit animation")
-		lives -= 1
 	else:
 		emit_signal("player_dies")	

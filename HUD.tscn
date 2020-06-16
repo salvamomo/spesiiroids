@@ -85,19 +85,19 @@ margin_bottom = -2.0
 rect_min_size = Vector2( 250, 0 )
 alignment = 1
 
-[node name="ship_life_icon" type="Sprite" parent="bottom"]
+[node name="ship_life_1" type="Sprite" parent="bottom"]
 position = Vector2( 30.995, 40 )
 texture = ExtResource( 2 )
 
-[node name="ship_life_1" type="Sprite" parent="bottom"]
+[node name="ship_life_2" type="Sprite" parent="bottom"]
 position = Vector2( 73.139, 50 )
 texture = ExtResource( 3 )
 
-[node name="ship_life_2" type="Sprite" parent="bottom"]
+[node name="ship_life_3" type="Sprite" parent="bottom"]
 position = Vector2( 108.139, 50 )
 texture = ExtResource( 3 )
 
-[node name="ship_life_3" type="Sprite" parent="bottom"]
+[node name="ship_life_4" type="Sprite" parent="bottom"]
 position = Vector2( 142.139, 50 )
 texture = ExtResource( 3 )
 
