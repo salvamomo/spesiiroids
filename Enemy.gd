@@ -20,24 +20,26 @@ func _ready():
 	EnemyManager = get_tree().get_root().get_node("Main/EnemyManager")
 	self.connect("enemy_died", Main, "_on_Enemy_death")
 
+	currentState = State.SPAWNING
+	$SpawnSprite/SpawnAnimation.play("spawn")
+
 func _process(delta):
-	var velocity = Vector2()
 	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
-	var direction = toTargetDirection.normalized()
 	rotation = toTargetDirection.angle() - DEG2RAD90
 
-	velocity = direction * speed
+	if (currentState == State.ALIVE):
+		var velocity = Vector2()
+		var direction = toTargetDirection.normalized()
+		velocity = direction * speed
 	
-	Player.overlaps_body(self)
-	
-	if (Player.has_bouncing_shield_enabled() && Player.overlaps_body(self)):
-		velocity = -velocity * 2
-		
-	position += velocity * delta
-	
+		if (Player.has_bouncing_shield_enabled() && Player.overlaps_body(self)):
+			velocity = -velocity * 2
 
-func set_texture(texture):
-	$Sprite.set_texture(texture)
+		position += velocity * delta
+
+func set_textures(sprite_texture, spawn_texture):
+	$Sprite.set_texture(sprite_texture)
+	$SpawnSprite.set_texture(spawn_texture)
 
 func die():
 	# @todo: Finish explosion effect.
@@ -52,3 +54,9 @@ func hit_by_bullet():
 	
 func hit_by_player():
 	die()
+
+
+func _on_SpawnAnimation_animation_finished(anim_name):
+	$SpawnSprite.hide()
+	$Sprite.show()
+	currentState = State.ALIVE

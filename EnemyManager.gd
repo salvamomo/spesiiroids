@@ -7,13 +7,21 @@ const MAX_VEL = 380
 
 var enemyTypesTextures = {
 	0: preload("res://assets/enemies/Enemy1.png"),
-	1: preload("res://assets/enemies/Enemy2.png"),
-	2: preload("res://assets/enemies/Enemy3.png"),
-	3: preload("res://assets/enemies/Enemy4.png"),
-	4: preload("res://assets/enemies/Enemy5.png"),
-	5: preload("res://assets/enemies/Enemy6.png"),
-	6: preload("res://assets/enemies/Enemy7.png"),
-	7: preload("res://assets/enemies/Enemy8.png"),
+	1: preload("res://assets/enemies/EnemySpawn1.png"),
+	2: preload("res://assets/enemies/Enemy2.png"),
+	3: preload("res://assets/enemies/EnemySpawn2.png"),
+	4: preload("res://assets/enemies/Enemy3.png"),
+	5: preload("res://assets/enemies/EnemySpawn3.png"),
+	6: preload("res://assets/enemies/Enemy4.png"),
+	7: preload("res://assets/enemies/EnemySpawn4.png"),
+	8: preload("res://assets/enemies/Enemy5.png"),
+	9: preload("res://assets/enemies/EnemySpawn5.png"),
+	10: preload("res://assets/enemies/Enemy6.png"),
+	11: preload("res://assets/enemies/EnemySpawn6.png"),
+	12: preload("res://assets/enemies/Enemy7.png"),
+	13: preload("res://assets/enemies/EnemySpawn7.png"),
+	14: preload("res://assets/enemies/Enemy8.png"),
+	15: preload("res://assets/enemies/EnemySpawn7.png"),
 }
 
 var Main
@@ -40,7 +48,11 @@ func spawn():
 #	@todo: randomize shooting.
 	new_enemy.can_shoot = 0
 	randi()
-	new_enemy.set_texture(enemyTypesTextures[_resolve_new_enemy_type()]);
+
+#	Multiply by 2 since every type has 2 textures (sprite + spawn spritesheet).
+	var enemy_type = _resolve_new_enemy_type() * 2
+
+	new_enemy.set_textures(enemyTypesTextures[enemy_type], enemyTypesTextures[enemy_type + 1]);
 	.add_child(new_enemy)
 
 func get_target_position():
