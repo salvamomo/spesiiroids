@@ -59,4 +59,5 @@ func hit_by_player():
 func _on_SpawnAnimation_animation_finished(anim_name):
 	$SpawnSprite.hide()
 	$Sprite.show()
+	$CollisionShape2D.set_disabled(false)
 	currentState = State.ALIVE
