@@ -3,6 +3,9 @@ extends Area2D
 export var velocity = Vector2()
 var alive: bool
 
+enum Target {PLAYER, ENEMY}
+var bulletTarget = Target.ENEMY
+
 func _ready():
 	alive = true
 	$ShootingSound.play()
@@ -14,7 +17,13 @@ func _process(delta):
 		translate(velocity * delta)
 
 func _on_Bullet_collision(body):
-	if (alive && body.has_method('hit_by_bullet')):
+	if (alive && bulletTarget == Target.ENEMY and body.is_in_group("Enemies")):
 		alive = false
 		body.call('hit_by_bullet')
+		queue_free()
+
+func _on_Bullet_area_entered(area):
+	if (bulletTarget == Target.PLAYER and area.is_in_group("Ship")):
+		alive = false
+		area.call('hit_by_bullet')
 		queue_free()

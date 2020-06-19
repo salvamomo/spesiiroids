@@ -32,9 +32,6 @@ radius = 119.195
 "Ship",
 ]]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 speed = 400
 
 [node name="Sprite" type="Sprite" parent="." groups=[

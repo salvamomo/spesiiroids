@@ -45,9 +45,8 @@ func spawn():
 	)
 	new_enemy.speed = lerp(MIN_VEL, MAX_VEL, randf())
 
-#	@todo: randomize shooting.
-	new_enemy.can_shoot = 0
-	randi()
+	new_enemy.can_shoot = (randi() % 2) as bool
+	new_enemy.can_shoot = true
 
 #	Multiply by 2 since every type has 2 textures (sprite + spawn spritesheet).
 	var enemy_type = _resolve_new_enemy_type() * 2

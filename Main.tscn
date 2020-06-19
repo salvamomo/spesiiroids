@@ -29,6 +29,8 @@ pause_mode = 1
 position = Vector2( 437, 279 )
 z_index = 1
 priority = 1.0
+lives = 3
+current_bullet_type = 0
 
 [node name="PowerUpSpawner" parent="." instance=ExtResource( 5 )]
 pause_mode = 1

@@ -73,7 +73,6 @@ func _process(delta):
 		velocity.y -= 1
 	if Input.is_action_pressed("shoot"):
 		if (last_shoot >= shooting_speed):
-			# Is there a need to yield until shoot_bullet is finished?
 			last_shoot = 0;
 			shoot_bullet()
 
@@ -144,12 +143,20 @@ func _on_Player_collision(body):
 	if body.is_in_group("Enemies") && $BouncingShield.disabled:
 		_hit_by_enemy(body)
 
+func hit_by_bullet():
+	if $BouncingShield.disabled:
+		lives -= 1
+		emit_signal("hit_by_enemy")
+		_check_death()
+
 func _hit_by_enemy(body):
 	body.hit_by_player()
 	
 	lives -= 1
 	emit_signal("hit_by_enemy")
+	_check_death()
 	
+func _check_death():
 	if (lives > 0):
 		# Play live lost animation.
 		print("@todo: ", lives, " lives: hit animation")
