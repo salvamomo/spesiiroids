@@ -29,8 +29,6 @@ pause_mode = 1
 position = Vector2( 437, 279 )
 z_index = 1
 priority = 1.0
-lives = 3
-current_bullet_type = 0
 
 [node name="PowerUpSpawner" parent="." instance=ExtResource( 5 )]
 pause_mode = 1
@@ -54,7 +52,9 @@ margin_bottom = 355.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 text = "Play: Press ENTER or Start
-Main Menu: Press ESC or Back."
+Main Menu: Press ESC or Back.
+
+Press R1 or F to switch fullscreen mode."
 __meta__ = {
 "_edit_use_anchors_": false
 }

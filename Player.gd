@@ -48,6 +48,8 @@ func _process(delta):
 	var yAxis = Input.get_joy_axis(0, JOY_AXIS_3)
 	var rot = Vector2(xAxis, yAxis)
 
+	last_shoot += delta;
+
 #	@todo: Add mouse aim position (it shouldn't affect when playing with controller).
 #	self.set_rotation_degrees(90 + rad2deg(get_global_mouse_position().angle_to_point(position)))
 #	http://docs.godotengine.org/en/stable/classes/class_control.html might be of help,
@@ -57,11 +59,14 @@ func _process(delta):
 	#		The ship's default direction is upwards. That's equivalent -90º, given 
 	#		Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
 			self.set_rotation_degrees(90 + rad2deg(rot.angle()))
-
+			
+			if (last_shoot >= shooting_speed):
+				last_shoot = 0;
+				shoot_bullet()
+			
 	_handle_power_up_usage()
 
 	## MOVEMENT.
-	last_shoot += delta;
 	var velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1

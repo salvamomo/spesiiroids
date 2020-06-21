@@ -9,7 +9,7 @@ func _process(delta):
 		get_tree().change_scene("res://Main.tscn")
 	if (Input.is_action_just_pressed("Exit_Back")):
 		get_tree().quit()
-#	@todo: Entire OS crashes when doing this several times.		
-#	if (Input.is_action_pressed("FullScreen")):
-#		OS.window_fullscreen = !OS.window_fullscreen
+	if (Input.is_action_just_pressed("FullScreen")):
+		OS.window_fullscreen = !OS.window_fullscreen
+		
  

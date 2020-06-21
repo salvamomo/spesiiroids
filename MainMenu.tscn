@@ -29,10 +29,10 @@ margin_right = 635.0
 margin_bottom = 378.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
-text = "JUGAR: Pulsa ENTER o Start
-SALIR: Pulsa Esc o Back
+text = "Play: Press ENTER or Start
+Main Menu: Press ESC or Back.
 
-Para cambiar a pantalla completa pulsa LT o F10"
+Press R1 or F to switch fullscreen mode."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,3 +45,6 @@ margin_bottom = 221.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.199356, 0.590374, 0.761719, 1 )
 text = "SpESIIRoids"
+__meta__ = {
+"_edit_use_anchors_": false
+}
