@@ -19,3 +19,4 @@ shape = SubResource( 1 )
 
 [node name="ShootingSound" parent="." index="3"]
 stream = ExtResource( 4 )
+volume_db = -8.226

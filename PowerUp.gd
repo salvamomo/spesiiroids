@@ -13,6 +13,7 @@ const MAX_ROT = 2
 
 enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY}
 var currentState
+var stopMusicOnUsage = false
 
 func _ready():
 	currentState = State.RESPAWN_READY
@@ -28,11 +29,15 @@ func grant_effects(player):
 	if self.has_method("grant_bonus_to_player"):
 		self.call("grant_bonus_to_player", player)
 		
-		BackgroundMusic.set_stream_paused(true)
+		if (stopMusicOnUsage):
+			BackgroundMusic.set_stream_paused(true)
+		
 		handle_powerup_sound_effect()
 		
 		yield(get_tree().create_timer(self.duracion, false), "timeout")
-		BackgroundMusic.set_stream_paused(false)
+		
+		if (stopMusicOnUsage):
+			BackgroundMusic.set_stream_paused(false)
 
 		self.call("remove_bonus_from_player", player)
 		fade()

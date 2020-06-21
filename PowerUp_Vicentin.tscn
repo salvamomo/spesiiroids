@@ -14,3 +14,4 @@ texture = ExtResource( 3 )
 
 [node name="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource( 4 )
+volume_db = -15.0

@@ -10,3 +10,6 @@ duracion = 6
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+volume_db = -10.0
