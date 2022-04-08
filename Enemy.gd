@@ -47,8 +47,9 @@ func _physics_process(delta):
 #				move_and_slide(velocity)
 
 func _process(delta):
-	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
-	rotation = toTargetDirection.angle() - DEG2RAD90
+	if (currentState == State.ALIVE):
+		var toTargetDirection = (EnemyManager.get_target_position() - self.position)
+		rotation = toTargetDirection.angle() - DEG2RAD90
 
 func set_textures(sprite_texture, spawn_texture):
 	$Sprite.set_texture(sprite_texture)
@@ -56,10 +57,12 @@ func set_textures(sprite_texture, spawn_texture):
 
 func die():
 	# @todo: Finish explosion effect.
+	currentState = State.DYING
 	emit_signal("enemy_died", self)
-	$Explosion.emitting = true
+	
+	$Explosion.set_emitting(true)
 	$Sprite.hide()
-#	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	queue_free()
 
 func hit_by_bullet():
