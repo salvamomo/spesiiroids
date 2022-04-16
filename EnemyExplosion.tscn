@@ -11,13 +11,13 @@ colors = PoolColorArray( 0.0722656, 0.0680313, 0.0680313, 1, 0.36282, 0.359912, 
 [sub_resource type="GradientTexture" id=12]
 gradient = SubResource( 11 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=13]
 min_value = 1.0
 max_value = 1.5
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.5 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.433735, 1.36818 ), 0.491166, 0.491166, 0, 0, Vector2( 1, 1.5 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+curve = SubResource( 13 )
 
 [sub_resource type="ParticlesMaterial" id=8]
 lifetime_randomness = 0.25
@@ -27,7 +27,8 @@ flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
-angular_velocity = 25.0
+angular_velocity = 45.0
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 6.0
@@ -38,7 +39,6 @@ color_ramp = SubResource( 12 )
 
 [node name="Explosion" type="Particles2D" groups=["Enemies"]]
 material = SubResource( 3 )
-emitting = false
 amount = 1
 lifetime = 2.0
 one_shot = true
