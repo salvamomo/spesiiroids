@@ -2,6 +2,7 @@ extends Control
 
 var Main
 var Player
+var SoundManager
 
 const powerUps = [
 	preload("res://PowerUp_Chiquito.tscn"),
@@ -10,14 +11,22 @@ const powerUps = [
 	preload("res://PowerUp_Teresiica.tscn")
 ]
 
+signal music_toggled
+
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node("Player")
+	SoundManager = Main.get_node("SoundManager")
+	self.connect("music_toggled", SoundManager, "_toggle_music")
+	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 
 func _process(delta):
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
 		get_tree().paused = self.visible
+
+func _on_ToggleMusic_toggled(button_pressed):
+	emit_signal("music_toggled")
 
 func _on_CheckButton_toggled(button_pressed):	
 	if (button_pressed):

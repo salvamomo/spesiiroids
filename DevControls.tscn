@@ -7,9 +7,6 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 247.0
@@ -32,75 +29,89 @@ __meta__ = {
 [node name="CheckButton" type="CheckButton" parent="Panel/VBoxContainer"]
 margin_right = 216.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( 231.5, 184 )
 text = "Toggle Bounce Shield"
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
-[node name="GenerateChiquito" type="Button" parent="Panel/VBoxContainer"]
+[node name="ToggleMusic" type="CheckButton" parent="Panel/VBoxContainer"]
 margin_top = 44.0
 margin_right = 216.0
-margin_bottom = 64.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( 231.5, 184 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="GenerateChiquito" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 88.0
+margin_right = 216.0
+margin_bottom = 108.0
 text = "Generate Chiquito"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GenerateVicentin" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 68.0
+margin_top = 112.0
 margin_right = 216.0
-margin_bottom = 88.0
+margin_bottom = 132.0
 text = "Generate Vicentin"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GenerateMrT" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 92.0
+margin_top = 136.0
 margin_right = 216.0
-margin_bottom = 112.0
+margin_bottom = 156.0
 text = "Generate MrT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GenerateTeresiica" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 116.0
+margin_top = 160.0
 margin_right = 216.0
-margin_bottom = 136.0
+margin_bottom = 180.0
 text = "Generate Teresiica"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LevelUp" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 140.0
+margin_top = 184.0
 margin_right = 216.0
-margin_bottom = 160.0
+margin_bottom = 204.0
 text = "Level Up"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LevelDown" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 164.0
+margin_top = 208.0
 margin_right = 216.0
-margin_bottom = 184.0
+margin_bottom = 228.0
 text = "Level Down"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GrantLife" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 188.0
+margin_top = 232.0
 margin_right = 216.0
-margin_bottom = 208.0
+margin_bottom = 252.0
 text = "Grant Life"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="toggled" from="Panel/VBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="Panel/VBoxContainer/ToggleMusic" to="." method="_on_ToggleMusic_toggled"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateChiquito" to="." method="_on_GenerateChiquito_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateVicentin" to="." method="_on_GenerateVicentin_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GenerateMrT" to="." method="_on_GenerateMrT_pressed"]

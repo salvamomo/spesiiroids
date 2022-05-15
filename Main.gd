@@ -28,7 +28,6 @@ func _process(delta):
 		get_tree().change_scene("res://MainMenu.tscn")
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
- 
 
 func _on_Enemy_death(enemy):
 	var playerPointBonus = 1
