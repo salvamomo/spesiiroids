@@ -59,7 +59,17 @@ func die():
 	# @todo: Finish explosion effect.
 	currentState = State.DYING
 	emit_signal("enemy_died", self)
-	
+
+	# $CollisionShape2D.set_disabled(true) or $CollisionShape2D.disabled = true
+	# won't work. From the CollisionShape2D docs:
+	# "A disabled collision shape has no effect in the world. 
+	# This property should be changed with Object.set_deferred()."
+	# It's probably related to the physics engine doing some calculations
+	# when I'm trying to disable. Calling $CollisionShape2D.free() works though,
+	# as it deletes the object from memory immediately. Deferring the call, as 
+	# suggested by the docs:
+	$CollisionShape2D.set_deferred("disabled", true)
+
 	$Explosion.set_emitting(true)
 	$Sprite.hide()
 	yield(get_tree().create_timer(1), "timeout")
