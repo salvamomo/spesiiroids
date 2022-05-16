@@ -3,11 +3,12 @@ extends Node
 var kills
 var score
 
-var baseLevelPoints = 200
+export (int) var level = 1
+export (int) var baseLevelPoints = 200
+
 var extraPointsPerLevel = 175
 var maxLevelPoints
 
-export (int) var level = 1
 
 func _ready():
 	score = 0
@@ -29,6 +30,12 @@ func check_level_completed():
 
 func set_level(new_level):
 	print("Moving to level ", level)
+
+	$LevelStartLabel.visible = true
+	$LevelStartLabel.text = 'Comenzando Nivel ' + level as String
+	yield(get_tree().create_timer(1), "timeout")
+	$LevelStartLabel.visible = false
+
 	level = new_level
 	maxLevelPoints = level * baseLevelPoints + (level * extraPointsPerLevel)
 
