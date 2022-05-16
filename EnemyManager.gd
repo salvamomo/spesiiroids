@@ -26,6 +26,7 @@ var enemyTypesTextures = {
 
 var Main
 var Player
+var LevelManager
 var screen_size
 
 var current_target_node
@@ -33,6 +34,7 @@ var current_target_node
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	Player = get_tree().get_root().get_node("Main/Player")
+	LevelManager = Main.get_node("LevelManager")
 	screen_size = get_viewport().get_visible_rect().size
 	current_target_node = Player
 	spawn()
@@ -58,7 +60,7 @@ func get_target_position():
 	return current_target_node.position
 
 func _resolve_new_enemy_type():
-	var level = Main.level
+	var level = LevelManager.level
 
 	if level <= 2:
 		return 0

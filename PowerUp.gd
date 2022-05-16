@@ -24,20 +24,20 @@ func _ready():
 	hide()
 
 func grant_effects(player):
-	var BackgroundMusic = get_tree().get_root().get_node("Main/BackgroundMusic")
+	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
 		
 	if self.has_method("grant_bonus_to_player"):
 		self.call("grant_bonus_to_player", player)
 		
 		if (stopMusicOnUsage):
-			BackgroundMusic.set_stream_paused(true)
+			SoundManager.pause_music()
 		
 		handle_powerup_sound_effect()
 		
 		yield(get_tree().create_timer(self.duracion, false), "timeout")
 		
 		if (stopMusicOnUsage):
-			BackgroundMusic.set_stream_paused(false)
+			SoundManager.resume_music()
 
 		self.call("remove_bonus_from_player", player)
 		fade()

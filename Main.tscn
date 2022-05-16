@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Stars.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PowerUpSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DevControls.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://SoundManager.tscn" type="PackedScene" id=10]
@@ -55,8 +56,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-
 [node name="SoundManager" parent="." instance=ExtResource( 10 )]
+
+[node name="LevelManager" parent="." instance=ExtResource( 7 )]
+level = 1
 
 [connection signal="hit_by_enemy" from="Player" to="." method="_on_Player_hit_by_enemy"]
 [connection signal="player_dies" from="Player" to="." method="_on_Player_player_dies"]

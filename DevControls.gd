@@ -3,6 +3,7 @@ extends Control
 var Main
 var Player
 var SoundManager
+var LevelManager
 
 const powerUps = [
 	preload("res://PowerUp_Chiquito.tscn"),
@@ -17,7 +18,8 @@ func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node("Player")
 	SoundManager = Main.get_node("SoundManager")
-	self.connect("music_toggled", SoundManager, "_toggle_music")
+	LevelManager = Main.get_node("LevelManager")
+	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
 	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 
 func _process(delta):
@@ -56,10 +58,10 @@ func _on_GenerateTeresiica_pressed():
 
 
 func _on_LevelUp_pressed():
-	Main.set_level(Main.level + 1)
+	LevelManager.level_up()
 
 func _on_LevelDown_pressed():
-	Main.set_level(Main.level - 1)
+	LevelManager.level_down()
 
 func _on_GrantLife_pressed():
 	Main.grant_life_to_player()

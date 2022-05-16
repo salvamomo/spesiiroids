@@ -2,21 +2,10 @@ extends Node
 
 var screen_size
 
-var kills
-var score
-
-var baseLevelPoints = 200
-var extraPointsPerLevel = 175
-var maxLevelPoints
-
-export (int) var level = 1
 var pointsUntilNextLife = 10000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	score = 0
-	kills = 0
-	maxLevelPoints = baseLevelPoints
 	screen_size = get_viewport().get_visible_rect().size
 
 func _process(delta):
@@ -34,27 +23,15 @@ func _on_Enemy_death(enemy):
 	# @todo: Get enemy type correctly.
 	var enemType = 1
 	var addedPoints = (10 * playerPointBonus * 1) * (pow(1 + enemType / 8, 2) + 1)
-	kills += 1
-	score += addedPoints
 	pointsUntilNextLife -= addedPoints
 	
 	if pointsUntilNextLife <= 0:
 		grant_life_to_player()
-	
-	check_level_completed()
 
 func grant_life_to_player():
 	pointsUntilNextLife = 10000
 	$Player.lives += 1
 	$HUD.update_lives()
-
-func set_level(new_level):
-	level = new_level
-	maxLevelPoints = level * baseLevelPoints + (level * extraPointsPerLevel)
-
-func check_level_completed():
-	if (score > maxLevelPoints):
-		set_level(level + 1)
 
 func _on_Player_powerup_activated(powerup):
 	# HUD Updates.

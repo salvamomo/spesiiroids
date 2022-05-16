@@ -1,18 +1,19 @@
 extends Control
 
-var Main
 var Player
+var LevelManager
 var time_start = 0
 
 func _ready():
 	time_start = OS.get_unix_time()
-	Main = get_tree().get_root().get_node("Main")
-	Player = get_tree().get_root().get_node("Main/Player")
+	var Main = get_tree().get_root().get_node("Main")
+	Player = Main.get_node("Player")
+	LevelManager = Main.get_node("LevelManager")
 	update_lives()
 
 func _process(delta):
-	$top_bar/Kills.text = "Kills: " + Main.kills as String
-	$top_bar/Score.text = "Score: " + Main.score as String
+	$top_bar/Kills.text = "Kills: " + LevelManager.kills as String
+	$top_bar/Score.text = "Score: " + LevelManager.score as String
 
 func update_lives():
 	if Player.lives > 4:

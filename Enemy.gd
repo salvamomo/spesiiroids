@@ -8,6 +8,7 @@ signal enemy_died(enemy)
 var Player: Area2D
 var Main
 var EnemyManager
+var LevelManager
 
 var bullet_scene = preload("res://bullet.tscn")
 
@@ -18,9 +19,12 @@ export (int) var speed
 
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
-	Player = get_tree().get_root().get_node("Main/Player")
-	EnemyManager = get_tree().get_root().get_node("Main/EnemyManager")
+	Player = Main.get_node("Player")
+	EnemyManager = Main.get_node("EnemyManager")
+	LevelManager = Main.get_node("LevelManager")
+	
 	self.connect("enemy_died", Main, "_on_Enemy_death")
+	self.connect("enemy_died", LevelManager, "_on_Enemy_death")
 
 	currentState = State.SPAWNING
 	$SpawnSprite/SpawnAnimation.play("spawn")
