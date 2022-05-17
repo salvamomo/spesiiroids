@@ -3,7 +3,6 @@ extends Node
 var MUSIC_SHOULD_PLAY = false
 
 func _ready():
-	$BackgroundMusic.play()
 	MUSIC_SHOULD_PLAY = true
 
 func _process(delta):
