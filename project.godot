@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "LevelManager",
 "language": "GDScript",
 "path": "res://LevelManager.gd"
+}, {
+"base": "Area2D",
+"class": "PowerUp",
+"language": "GDScript",
+"path": "res://PowerUp.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"LevelManager": ""
+"LevelManager": "",
+"PowerUp": ""
 }
 
 [application]

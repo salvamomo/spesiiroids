@@ -1,8 +1,12 @@
 extends Area2D
 
+class_name PowerUp
+
 var velocity = Vector2(0, 0)
 export var duracion = 3
 export var time_available = 7
+
+var timer_ttl: SceneTreeTimer
 
 signal powerup_effects_expired(powerup)
 
@@ -11,17 +15,30 @@ const MAX_VEL = 20
 const MIN_ROT = -2
 const MAX_ROT = 2
 
-enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY}
+enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, TEMPORARILY_DISABLED}
 var currentState
 var stopMusicOnUsage = false
+
+var LevelManager: LevelManager
 
 func _ready():
 	currentState = State.RESPAWN_READY
 	var Main = get_tree().get_root().get_node("Main")
 	var Player = get_tree().get_root().get_node("Main/Player")
+	var LevelManager = Main.get_node("LevelManager")
 	self.connect("powerup_effects_expired", Main, "_on_PowerUp_effects_expired")
 	self.connect("powerup_effects_expired", Player, "_on_PowerUp_effects_expired")
 	hide()
+
+func disable_temporarily():
+	if (currentState == State.PICKABLE):
+		currentState = State.TEMPORARILY_DISABLED
+		hide()
+
+func reenable():
+	if (currentState == State.TEMPORARILY_DISABLED):
+		currentState = State.PICKABLE
+		show()
 
 func grant_effects(player):
 	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
@@ -53,6 +70,9 @@ func _process(delta):
 	if currentState == State.PICKABLE:
 		translate(velocity * delta)
 
+		# Useful to debug powerup generation.
+		#$DebugTTL.text = timer_ttl.get_time_left() as String
+
 func _on_VisibilityNotifier2D_screen_exited():
 	reset()
 
@@ -68,11 +88,12 @@ func respawn():
 	currentState = State.PICKABLE
 	show()
 	
-	yield(get_tree().create_timer(time_available, false), "timeout")
+	timer_ttl = get_tree().create_timer(time_available, false)
+	yield(timer_ttl, "timeout")
 	# Allow to stay on the map for a limited amount of time.
 	# State is checked here because it may have changed between
 	# the moment it was set, and the moment the timer returned.
-	if currentState == State.PICKABLE:
+	if currentState in [State.PICKABLE, State.TEMPORARILY_DISABLED]:
 		reset()
 	
 func is_ready_for_respawn():

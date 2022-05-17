@@ -17,5 +17,11 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="DebugTTL" type="Label" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+
 [connection signal="area_entered" from="." to="." method="_on_PowerUp_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

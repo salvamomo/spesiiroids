@@ -18,6 +18,7 @@ var maxLevelPoints
 
 var Main
 var EnemyManager
+var PowerUpSpawner
 
 func _ready():
 	score = 0
@@ -25,7 +26,9 @@ func _ready():
 	maxLevelPoints = baseLevelPoints
 	Main = get_tree().get_root().get_node("Main")
 	EnemyManager = Main.get_node('EnemyManager')
+	PowerUpSpawner = Main.get_node('PowerUpSpawner')
 	self.connect("level_transition_started", EnemyManager, 'level_transition')
+	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
 
 func _on_Enemy_death(enemy):
 	var playerPointBonus = 1
@@ -42,8 +45,8 @@ func check_level_completed():
 		set_level(level + 1)
 
 func set_level(new_level):
-	$LevelStartLabel.visible = true
 	$LevelStartLabel.text = 'Comenzando Nivel ' + new_level as String
+	$LevelStartLabel.visible = true
 
 	emit_signal("level_transition_started", LEVEL_TRANSITION_PHASE.START)
 

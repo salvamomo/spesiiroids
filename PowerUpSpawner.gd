@@ -29,6 +29,16 @@ func _ready():
 	.add_child(availablePowerUps[2])
 	.add_child(availablePowerUps[3])
 	
+# This is a signal callback connected from LevelManager
+func level_transition(phase):
+	match phase:
+		LevelManager.LEVEL_TRANSITION_PHASE.START:
+			for powerUp in availablePowerUps:
+				powerUp.disable_temporarily()
+		LevelManager.LEVEL_TRANSITION_PHASE.END:
+			for powerUp in availablePowerUps:
+				powerUp.reenable()
+
 func spawn_powerup():
 	randomize()	
 	
