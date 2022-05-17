@@ -2,8 +2,8 @@ extends Node
 
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 
-const MIN_VEL = 200
-const MAX_VEL = 380
+export (int) var MIN_VEL = 80 # Original was 0.5f
+export (int) var MAX_VEL = 150 # Original was 1.2f
 
 var enemyTypesTextures = {
 	0: preload("res://assets/enemies/Enemy1.png"),
@@ -66,19 +66,26 @@ func spawn():
 		return
 
 	var new_enemy = ENEMY_SCENE.instance()
+	var enemy_type = _resolve_new_enemy_type()
+	var enemy_type_multiplier = (1 + (enemy_type / 10.0)) * 2
+
 	new_enemy.position = Vector2(
 		lerp(screen_size.x * 0.1, screen_size.x * 0.9, randf()),
 		lerp(screen_size.y * 0.1, screen_size.y * 0.9, randf())
 	)
-	new_enemy.speed = lerp(MIN_VEL, MAX_VEL, randf())
+
+#	print("Enemy Mult: ", enemy_type_multiplier)
+#	print("Min vel: ", MIN_VEL * enemy_type_multiplier)
+#	print("Max vel: ", MAX_VEL * enemy_type_multiplier)
+	new_enemy.speed = lerp(MIN_VEL * enemy_type_multiplier, MAX_VEL * enemy_type_multiplier, randf())
 
 	new_enemy.can_shoot = (randi() % 2) as bool
 	new_enemy.can_shoot = true
 
-#	Multiply by 2 since every type has 2 textures (sprite + spawn spritesheet).
-	var enemy_type = _resolve_new_enemy_type() * 2
+	# Multiply by 2 since every type has 2 textures (sprite + spawn spritesheet).
+	var enemy_type_texture_index = enemy_type * 2
 
-	new_enemy.set_textures(enemyTypesTextures[enemy_type], enemyTypesTextures[enemy_type + 1]);
+	new_enemy.set_textures(enemyTypesTextures[enemy_type_texture_index], enemyTypesTextures[enemy_type_texture_index + 1]);
 	.add_child(new_enemy)
 
 func get_target_position():

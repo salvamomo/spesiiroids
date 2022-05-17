@@ -138,5 +138,10 @@ texture = ExtResource( 5 )
 wait_time = 10.0
 autostart = true
 
+[node name="DebugSpeed" type="Label" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+
 [connection signal="animation_finished" from="SpawnSprite/SpawnAnimation" to="." method="_on_SpawnAnimation_animation_finished"]
 [connection signal="timeout" from="ShootCountdown" to="." method="_on_ShootCountdown_timeout"]

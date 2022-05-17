@@ -28,6 +28,7 @@ func _ready():
 
 	currentState = State.SPAWNING
 	$SpawnSprite/SpawnAnimation.play("spawn")
+#	$DebugSpeed.text = speed as String
 
 func _physics_process(delta):
 	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
