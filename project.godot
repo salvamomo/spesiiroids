@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Enemy.gd"
+}, {
+"base": "Node",
+"class": "LevelManager",
+"language": "GDScript",
+"path": "res://LevelManager.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Enemy": "",
+"LevelManager": ""
 }
 
 [application]

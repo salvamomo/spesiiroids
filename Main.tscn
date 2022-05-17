@@ -59,7 +59,6 @@ __meta__ = {
 [node name="SoundManager" parent="." instance=ExtResource( 10 )]
 
 [node name="LevelManager" parent="." instance=ExtResource( 7 )]
-level = 1
 
 [connection signal="hit_by_enemy" from="Player" to="." method="_on_Player_hit_by_enemy"]
 [connection signal="player_dies" from="Player" to="." method="_on_Player_player_dies"]

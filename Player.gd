@@ -31,8 +31,11 @@ var availableBullets = {
 }
 ## END SHOOTING
 
+var Main
+
 func _ready():
 	screensize = get_viewport_rect().size
+	Main = get_tree().get_root().get_node('Main')
 
 	if (Input.is_joy_known(0)):
 		print("Input recognised: " + Input.get_joy_name(0))
@@ -99,7 +102,7 @@ func _handle_power_up_usage():
 	if Input.is_action_pressed("PowerUp_4"):
 		activate_power_up(POWER_UP_INDX.MRT)
 
-func shoot_bullet():	
+func shoot_bullet():
 	var bullet = availableBullets[current_bullet_type].instance()
 
 	bullet.position = $Sprite.global_position
@@ -107,8 +110,9 @@ func shoot_bullet():
 	var bulletDirX = cos(self.rotation - deg2rad(90.0))
 	var bulletDirY = sin(self.rotation - deg2rad(90.0))
 	bullet.velocity = 700 * Vector2(bulletDirX, bulletDirY)
+
 	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
-	get_parent().add_child(bullet)
+	Main.add_child(bullet)
 
 func add_power_up(powerUp):
 	if (acquiredPowerUps[powerUp.TYPE] == null):

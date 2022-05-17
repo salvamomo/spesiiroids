@@ -26,10 +26,11 @@ var enemyTypesTextures = {
 
 var Main
 var Player
-var LevelManager
+var LevelManager: LevelManager
 var screen_size
 
 var current_target_node
+var can_spawn = true
 
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
@@ -39,7 +40,31 @@ func _ready():
 	current_target_node = Player
 	spawn()
 
+func kill_current_enemies():
+	for child in .get_children():
+		for group in child.get_groups():
+			if (group == 'Enemies'):
+				child.queue_free()
+
+func pause_spawning():
+	can_spawn = false
+
+func resume_spawning():
+	can_spawn = true
+
+# This is a signal callback connected from LevelManager
+func level_transition(phase):
+	match phase:
+		LevelManager.LEVEL_TRANSITION_PHASE.START:
+			pause_spawning()
+			kill_current_enemies()
+		LevelManager.LEVEL_TRANSITION_PHASE.END:
+			resume_spawning()
+
 func spawn():
+	if (!can_spawn):
+		return
+
 	var new_enemy = ENEMY_SCENE.instance()
 	new_enemy.position = Vector2(
 		lerp(screen_size.x * 0.1, screen_size.x * 0.9, randf()),
