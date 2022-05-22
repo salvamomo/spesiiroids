@@ -8,6 +8,9 @@ export (int) var MAX_VEL = 150 # Original was 1.2f
 export (int) var MAX_ENEMIES_LIMIT = 100
 export (int) var MAX_ENEMIES_INITIAL = 5
 
+export (float) var SPAWN_TIME_MINIMUM = 0.1
+export (float) var SPAWN_TIME_REDUCTION_PER_LEVEL = 0.1
+
 var MAX_ENEMIES_CURRENT
 
 var enemyTypesTextures = {
@@ -67,6 +70,9 @@ func level_transition(phase):
 
 			if (MAX_ENEMIES_CURRENT < MAX_ENEMIES_LIMIT):
 				MAX_ENEMIES_CURRENT += 10
+
+			if ($SpawnTimer.wait_time > 0.1):
+				$SpawnTimer.set_wait_time($SpawnTimer.wait_time - SPAWN_TIME_REDUCTION_PER_LEVEL)
 
 		LevelManager.LEVEL_TRANSITION_PHASE.END:
 			resume_spawning()
