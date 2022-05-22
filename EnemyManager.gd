@@ -5,6 +5,11 @@ const ENEMY_SCENE = preload("res://Enemy.tscn")
 export (int) var MIN_VEL = 80 # Original was 0.5f
 export (int) var MAX_VEL = 150 # Original was 1.2f
 
+export (int) var MAX_ENEMIES_LIMIT = 100
+export (int) var MAX_ENEMIES_INITIAL = 5
+
+var MAX_ENEMIES_CURRENT
+
 var enemyTypesTextures = {
 	0: preload("res://assets/enemies/Enemy1.png"),
 	1: preload("res://assets/enemies/EnemySpawn1.png"),
@@ -38,6 +43,7 @@ func _ready():
 	LevelManager = Main.get_node("LevelManager")
 	screen_size = get_viewport().get_visible_rect().size
 	current_target_node = Player
+	MAX_ENEMIES_CURRENT = MAX_ENEMIES_INITIAL
 	spawn()
 
 func kill_current_enemies():
@@ -58,11 +64,22 @@ func level_transition(phase):
 		LevelManager.LEVEL_TRANSITION_PHASE.START:
 			pause_spawning()
 			kill_current_enemies()
+
+			if (MAX_ENEMIES_CURRENT < MAX_ENEMIES_LIMIT):
+				MAX_ENEMIES_CURRENT += 10
+
 		LevelManager.LEVEL_TRANSITION_PHASE.END:
 			resume_spawning()
 
+func get_current_enemy_count():
+	# https://godotengine.org/qa/248/is-there-a-function-to-return-the-number-of-instances
+	return get_tree().get_nodes_in_group("Enemies").size()
+
 func spawn():
 	if (!can_spawn):
+		return
+
+	if (get_current_enemy_count() >= MAX_ENEMIES_CURRENT):
 		return
 
 	var new_enemy = ENEMY_SCENE.instance()

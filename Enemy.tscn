@@ -99,11 +99,11 @@ color_ramp = SubResource( 16 )
 script = ExtResource( 1 )
 speed = 200
 
-[node name="Sprite" type="Sprite" parent="." groups=["Enemies"]]
+[node name="Sprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 4 )
 
-[node name="SpawnSprite" type="Sprite" parent="." groups=["Enemies"]]
+[node name="SpawnSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 27
 
@@ -111,12 +111,12 @@ hframes = 27
 method_call_mode = 1
 anims/spawn = SubResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemies"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, 1 )
 shape = SubResource( 2 )
 disabled = true
 
-[node name="Explosion" type="Particles2D" parent="." groups=["Enemies"]]
+[node name="Explosion" type="Particles2D" parent="."]
 material = SubResource( 3 )
 emitting = false
 amount = 1
@@ -124,7 +124,7 @@ visibility_rect = Rect2( 0, 0, 0, 196.091 )
 process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
-[node name="Explosion2" type="Particles2D" parent="." groups=["Enemies"]]
+[node name="Explosion2" type="Particles2D" parent="."]
 material = SubResource( 14 )
 emitting = false
 amount = 1
