@@ -15,6 +15,7 @@ var bullet_scene = preload("res://bullet.tscn")
 enum State {SPAWNING, ALIVE, DYING}
 var currentState = 0
 var can_shoot = 0
+var type
 export (int) var speed
 
 func _ready():
@@ -54,6 +55,12 @@ func _process(delta):
 	if (currentState == State.ALIVE):
 		var toTargetDirection = (EnemyManager.get_target_position() - self.position)
 		rotation = toTargetDirection.angle() - DEG2RAD90
+
+func set_type(enemy_type):
+	type = enemy_type
+
+func get_type():
+	return type
 
 func set_textures(sprite_texture, spawn_texture):
 	$Sprite.set_texture(sprite_texture)

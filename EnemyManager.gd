@@ -90,6 +90,8 @@ func spawn():
 
 	var new_enemy = ENEMY_SCENE.instance()
 	var enemy_type = _resolve_new_enemy_type()
+	new_enemy.set_type(enemy_type)
+
 	var enemy_type_multiplier = (1 + (enemy_type / 10.0)) * 2
 
 	new_enemy.position = Vector2(
@@ -97,10 +99,10 @@ func spawn():
 		lerp(screen_size.y * 0.1, screen_size.y * 0.9, randf())
 	)
 
-	print("Enemy Mult: ", enemy_type_multiplier)
-	print("Min vel: ", MIN_VEL * enemy_type_multiplier)
-	print("Max vel: ", MAX_VEL * enemy_type_multiplier)
-	print("Spawn Time: ", $SpawnTimer.get_wait_time())
+#	print("Enemy Mult: ", enemy_type_multiplier)
+#	print("Min vel: ", MIN_VEL * enemy_type_multiplier)
+#	print("Max vel: ", MAX_VEL * enemy_type_multiplier)
+#	print("Spawn Time: ", $SpawnTimer.get_wait_time())
 	new_enemy.speed = lerp(MIN_VEL * enemy_type_multiplier, MAX_VEL * enemy_type_multiplier, randf())
 
 	new_enemy.can_shoot = (randi() % 2) as bool

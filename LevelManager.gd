@@ -15,6 +15,7 @@ export (int) var bonusLifeScoreCycle = baseLevelPoints * 5
 
 enum LEVEL_TRANSITION_PHASE {START, END}
 
+var basePointsPerEnemy = 10
 var maxLevelPoints
 var bonusLivesAcquired = 0
 
@@ -32,11 +33,14 @@ func _ready():
 	self.connect("level_transition_started", EnemyManager, 'level_transition')
 	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
 
-func _on_Enemy_death(enemy):
+func _on_Enemy_death(enemy: Enemy):
+	# @todo: Enemy bonus points -> If using power up = 3. Otherwise = 1.
 	var playerPointBonus = 1
-	# @todo: Get enemy type correctly.
-	var enemType = 1
-	var addedPoints = (10 * playerPointBonus * 1) * (pow(1 + enemType / 8, 2) + 1)
+	var enemType = enemy.get_type()
+	var enemTypeBonus = 1 if (enemType > 3) else 0
+
+	var addedPoints = (basePointsPerEnemy * playerPointBonus) * (2 + enemTypeBonus)
+	#	print("Added points: ", addedPoints)
 	kills += 1
 	score += addedPoints
 	check_level_completed()
