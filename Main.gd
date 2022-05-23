@@ -1,8 +1,8 @@
 extends Node
 
-var screen_size
+class_name Main
 
-var pointsUntilNextLife = 10000
+var screen_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,18 +18,8 @@ func _process(delta):
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
 
-func _on_Enemy_death(enemy):
-	var playerPointBonus = 1
-	# @todo: Get enemy type correctly.
-	var enemType = 1
-	var addedPoints = (10 * playerPointBonus * 1) * (pow(1 + enemType / 8, 2) + 1)
-	pointsUntilNextLife -= addedPoints
-	
-	if pointsUntilNextLife <= 0:
-		grant_life_to_player()
-
 func grant_life_to_player():
-	pointsUntilNextLife = 10000
+	print("Granted life to player")
 	$Player.lives += 1
 	$HUD.update_lives()
 

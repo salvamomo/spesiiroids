@@ -2,13 +2,13 @@ extends Node
 
 const ENEMY_SCENE = preload("res://Enemy.tscn")
 
-export (int) var MIN_VEL = 80 # Original was 0.5f
-export (int) var MAX_VEL = 150 # Original was 1.2f
+export (int) var MIN_VEL = 60 # Original was 0.5f
+export (int) var MAX_VEL = 90 # Original was 1.2f
 
-export (int) var MAX_ENEMIES_LIMIT = 100
+export (int) var MAX_ENEMIES_LIMIT = 50
 export (int) var MAX_ENEMIES_INITIAL = 5
 
-export (float) var SPAWN_TIME_MINIMUM = 0.1
+export (float) var SPAWN_TIME_MINIMUM = 0.5
 export (float) var SPAWN_TIME_REDUCTION_PER_LEVEL = 0.1
 
 var MAX_ENEMIES_CURRENT
@@ -71,7 +71,7 @@ func level_transition(phase):
 			if (MAX_ENEMIES_CURRENT < MAX_ENEMIES_LIMIT):
 				MAX_ENEMIES_CURRENT += 10
 
-			if ($SpawnTimer.wait_time > 0.1):
+			if ($SpawnTimer.wait_time > SPAWN_TIME_MINIMUM):
 				$SpawnTimer.set_wait_time($SpawnTimer.wait_time - SPAWN_TIME_REDUCTION_PER_LEVEL)
 
 		LevelManager.LEVEL_TRANSITION_PHASE.END:
@@ -97,9 +97,10 @@ func spawn():
 		lerp(screen_size.y * 0.1, screen_size.y * 0.9, randf())
 	)
 
-#	print("Enemy Mult: ", enemy_type_multiplier)
-#	print("Min vel: ", MIN_VEL * enemy_type_multiplier)
-#	print("Max vel: ", MAX_VEL * enemy_type_multiplier)
+	print("Enemy Mult: ", enemy_type_multiplier)
+	print("Min vel: ", MIN_VEL * enemy_type_multiplier)
+	print("Max vel: ", MAX_VEL * enemy_type_multiplier)
+	print("Spawn Time: ", $SpawnTimer.get_wait_time())
 	new_enemy.speed = lerp(MIN_VEL * enemy_type_multiplier, MAX_VEL * enemy_type_multiplier, randf())
 
 	new_enemy.can_shoot = (randi() % 2) as bool

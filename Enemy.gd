@@ -23,7 +23,6 @@ func _ready():
 	EnemyManager = Main.get_node("EnemyManager")
 	LevelManager = Main.get_node("LevelManager")
 	
-	self.connect("enemy_died", Main, "_on_Enemy_death")
 	self.connect("enemy_died", LevelManager, "_on_Enemy_death")
 
 	currentState = State.SPAWNING

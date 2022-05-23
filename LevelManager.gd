@@ -11,12 +11,14 @@ signal level_transition_stopped()
 export (int) var level = 1
 export (int) var baseLevelPoints = 200
 export (int) var extraPointsPerLevel = 175
+export (int) var bonusLifeScoreCycle = baseLevelPoints * 5
 
 enum LEVEL_TRANSITION_PHASE {START, END}
 
 var maxLevelPoints
+var bonusLivesAcquired = 0
 
-var Main
+var Main: Main
 var EnemyManager
 var PowerUpSpawner
 
@@ -38,11 +40,17 @@ func _on_Enemy_death(enemy):
 	kills += 1
 	score += addedPoints
 	check_level_completed()
+	check_acquire_extra_life()
 
 func check_level_completed():
 	if (score > maxLevelPoints):
 		print("Level Completed: Moving to level ", level + 1)
 		set_level(level + 1)
+
+func check_acquire_extra_life():
+	if (score > (bonusLifeScoreCycle * (bonusLivesAcquired + 1))):
+		bonusLivesAcquired += 1
+		Main.grant_life_to_player()
 
 func set_level(new_level):
 	$LevelStartLabel.text = 'Comenzando Nivel ' + new_level as String
