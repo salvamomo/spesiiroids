@@ -3,7 +3,7 @@ extends TextureRect
 func _ready():
 	get_tree().paused = false
 
-func _process(delta):
+func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
 		self.queue_free()
 		get_tree().change_scene("res://Main.tscn")

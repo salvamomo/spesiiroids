@@ -51,7 +51,7 @@ func _physics_process(delta):
 #				velocity = -velocity * 8
 #				move_and_slide(velocity)
 
-func _process(delta):
+func _process(_delta):
 	if (currentState == State.ALIVE):
 		var toTargetDirection = (EnemyManager.get_target_position() - self.position)
 		rotation = toTargetDirection.angle() - DEG2RAD90
@@ -93,7 +93,7 @@ func hit_by_player():
 	die()
 
 
-func _on_SpawnAnimation_animation_finished(anim_name):
+func _on_SpawnAnimation_animation_finished(_anim_name):
 	$SpawnSprite.hide()
 	$Sprite.show()
 	$CollisionShape2D.set_disabled(false)

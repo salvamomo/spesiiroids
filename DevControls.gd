@@ -22,12 +22,12 @@ func _ready():
 	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
 	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
 		get_tree().paused = self.visible
 
-func _on_ToggleMusic_toggled(button_pressed):
+func _on_ToggleMusic_toggled(_button_pressed):
 	emit_signal("music_toggled")
 
 func _on_CheckButton_toggled(button_pressed):	

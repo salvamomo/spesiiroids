@@ -19,13 +19,10 @@ enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, TEMPORARILY_DISABLED}
 var currentState
 var stopMusicOnUsage = false
 
-var LevelManager: LevelManager
-
 func _ready():
 	currentState = State.RESPAWN_READY
 	var Main = get_tree().get_root().get_node("Main")
 	var Player = get_tree().get_root().get_node("Main/Player")
-	var LevelManager = Main.get_node("LevelManager")
 	self.connect("powerup_effects_expired", Main, "_on_PowerUp_effects_expired")
 	self.connect("powerup_effects_expired", Player, "_on_PowerUp_effects_expired")
 	hide()

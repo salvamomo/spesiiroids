@@ -8,7 +8,7 @@ var screen_size
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 
-func _process(delta):
+func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
 		get_tree().paused = !get_tree().paused
 		$PauseText.visible = !$PauseText.visible

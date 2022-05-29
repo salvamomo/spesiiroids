@@ -16,5 +16,5 @@ func grant_bonus_to_player(player):
 	var Main = get_tree().get_root().get_node("Main")
 	Main.add_child(active_beacon)
 	
-func remove_bonus_from_player(player):
+func remove_bonus_from_player(_player):
 	active_beacon.destroy()

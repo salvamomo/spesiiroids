@@ -11,7 +11,7 @@ func _ready():
 	LevelManager = Main.get_node("LevelManager")
 	update_lives()
 
-func _process(delta):
+func _process(_delta):
 	$top_bar/Kills.text = "Kills: " + LevelManager.kills as String
 	$top_bar/Score.text = "Score: " + LevelManager.score as String
 

@@ -122,7 +122,7 @@ func add_power_up(powerUp):
 func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
 
-func _on_PowerUp_effects_expired(powerUp):
+func _on_PowerUp_effects_expired(_powerUp):
 	powerUpInUse = false
 
 func activate_power_up(powerUpIdx):
