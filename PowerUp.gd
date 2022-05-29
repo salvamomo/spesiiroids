@@ -23,7 +23,9 @@ func _ready():
 	currentState = State.RESPAWN_READY
 	var Main = get_tree().get_root().get_node("Main")
 	var Player = get_tree().get_root().get_node("Main/Player")
+	# warning-ignore:return_value_discarded
 	self.connect("powerup_effects_expired", Main, "_on_PowerUp_effects_expired")
+	# warning-ignore:return_value_discarded
 	self.connect("powerup_effects_expired", Player, "_on_PowerUp_effects_expired")
 	hide()
 

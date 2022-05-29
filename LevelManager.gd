@@ -6,7 +6,6 @@ var kills
 var score
 
 signal level_transition_started()
-signal level_transition_stopped()
 
 export (int) var level = 1
 export (int) var baseLevelPoints = 200
@@ -30,7 +29,9 @@ func _ready():
 	Main = get_tree().get_root().get_node("Main")
 	EnemyManager = Main.get_node('EnemyManager')
 	PowerUpSpawner = Main.get_node('PowerUpSpawner')
+	# warning-ignore:return_value_discarded
 	self.connect("level_transition_started", EnemyManager, 'level_transition')
+	# warning-ignore:return_value_discarded
 	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
 
 func _on_Enemy_death(enemy: Enemy):

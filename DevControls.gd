@@ -19,6 +19,7 @@ func _ready():
 	Player = Main.get_node("Player")
 	SoundManager = Main.get_node("SoundManager")
 	LevelManager = Main.get_node("LevelManager")
+	# warning-ignore:return_value_discarded
 	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
 	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 
