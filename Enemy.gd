@@ -68,6 +68,10 @@ func set_textures(sprite_texture, spawn_texture):
 	$SpawnSprite.set_texture(spawn_texture)
 
 func die():
+	# If enemy is already dying, do nothing.
+	if (currentState == State.DYING):
+		return
+
 	# @todo: Finish explosion effect.
 	currentState = State.DYING
 	emit_signal("enemy_died", self)
@@ -84,7 +88,15 @@ func die():
 
 	$Explosion.set_emitting(true)
 	$Sprite.hide()
-	yield(get_tree().create_timer(1), "timeout")
+
+	# Using a timer node for this instead of a yield, as it avoids possible
+	# errors with returning code after the instance is gone (can happen if die()
+	# is called too quickly and the first call has already cleared the instance
+	# by the time the second returns from the yield).
+	# https://godotengine.org/qa/76800/resumed-function-after-yield-but-class-instance-is-gone.
+	$ExplosionDisappearTimer.start()
+
+func _on_ExplosionDisappearTimer_timeout():
 	queue_free()
 
 func hit_by_bullet():

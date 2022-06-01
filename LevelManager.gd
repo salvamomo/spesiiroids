@@ -8,7 +8,7 @@ var score
 signal level_transition_started()
 
 export (int) var level = 1
-export (int) var baseLevelPoints = 200
+export (int) var baseLevelPoints = 200 # Should start at 2000
 export (int) var extraPointsPerLevel = 175
 export (int) var bonusLifeScoreCycle = baseLevelPoints * 5
 
