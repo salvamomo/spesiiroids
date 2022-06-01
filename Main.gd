@@ -8,12 +8,13 @@ var screen_size
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 
-func _process(delta):
+func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
 		get_tree().paused = !get_tree().paused
 		$PauseText.visible = !$PauseText.visible
 	if (Input.is_action_just_pressed("Exit_Back") and get_tree().paused):
 		self.queue_free()
+		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://MainMenu.tscn")
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
@@ -56,4 +57,5 @@ func _on_Player_player_dies():
 	$EnemyManager.free()
 	$HUD.free()
 	self.queue_free()
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://GameOver.tscn")

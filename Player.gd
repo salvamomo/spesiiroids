@@ -137,7 +137,7 @@ func has_power_up(powerUpType):
 func has_powerup_in_use() -> bool:
 	return powerUpInUse
 
-func _on_PowerUp_effects_expired(powerUp):
+func _on_PowerUp_effects_expired(_powerUp):
 	powerUpInUse = false
 
 func activate_power_up(powerUpIdx):

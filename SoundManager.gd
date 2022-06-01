@@ -5,7 +5,7 @@ var MUSIC_SHOULD_PLAY = false
 func _ready():
 	MUSIC_SHOULD_PLAY = $BackgroundMusic.is_autoplay_enabled()
 
-func _process(delta):
+func _process(_delta):
 	if (!MUSIC_SHOULD_PLAY and _is_music_playing()):
 		$BackgroundMusic.set_stream_paused(true)
 

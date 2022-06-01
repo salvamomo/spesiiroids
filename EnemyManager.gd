@@ -146,7 +146,7 @@ func _resolve_new_enemy_type():
 func _on_Teresiica_Beacon_Created(beacon):
 	current_target_node = beacon
 	
-func _on_Teresiica_Beacon_Destroyed(beacon):
+func _on_Teresiica_Beacon_Destroyed(_beacon):
 	current_target_node = Player
 
 func _on_SpawnTimer_timeout():
