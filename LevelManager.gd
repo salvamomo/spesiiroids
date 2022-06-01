@@ -20,6 +20,7 @@ var maxLevelPoints
 var bonusLivesAcquired = 0
 
 var Main: Main
+var Player: Player
 var EnemyManager
 var PowerUpSpawner
 
@@ -28,14 +29,14 @@ func _ready():
 	kills = 0
 	maxLevelPoints = baseLevelPoints
 	Main = get_tree().get_root().get_node("Main")
+	Player = Main.get_node('Player')
 	EnemyManager = Main.get_node('EnemyManager')
 	PowerUpSpawner = Main.get_node('PowerUpSpawner')
 	self.connect("level_transition_started", EnemyManager, 'level_transition')
 	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
 
 func _on_Enemy_death(enemy: Enemy):
-	# @todo: Enemy bonus points -> If using power up = 3. Otherwise = 1.
-	var playerPointBonus = 1
+	var playerPointBonus = 3 if Player.has_powerup_in_use() else 1
 	var enemType = enemy.get_type()
 	var enemTypeBonus = 1 if (enemType > 3) else 0
 

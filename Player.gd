@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Player
+
 ## START GAME SETTINGS
 const JOYSTICK_DEAD_ZONE = 0.15
 const SCREEN_BOUNDARIES = 35
@@ -16,7 +18,7 @@ signal player_dies
 var screensize
 export (int) var speed
 
-var powerUpInUse = false
+var powerUpInUse: bool = false
 export (int) var lives = 3
 
 ## START SHOOTING
@@ -122,11 +124,14 @@ func add_power_up(powerUp):
 func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
 
+func has_powerup_in_use() -> bool:
+	return powerUpInUse
+
 func _on_PowerUp_effects_expired(powerUp):
 	powerUpInUse = false
 
 func activate_power_up(powerUpIdx):
-	if powerUpInUse:
+	if has_powerup_in_use():
 		return
 
 	if acquiredPowerUps[powerUpIdx] != null:
