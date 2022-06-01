@@ -7,11 +7,18 @@ func _ready():
 	# https://godotengine.org/qa/9244/can-override-the-_ready-and-_process-functions-child-classes
 	._ready()
 	
-func grant_bonus_to_player(player):
+func grant_bonus_to_player(player: Player):
 	player.speed += 400
 	player.shooting_speed = 0.1
 	
-func remove_bonus_from_player(player):
+	# Make player invulnerable for a second.
+	# In the original game, player was invulnerable for the duration of the
+	# power up.
+	player.make_immortal()
+	yield(get_tree().create_timer(1), "timeout")
+	player.make_mortal()
+
+func remove_bonus_from_player(player: Player):
 	player.speed -= 400
 	player.shooting_speed = 0.3
 

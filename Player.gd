@@ -19,6 +19,7 @@ var screensize
 export (int) var speed
 
 var powerUpInUse: bool = false
+var isImmortal: bool = false
 export (int) var lives = 3
 
 ## START SHOOTING
@@ -116,6 +117,15 @@ func shoot_bullet():
 	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
 	Main.add_child(bullet)
 
+func make_immortal():
+	isImmortal = true
+
+func make_mortal():
+	isImmortal = false
+
+func is_immortal() -> bool:
+	return isImmortal
+
 func add_power_up(powerUp):
 	if (acquiredPowerUps[powerUp.TYPE] == null):
 		acquiredPowerUps[powerUp.TYPE] = powerUp
@@ -166,9 +176,11 @@ func hit_by_bullet():
 func _hit_by_enemy(body):
 	body.hit_by_player()
 	
-	lives -= 1
+	if !is_immortal():
+		lives -= 1
+		_check_death()
+
 	emit_signal("hit_by_enemy")
-	_check_death()
 	
 func _check_death():
 	if (lives > 0):
