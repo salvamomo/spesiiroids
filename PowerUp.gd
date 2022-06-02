@@ -19,10 +19,13 @@ enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, TEMPORARILY_DISABLED}
 var currentState
 var stopMusicOnUsage = false
 
+var Main: Main
+var Player: Player
+
 func _ready():
 	currentState = State.RESPAWN_READY
-	var Main = get_tree().get_root().get_node("Main")
-	var Player = get_tree().get_root().get_node("Main/Player")
+	Main = get_tree().get_root().get_node("Main")
+	Player = Main.get_node("Player")
 
 	if (!is_connected("powerup_effects_expired", Main, "_on_PowerUp_effects_expired")):
 		# warning-ignore:return_value_discarded
@@ -42,7 +45,7 @@ func reenable():
 		currentState = State.PICKABLE
 		show()
 
-func grant_effects(player):
+func grant_effects(player: Player):
 	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
 		
 	if self.has_method("grant_bonus_to_player"):
@@ -52,15 +55,19 @@ func grant_effects(player):
 			SoundManager.pause_music()
 		
 		handle_powerup_sound_effect()
-		
-		yield(get_tree().create_timer(self.duracion, false), "timeout")
-		
-		if (stopMusicOnUsage):
-			SoundManager.resume_music()
+		$EffectDurationTimer.start(self.duracion)
 
-		self.call("remove_bonus_from_player", player)
-		fade()
-		reset()
+func remove_effects(player: Player):
+	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
+	if (stopMusicOnUsage):
+		SoundManager.resume_music()
+
+	self.call("remove_bonus_from_player", player)
+	fade()
+	reset()
+
+func _on_EffectDurationTimer_timeout():
+	remove_effects(Player)
 
 func handle_powerup_sound_effect():
 	if self.has_method("play_sound_effect"):
