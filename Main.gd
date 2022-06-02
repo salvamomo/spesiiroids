@@ -51,14 +51,11 @@ func _on_PowerUp_effects_expired(powerup):
 	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).hide()
 
 func _on_Player_hit_by_enemy():
-	# @todo: This can crash if $HUD has been freed by the time it's called.
-	# I think it can happen if 2 enemies hit the player too quickly, triggering
-	# the game over.
 	$HUD.update_lives()
 
 func _on_Player_player_dies():
-	$EnemyManager.free()
-	$HUD.free()
+	$EnemyManager.queue_free()
+	$HUD.queue_free()
 	self.queue_free()
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://GameOver.tscn")
