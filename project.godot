@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Enemy.gd"
 }, {
 "base": "Node",
+"class": "EnemyManager",
+"language": "GDScript",
+"path": "res://EnemyManager.gd"
+}, {
+"base": "Node",
 "class": "LevelManager",
 "language": "GDScript",
 "path": "res://LevelManager.gd"
@@ -36,6 +41,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Enemy": "",
+"EnemyManager": "",
 "LevelManager": "",
 "Main": "",
 "Player": "",
