@@ -17,4 +17,5 @@ func grant_bonus_to_player(player):
 	Main.add_child(active_beacon)
 	
 func remove_bonus_from_player(_player):
-	active_beacon.destroy()
+	if (is_instance_valid(active_beacon)):
+		active_beacon.destroy()
