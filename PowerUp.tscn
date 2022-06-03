@@ -26,6 +26,11 @@ margin_bottom = 14.0
 [node name="EffectDurationTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="AvailabilityTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_PowerUp_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="EffectDurationTimer" to="." method="_on_EffectDurationTimer_timeout"]
+[connection signal="timeout" from="AvailabilityTimer" to="." method="_on_AvailabilityTimer_timeout"]

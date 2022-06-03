@@ -6,8 +6,6 @@ var velocity = Vector2(0, 0)
 export var duracion = 3
 export var time_available = 7
 
-var timer_ttl: SceneTreeTimer
-
 signal powerup_effects_expired(powerup)
 
 const MIN_VEL = -20
@@ -80,7 +78,9 @@ func _process(delta):
 		translate(velocity * delta)
 
 		# Useful to debug powerup generation.
-		#$DebugTTL.text = timer_ttl.get_time_left() as String
+#		if (!$DebugTTL.is_visible()):
+#			$DebugTTL.show()
+#		$DebugTTL.text = stepify($AvailabilityTimer.get_time_left(), 0.01) as String
 
 func _on_VisibilityNotifier2D_screen_exited():
 	reset()
@@ -96,20 +96,23 @@ func set_state_acquired():
 func respawn():
 	currentState = State.PICKABLE
 	show()
-	
-	timer_ttl = get_tree().create_timer(time_available, false)
-	yield(timer_ttl, "timeout")
+
 	# Allow to stay on the map for a limited amount of time.
+	$AvailabilityTimer.start(time_available)
+
+func _on_AvailabilityTimer_timeout():
+	hide_and_reset()
+
+func hide_and_reset():
 	# State is checked here because it may have changed between
 	# the moment it was set, and the moment the timer returned.
 	if currentState in [State.PICKABLE, State.TEMPORARILY_DISABLED]:
 		reset()
-	
+
 func is_ready_for_respawn():
 	return currentState == State.RESPAWN_READY
 	
 func fade():
-	print("Power up faded.")
 	emit_signal("powerup_effects_expired", self)
 
 func _on_PowerUp_area_entered(area):
