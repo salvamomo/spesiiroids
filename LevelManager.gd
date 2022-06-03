@@ -66,10 +66,10 @@ func set_level(new_level):
 
 	level = new_level
 	maxLevelPoints = level * baseLevelPoints + (level * extraPointsPerLevel)
+	$LevelTransitionTimer.start()
 
-	yield(get_tree().create_timer(1), "timeout")
+func _on_LevelTransitionTimer_timeout():
 	$LevelStartLabel.visible = false
-
 	emit_signal("level_transition_started", LEVEL_TRANSITION_PHASE.END)
 
 func level_up():

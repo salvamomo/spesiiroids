@@ -18,3 +18,7 @@ margin_bottom = 5.0
 rect_scale = Vector2( 2, 2 )
 custom_colors/default_color = Color( 0.921569, 1, 0, 1 )
 text = "Comenzando Nivel"
+
+[node name="LevelTransitionTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LevelTransitionTimer" to="." method="_on_LevelTransitionTimer_timeout"]
