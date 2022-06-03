@@ -25,6 +25,7 @@ margin_bottom = 14.0
 
 [node name="EffectDurationTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [node name="AvailabilityTimer" type="Timer" parent="."]
 wait_time = 7.0
