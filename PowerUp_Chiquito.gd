@@ -9,7 +9,7 @@ func remove_bonus_from_player(player):
 	player.deactivate_bouncing_shield()
 
 func play_sound_effect():
-	var effect_to_play = randi() % 21
+	var effect_to_play = randi() % 20 + 1
 	var audio_sfx = load('res://assets/audio/effects/chiquito/chiquito' + str(effect_to_play) + '.wav')
 	$AudioStreamPlayer.set_stream(audio_sfx)
 	$AudioStreamPlayer.play()
