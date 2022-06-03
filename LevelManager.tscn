@@ -20,5 +20,6 @@ custom_colors/default_color = Color( 0.921569, 1, 0, 1 )
 text = "Comenzando Nivel"
 
 [node name="LevelTransitionTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="LevelTransitionTimer" to="." method="_on_LevelTransitionTimer_timeout"]
