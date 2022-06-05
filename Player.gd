@@ -25,6 +25,7 @@ export (int) var lives = 3
 ## START SHOOTING
 var last_shoot = 0.3
 var shooting_speed = 0.3
+var shooting_bullet_speed = 700
 
 enum BULLET_TYPE {DEFAULT, FIREBALL}
 export (BULLET_TYPE) var current_bullet_type
@@ -112,7 +113,7 @@ func shoot_bullet():
 	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
 	var bulletDirX = cos(self.rotation - deg2rad(90.0))
 	var bulletDirY = sin(self.rotation - deg2rad(90.0))
-	bullet.velocity = 700 * Vector2(bulletDirX, bulletDirY)
+	bullet.velocity = shooting_bullet_speed * Vector2(bulletDirX, bulletDirY)
 
 	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
 	Main.add_child(bullet)

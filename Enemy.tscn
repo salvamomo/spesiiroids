@@ -135,7 +135,7 @@ process_material = SubResource( 18 )
 texture = ExtResource( 5 )
 
 [node name="ShootCountdown" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 6.0
 autostart = true
 
 [node name="ExplosionDisappearTimer" type="Timer" parent="."]

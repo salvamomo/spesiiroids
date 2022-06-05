@@ -107,9 +107,6 @@ func spawn():
 #	print("Spawn Time: ", $SpawnTimer.get_wait_time())
 	new_enemy.speed = lerp(MIN_VEL * enemy_type_multiplier, MAX_VEL * enemy_type_multiplier, randf())
 
-	new_enemy.can_shoot = (randi() % 2) as bool
-	new_enemy.can_shoot = true
-
 	# Multiply by 2 since every type has 2 textures (sprite + spawn spritesheet).
 	var enemy_type_texture_index = enemy_type * 2
 

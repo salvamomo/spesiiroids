@@ -10,11 +10,19 @@ var Main
 var EnemyManager
 var LevelManager
 
-var bullet_scene = preload("res://bullet.tscn")
+var bullet_scene = preload("res://bullet_purple.tscn")
 
 enum State {SPAWNING, ALIVE, DYING}
 var currentState = 0
-var can_shoot = 0
+
+var can_shoot: bool = false
+
+# Enemies will shot only if they get a higher randf() result than this number.
+var shooting_chance_threshold = 0.6
+# Original threshold was type 6.
+var shooting_enemy_type_threshold = 3
+var shooting_bullet_speed = 700
+
 var type
 export (int) var speed
 
@@ -59,6 +67,9 @@ func _process(_delta):
 
 func set_type(enemy_type):
 	type = enemy_type
+
+	if (type >= shooting_enemy_type_threshold):
+		can_shoot = true
 
 func get_type():
 	return type
@@ -105,7 +116,6 @@ func hit_by_bullet():
 func hit_by_player():
 	die()
 
-
 func _on_SpawnAnimation_animation_finished(_anim_name):
 	$SpawnSprite.hide()
 	$Sprite.show()
@@ -116,6 +126,9 @@ func _on_ShootCountdown_timeout():
 	shoot_bullet()
 
 func shoot_bullet():
+	if (!can_shoot or randf() < shooting_chance_threshold):
+		return
+	
 	var bullet = bullet_scene.instance()
 	bullet.bulletTarget = bullet.Target.PLAYER
 
@@ -123,6 +136,6 @@ func shoot_bullet():
 	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
 	var bulletDirX = cos(self.rotation + deg2rad(90))
 	var bulletDirY = sin(self.rotation + deg2rad(90))
-	bullet.velocity = 700 * Vector2(bulletDirX, bulletDirY)
+	bullet.velocity = shooting_bullet_speed * Vector2(bulletDirX, bulletDirY)
 
 	Main.add_child(bullet)
