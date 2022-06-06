@@ -1,7 +1,8 @@
 extends "res://PowerUp.gd"
 
 const TYPE = 1
-	
+const NAME = "Vicentin"
+
 func _ready():
 	stopMusicOnUsage = true
 	# https://godotengine.org/qa/9244/can-override-the-_ready-and-_process-functions-child-classes

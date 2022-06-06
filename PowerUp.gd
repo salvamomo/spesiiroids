@@ -13,7 +13,7 @@ const MAX_VEL = 20
 const MIN_ROT = -2
 const MAX_ROT = 2
 
-enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, TEMPORARILY_DISABLED}
+enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, EFFECT_JUST_EXPIRED, TEMPORARILY_DISABLED}
 var currentState
 var stopMusicOnUsage = false
 
@@ -44,6 +44,7 @@ func reenable():
 		show()
 
 func grant_effects(player: Player):
+	currentState = State.ACTIVATED
 	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
 		
 	if self.has_method("grant_bonus_to_player"):
@@ -61,11 +62,12 @@ func remove_effects(player: Player):
 		SoundManager.resume_music()
 
 	self.call("remove_bonus_from_player", player)
-	fade()
+	expire_effect()
 	reset()
 
 func _on_EffectDurationTimer_timeout():
 	remove_effects(Player)
+	currentState = State.EFFECT_JUST_EXPIRED
 
 func handle_powerup_sound_effect():
 	if self.has_method("play_sound_effect"):
@@ -83,39 +85,51 @@ func _process(delta):
 #		$DebugTTL.text = stepify($AvailabilityTimer.get_time_left(), 0.01) as String
 
 func _on_VisibilityNotifier2D_screen_exited():
-	reset()
+	# Check the timer is inside the tree. This avoid console errors caused by
+	# the visibility notifier calling reset as soon as power ups load, and it
+	# looks like the timer is not available at that point yet.
+	if ($RespawnCooldown.is_inside_tree()):
+		reset()
 
 func reset():
-	currentState = State.RESPAWN_READY
+	$RespawnCooldown.start()
+	$CollisionBox.set_deferred("disabled", true)
 	hide()
+#	modulate = Color(1, 0, 0)
 
 func set_state_acquired():
 	currentState = State.ACQUIRED
+	$CollisionBox.set_deferred("disabled", true)
 	hide()
+#	modulate = Color(0, 0, 1)
 	
 func respawn():
 	currentState = State.PICKABLE
 	show()
-
+#	modulate = Color(0, 1, 0)
+	$CollisionBox.set_deferred("disabled", false)
 	# Allow to stay on the map for a limited amount of time.
 	$AvailabilityTimer.start(time_available)
 
 func _on_AvailabilityTimer_timeout():
-	hide_and_reset()
-
-func hide_and_reset():
 	# State is checked here because it may have changed between
 	# the moment it was set, and the moment the timer returned.
 	if currentState in [State.PICKABLE, State.TEMPORARILY_DISABLED]:
 		reset()
 
+func _on_RespawnCooldown_timeout():
+	if [State.ACTIVATED, State.ACQUIRED].has(currentState):
+		return
+
+	currentState = State.RESPAWN_READY
+
 func is_ready_for_respawn():
 	return currentState == State.RESPAWN_READY
 	
-func fade():
+func expire_effect():
 	emit_signal("powerup_effects_expired", self)
 
 func _on_PowerUp_area_entered(area):
-	if area.is_in_group("Ship"):
+	if area.is_in_group("Ship") and currentState == State.PICKABLE:
 		area.add_power_up(self)
 		set_state_acquired()

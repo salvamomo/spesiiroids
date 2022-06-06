@@ -1,6 +1,7 @@
 extends "res://PowerUp.gd"
 
 const TYPE = 0
+const NAME = "Chiquito"
 	
 func grant_bonus_to_player(player):
 	player.activate_bouncing_shield()
