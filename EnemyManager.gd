@@ -116,6 +116,9 @@ func spawn():
 func get_target_position():
 	return current_target_node.position
 
+func get_target_object():
+	return current_target_node
+
 func _resolve_new_enemy_type():
 	var level = LevelManager.level
 

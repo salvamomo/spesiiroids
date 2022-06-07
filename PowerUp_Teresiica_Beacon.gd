@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name PowerUp_Teresiica_Beacon
 
 signal teresiica_beacon_created(beacon)
 signal teresiica_beacon_destroyed(beacon)

@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "PowerUp",
 "language": "GDScript",
 "path": "res://PowerUp.gd"
+}, {
+"base": "Area2D",
+"class": "PowerUp_Teresiica_Beacon",
+"language": "GDScript",
+"path": "res://PowerUp_Teresiica_Beacon.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "LevelManager": "",
 "Main": "",
 "Player": "",
-"PowerUp": ""
+"PowerUp": "",
+"PowerUp_Teresiica_Beacon": ""
 }
 
 [application]

@@ -40,7 +40,8 @@ func _ready():
 #	$DebugSpeed.text = speed as String
 
 func _physics_process(delta):
-	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
+	var targetNode = EnemyManager.get_target_object()
+	var toTargetDirection = (targetNode.position - self.position)
 
 	if (currentState == State.ALIVE):
 		var velocity = Vector2()
@@ -49,6 +50,10 @@ func _physics_process(delta):
 
 		if (Player.has_bouncing_shield_enabled() && Player.overlaps_body(self)):
 			velocity = -velocity * 2
+
+		if (targetNode.is_in_group('PowerUps')):
+			if targetNode.overlaps_body(self) or (toTargetDirection.length() < 75):
+				velocity = -direction * (speed / 10) * 0.25
 
 		position += velocity * delta
 
