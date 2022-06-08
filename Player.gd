@@ -151,25 +151,28 @@ func activate_power_up(powerUpIdx):
 		powerUpInUse = true
 		acquiredPowerUps[powerUpIdx] = null
 
-func has_bouncing_shield_enabled():
-	return ! $BouncingShield.disabled
-
 func activate_bouncing_shield():
 	# Would it be better to have a bouncing shield scene added to the player
 	# when activating the power up? If so, how'd the enemies reliable check
 	# for collisions with that scene, that may or may not be attached to
 	# the player?
-	$BouncingShield.disabled = false
+	$BouncingArea/BouncingShield.disabled = false
 
 func deactivate_bouncing_shield():
-	$BouncingShield.disabled = true
+	$BouncingArea/BouncingShield.disabled = true
 
 func _on_Player_collision(body):
-	if body.is_in_group("Enemies") && $BouncingShield.disabled:
+	if body.is_in_group("Enemies"):
 		_hit_by_enemy(body)
 
+func _on_BouncingArea_body_entered(body):
+	body.set_bounce_back(true)
+
+func _on_BouncingArea_body_exited(body):
+	body.set_bounce_back(false)
+
 func hit_by_bullet():
-	if $BouncingShield.disabled:
+	if $BouncingArea/BouncingShield.disabled:
 		lives -= 1
 		emit_signal("hit_by_enemy")
 		_check_death()

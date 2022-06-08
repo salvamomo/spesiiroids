@@ -130,6 +130,7 @@ func expire_effect():
 	emit_signal("powerup_effects_expired", self)
 
 func _on_PowerUp_area_entered(area):
-	if area.is_in_group("Ship") and currentState == State.PICKABLE:
+	# Filtering by Ship group to avoid detected bullets. (this should be changed to layers / mask)
+	if area.is_in_group('Ship') and currentState == State.PICKABLE:
 		area.add_power_up(self)
 		set_state_acquired()

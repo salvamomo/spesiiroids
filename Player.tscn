@@ -44,9 +44,15 @@ anims/default = SubResource( 1 )
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
-[node name="BouncingShield" type="CollisionShape2D" parent="." groups=["Ship"]]
+[node name="BouncingArea" type="Area2D" parent="." groups=["Ship"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="BouncingShield" type="CollisionShape2D" parent="BouncingArea" groups=["Ship"]]
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_Player_collision"]
+[connection signal="body_entered" from="BouncingArea" to="." method="_on_BouncingArea_body_entered"]
+[connection signal="body_exited" from="BouncingArea" to="." method="_on_BouncingArea_body_exited"]

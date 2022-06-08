@@ -96,6 +96,7 @@ scale_curve = SubResource( 17 )
 color_ramp = SubResource( 16 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["Enemies"]]
+collision_layer = 3
 script = ExtResource( 1 )
 speed = 200
 

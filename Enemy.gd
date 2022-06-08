@@ -5,7 +5,7 @@ const DEG2RAD90 = 1.5708
 
 signal enemy_died(enemy)
 
-var Player: Area2D
+var Player: Player
 var Main
 var EnemyManager
 var LevelManager
@@ -23,6 +23,13 @@ var shooting_chance_threshold = 0.6
 var shooting_enemy_type_threshold = 3
 var shooting_bullet_speed = 700
 
+# This is used to adjust the bouncing velocity by multiplying it for the enemy
+# speed. It's used to make sure enemies with low speed don't get close to the
+# player when the bouncing shield is enabled, if their speed is too low, since
+# the bounce will be adjusted according to each enemy's speed.
+var bounce_speed_balancer = 0.008
+var bounce_back_flag = null
+
 var type
 export (int) var speed
 
@@ -39,6 +46,9 @@ func _ready():
 	$SpawnSprite/SpawnAnimation.play("spawn")
 #	$DebugSpeed.text = speed as String
 
+func set_bounce_back(value: bool):
+	bounce_back_flag = value
+
 func _physics_process(delta):
 	var targetNode = EnemyManager.get_target_object()
 	var toTargetDirection = (targetNode.position - self.position)
@@ -48,8 +58,8 @@ func _physics_process(delta):
 		var direction = toTargetDirection.normalized()
 		velocity = direction * speed
 
-		if (Player.has_bouncing_shield_enabled() && Player.overlaps_body(self)):
-			velocity = -velocity * 2
+		if (bounce_back_flag):
+			velocity = -velocity * (2 + speed * bounce_speed_balancer)
 
 		if (targetNode.is_in_group('PowerUps')):
 			if targetNode.overlaps_body(self) or (toTargetDirection.length() < 75):
