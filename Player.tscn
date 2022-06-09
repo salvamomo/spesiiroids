@@ -53,6 +53,11 @@ position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 disabled = true
 
+[node name="HitModulateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_Player_collision"]
 [connection signal="body_entered" from="BouncingArea" to="." method="_on_BouncingArea_body_entered"]
 [connection signal="body_exited" from="BouncingArea" to="." method="_on_BouncingArea_body_exited"]
+[connection signal="timeout" from="HitModulateTimer" to="." method="_on_HitModulateTimer_timeout"]

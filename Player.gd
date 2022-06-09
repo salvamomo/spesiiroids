@@ -182,10 +182,16 @@ func _hit_by_enemy(body):
 	
 	if !is_immortal():
 		lives -= 1
+		# Original color was more like Color(0.69, 0.91, 0.2). (greenish)
+		set_modulate(Color(0.91, 0.69, 0.2))
+		$HitModulateTimer.start()
 		_check_death()
 
 	emit_signal("hit_by_enemy")
-	
+
+func _on_HitModulateTimer_timeout():
+	set_modulate(Color(1, 1, 1, 1))
+
 func _check_death():
 	if (lives > 0):
 		# Play live lost animation.
