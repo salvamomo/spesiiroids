@@ -1,5 +1,7 @@
 extends Control
 
+class_name Hud
+
 var Player
 var LevelManager
 var time_start = 0
@@ -26,6 +28,9 @@ func update_lives():
 				.get_node("bottom/ship_life_" + i as String).show()
 			else:
 				.get_node("bottom/ship_life_" + i as String).hide()
+
+func _on_Player_life_acquired():
+	update_lives()
 
 func _on_RefreshTimer_timeout():
 	$top_bar/Timer.text = "Time: " + (OS.get_unix_time() - time_start) as String

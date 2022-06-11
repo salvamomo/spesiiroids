@@ -6,6 +6,7 @@ var kills
 var score
 
 signal level_transition_started()
+signal level_manager_life_acquired()
 
 export (int) var level = 1
 export (int) var baseLevelPoints = 200 # Should start at 2000
@@ -21,6 +22,7 @@ var bonusLivesAcquired = 0
 var Main: Main
 var Player: Player
 var EnemyManager
+var Hud: Hud
 var PowerUpSpawner
 
 func _ready():
@@ -29,12 +31,15 @@ func _ready():
 	maxLevelPoints = baseLevelPoints
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node('Player')
+	Hud = Main.get_node('HUD')
 	EnemyManager = Main.get_node('EnemyManager')
 	PowerUpSpawner = Main.get_node('PowerUpSpawner')
 	# warning-ignore:return_value_discarded
 	self.connect("level_transition_started", EnemyManager, 'level_transition')
 	# warning-ignore:return_value_discarded
 	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
+	# warning-ignore:return_value_discarded
+	self.connect("level_manager_life_acquired", Hud, '_on_Player_life_acquired')
 
 func _on_Enemy_death(enemy: Enemy):
 	var playerPointBonus = 3 if Player.has_powerup_in_use() else 1
@@ -57,6 +62,7 @@ func check_acquire_extra_life():
 	if (score > (bonusLifeScoreCycle * (bonusLivesAcquired + 1))):
 		bonusLivesAcquired += 1
 		Main.grant_life_to_player()
+		emit_signal("level_manager_life_acquired")
 
 func set_level(new_level):
 	$LevelStartLabel.text = 'Comenzando Nivel ' + new_level as String

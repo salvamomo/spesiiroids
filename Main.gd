@@ -20,9 +20,7 @@ func _process(_delta):
 		OS.window_fullscreen = !OS.window_fullscreen
 
 func grant_life_to_player():
-	print("Granted life to player")
-	$Player.lives += 1
-	$HUD.update_lives()
+	$Player.acquire_extra_life()
 
 func _on_Player_powerup_activated(powerup):
 	# HUD Updates.

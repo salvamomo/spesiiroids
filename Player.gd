@@ -161,6 +161,11 @@ func activate_bouncing_shield():
 func deactivate_bouncing_shield():
 	$BouncingArea/BouncingShield.disabled = true
 
+func acquire_extra_life():
+	lives += 1
+	$ExtraLifeSound.play()
+	print("Granted life to player")
+
 func _on_Player_collision(body):
 	if body.is_in_group("Enemies"):
 		_hit_by_enemy(body)
