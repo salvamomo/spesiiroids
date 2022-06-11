@@ -6,12 +6,14 @@
 [node name="Stars" type="Node"]
 
 [node name="stars_1" type="Sprite" parent="."]
+modulate = Color( 0.831373, 0.25098, 0.835294, 1 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
 velocity = Vector2( 0, 120 )
 
 [node name="stars_2" type="Sprite" parent="."]
+modulate = Color( 0.831373, 0.25098, 0.835294, 1 )
 position = Vector2( 0, -580 )
 texture = ExtResource( 1 )
 centered = false
@@ -19,9 +21,9 @@ script = ExtResource( 2 )
 velocity = Vector2( 0, 120 )
 
 [node name="stars_3" type="Sprite" parent="."]
+modulate = Color( 0.831373, 0.25098, 0.835294, 1 )
 position = Vector2( 0, 430 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
 velocity = Vector2( 0, 120 )
-
