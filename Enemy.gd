@@ -18,9 +18,9 @@ var currentState = 0
 var can_shoot: bool = false
 
 # Enemies will shot only if they get a higher randf() result than this number.
-var shooting_chance_threshold = 0.6
+export (float) var shooting_chance_threshold = 0.6
 # Original threshold was type 6.
-var shooting_enemy_type_threshold = 3
+export (int) var shooting_enemy_type_threshold = 3
 var shooting_bullet_speed = 700
 
 # This is used to adjust the bouncing velocity by multiplying it for the enemy

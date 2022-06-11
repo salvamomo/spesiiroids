@@ -8,7 +8,6 @@ var bulletTarget = Target.ENEMY
 
 func _ready():
 	alive = true
-	$ShootingSound.play()
 	yield($VisibilityNotifier, "screen_exited")
 	queue_free()
 
