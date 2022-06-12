@@ -22,6 +22,12 @@ var powerUpInUse: bool = false
 var isImmortal: bool = false
 export (int) var lives = 3
 
+## START MOVEMENT
+var mouse_motion_threshold = 0.25
+var last_mouse_motion_delta = 0
+var last_mouse_position = null
+## END MOVEMENT
+
 ## START SHOOTING
 var last_shoot = 0.3
 var shooting_speed = 0.3
@@ -41,6 +47,9 @@ func _ready():
 	screensize = get_viewport_rect().size
 	Main = get_tree().get_root().get_node('Main')
 
+	last_mouse_position = get_global_mouse_position()
+	last_mouse_motion_delta = mouse_motion_threshold
+
 	if (Input.is_joy_known(0)):
 		print("Input recognised: " + Input.get_joy_name(0))
 #		var axis_string = Input.get_joy_axis_string(JOY_AXIS_3)
@@ -51,16 +60,24 @@ func _ready():
 func _process(delta):
 	## ROTATION
 	# JOY_AXIS_0 L-> | JOY_AXIS_1 L^ | JOY_AXIS_2 R-> | JOY_AXIS_3 R^
+	# Hardcoding the device id may not be a great idea.
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_2)
 	var yAxis = Input.get_joy_axis(0, JOY_AXIS_3)
 	var rot = Vector2(xAxis, yAxis)
 
 	last_shoot += delta;
 
-#	@todo: Add mouse aim position (it shouldn't affect when playing with controller).
-#	self.set_rotation_degrees(90 + rad2deg(get_global_mouse_position().angle_to_point(position)))
-#	http://docs.godotengine.org/en/stable/classes/class_control.html might be of help,
-#	as it has mouse_entered() and mouse_exited() events.
+	# Mouse aim: Rotate the ship if mouse has moved during the last few moments,
+	# defined by "mouse_motion_threshold". Otherwise don't change ship rotation
+	# as a gamepad controller is assumed.
+	last_mouse_motion_delta += delta
+	var mouse_has_changed_position = last_mouse_position != get_global_mouse_position()
+	if ((last_mouse_motion_delta < mouse_motion_threshold) or mouse_has_changed_position):
+		last_mouse_position = get_global_mouse_position()
+		self.set_rotation_degrees(90 + rad2deg(get_global_mouse_position().angle_to_point(position)))
+		if (mouse_has_changed_position):
+			last_mouse_motion_delta = 0
+
 	if Input.is_action_pressed("aim_down") || Input.is_action_pressed("aim_top") || Input.is_action_pressed("aim_left") || Input.is_action_pressed("aim_right"):
 		if rot.length_squared() > JOYSTICK_DEAD_ZONE:
 	#		The ship's default direction is upwards. That's equivalent -90º, given 
