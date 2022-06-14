@@ -85,6 +85,8 @@ margin_bottom = -2.0
 rect_min_size = Vector2( 250, 0 )
 alignment = 1
 
+[node name="scale_effect" type="Tween" parent="bottom"]
+
 [node name="ship_life_1" type="Sprite" parent="bottom"]
 position = Vector2( 30.995, 40 )
 texture = ExtResource( 2 )
@@ -198,4 +200,5 @@ margin_left = 117.0
 margin_right = 217.0
 margin_bottom = 141.0
 texture = ExtResource( 11 )
+
 [connection signal="timeout" from="RefreshTimer" to="." method="_on_RefreshTimer_timeout"]
