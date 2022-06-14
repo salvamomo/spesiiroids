@@ -204,9 +204,13 @@ func _hit_by_enemy(body):
 	
 	if !is_immortal():
 		lives -= 1
+		var default_modulate = get_modulate()
 		# Original color was more like Color(0.69, 0.91, 0.2). (greenish)
-		set_modulate(Color(0.91, 0.69, 0.2))
-		$HitModulateTimer.start()
+		var modulate_color = Color(0.91, 0.69, 0.2)
+
+		$Sprite/sprite_tweener.interpolate_property($Sprite, "modulate", default_modulate, modulate_color, 0.2)
+		$Sprite/sprite_tweener.interpolate_property($Sprite, "modulate", modulate_color, default_modulate, 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.2)
+		$Sprite/sprite_tweener.start()
 		_check_death()
 
 	emit_signal("hit_by_enemy")
