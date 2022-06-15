@@ -39,8 +39,8 @@ var Player
 var LevelManager: LevelManager
 var screen_size
 
+export (bool) var can_spawn = true
 var current_target_node
-var can_spawn = true
 
 func _ready():
 	Main = get_tree().get_root().get_node("Main")
