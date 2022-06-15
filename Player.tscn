@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/BlueShipFinal.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/effects/extra_life.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/effects/player/hit_taken.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -58,6 +59,9 @@ disabled = true
 
 [node name="ExtraLifeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="HitTakenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_collision"]
 [connection signal="body_entered" from="BouncingArea" to="." method="_on_BouncingArea_body_entered"]

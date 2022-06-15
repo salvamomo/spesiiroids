@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hit_taken.wav-fa9e13b3c9cb3cc04507c1c4f2ab0415.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/player/hit_taken.wav"
+dest_files=[ "res://.import/hit_taken.wav-fa9e13b3c9cb3cc04507c1c4f2ab0415.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

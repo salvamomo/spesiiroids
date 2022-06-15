@@ -203,6 +203,7 @@ func _hit_by_enemy(body):
 	body.hit_by_player()
 	
 	if !is_immortal():
+		$HitTakenSound.play()
 		lives -= 1
 		var default_modulate = get_modulate()
 		# Original color was more like Color(0.69, 0.91, 0.2). (greenish)
