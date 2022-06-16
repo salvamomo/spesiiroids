@@ -1,6 +1,6 @@
 extends Control
 
-var Main
+var Main: Main
 var Player
 var SoundManager
 var LevelManager
@@ -29,7 +29,9 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
-		get_tree().paused = self.visible
+
+		if (!Main.pause_active_from_user()):
+			Main.pause(self.visible, false)
 
 func _on_ToggleMusic_toggled(_button_pressed):
 	emit_signal("music_toggled")

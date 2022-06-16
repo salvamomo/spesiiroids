@@ -10,14 +10,27 @@ func _ready():
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
-		get_tree().paused = !get_tree().paused
-		$PauseText.visible = !$PauseText.visible
+		# Hide dev controls if they're visible
+		if ($DevControls.visible):
+			$DevControls.visible = false
+
+		pause(!get_tree().paused, true)
+
 	if (Input.is_action_just_pressed("Exit_Back") and get_tree().paused):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://MainMenu.tscn")
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
+
+func pause(pause_value := true, toggle_text := true):
+	get_tree().paused = pause_value
+
+	if (toggle_text):
+		$PauseText.visible = pause_value
+
+func pause_active_from_user() -> bool:
+	return $PauseText.visible
 
 func grant_life_to_player():
 	$Player.acquire_extra_life()
