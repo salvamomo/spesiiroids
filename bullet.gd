@@ -8,8 +8,6 @@ var bulletTarget = Target.ENEMY
 
 func _ready():
 	alive = true
-	yield($VisibilityNotifier, "screen_exited")
-	queue_free()
 
 func _process(delta):
 	if (alive):
@@ -26,3 +24,6 @@ func _on_Bullet_area_entered(area):
 		alive = false
 		area.call('hit_by_bullet')
 		queue_free()
+
+func _on_VisibilityNotifier_screen_exited():
+	queue_free()
