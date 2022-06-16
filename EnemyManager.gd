@@ -40,6 +40,7 @@ var LevelManager: LevelManager
 var screen_size
 
 export (bool) var can_spawn = true
+var enemies_frozen := true
 var current_target_node
 
 func _ready():
@@ -144,6 +145,12 @@ func _resolve_new_enemy_type():
 		return round(rand_range(5, 6)) as int
 	elif level >= 25:
 		return 7
+
+func enemies_can_move():
+	return enemies_frozen
+
+func freeze_enemies(value: bool):
+	enemies_frozen = value
 
 func _on_Teresiica_Beacon_Created(beacon):
 	current_target_node = beacon

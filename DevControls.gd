@@ -25,6 +25,7 @@ func _ready():
 	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
 	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 	$Panel/VBoxContainer/ToggleEnemySpawn.set_pressed_no_signal(EnemyManager.can_spawn)
+	$Panel/VBoxContainer/ToggleEnemyMovement.set_pressed_no_signal(EnemyManager.enemies_can_move())
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ToggleDevControls"):
@@ -47,6 +48,9 @@ func _on_CheckButton_toggled(button_pressed):
 		Player.activate_bouncing_shield()
 	else:
 		Player.deactivate_bouncing_shield()
+
+func _on_ToggleEnemyMovement_toggled(button_pressed):
+	EnemyManager.freeze_enemies(button_pressed)
 
 func _on_GenerateChiquito_pressed():
 	var powerUp = powerUps[0].instance()

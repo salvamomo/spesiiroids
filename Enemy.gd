@@ -65,7 +65,10 @@ func _physics_process(delta):
 			if targetNode.overlaps_body(self) or (toTargetDirection.length() < 75):
 				velocity = -direction * (speed / 10) * 0.25
 
-		position += velocity * delta
+		# Allow movement if it's not disabled, or if the enemy should bounce due
+		# to the chiquito powerup.
+		if (EnemyManager.enemies_can_move() or bounce_back_flag):
+			position += velocity * delta
 
 #		If doing this against a KinematicBody2D, it'd be done by using
 #		move_and_collid() and move_and_slide() calls. Example:
@@ -76,6 +79,9 @@ func _physics_process(delta):
 #				move_and_slide(velocity)
 
 func _process(_delta):
+	if !EnemyManager.enemies_can_move():
+		return
+
 	if (currentState == State.ALIVE):
 		var toTargetDirection = (EnemyManager.get_target_position() - self.position)
 		rotation = toTargetDirection.angle() - DEG2RAD90
