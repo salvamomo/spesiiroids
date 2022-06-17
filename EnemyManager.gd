@@ -53,6 +53,8 @@ func _ready():
 	spawn()
 
 func kill_current_enemies():
+	# @todo: Look into simplifying this with group call.
+	# https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-get-nodes-in-group
 	for child in .get_children():
 		for group in child.get_groups():
 			if (group == 'Enemies'):
