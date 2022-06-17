@@ -3,7 +3,6 @@ extends Area2D
 class_name Player
 
 ## START GAME SETTINGS
-const JOYSTICK_DEAD_ZONE = 0.15
 const SCREEN_BOUNDARIES = 35
 ## START GAME SETTINGS
 
@@ -25,7 +24,7 @@ export (int) var lives = 3
 ## START MOVEMENT
 var mouse_motion_threshold = 0.25
 var last_mouse_motion_delta = 0
-var last_mouse_position = null
+var last_mouse_position: Vector2
 ## END MOVEMENT
 
 ## START SHOOTING
@@ -52,24 +51,25 @@ func _ready():
 
 	if (Input.is_joy_known(0)):
 		print("Input recognised: " + Input.get_joy_name(0))
-#		var axis_string = Input.get_joy_axis_string(JOY_AXIS_3)
-#		var axis_index = Input.get_joy_axis_index_from_string("Right Stick Y")
-#		print(axis_string)
-#		print(axis_index)
 
 func _process(delta):
-	## ROTATION
-	# JOY_AXIS_0 L-> | JOY_AXIS_1 L^ | JOY_AXIS_2 R-> | JOY_AXIS_3 R^
-	# Hardcoding the device id may not be a great idea.
-	var xAxis = Input.get_joy_axis(0, JOY_AXIS_2)
-	var yAxis = Input.get_joy_axis(0, JOY_AXIS_3)
-	var rot = Vector2(xAxis, yAxis)
-
 	last_shoot += delta;
 
+	# MOVEMENT.
+	var velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+
+	position += velocity * delta
+	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
+	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
+
+	# AIMING / SHOOTING
 	# Mouse aim: Rotate the ship if mouse has moved during the last few moments,
 	# defined by "mouse_motion_threshold". Otherwise don't change ship rotation
 	# as a gamepad controller is assumed.
+	# NOTE: MacOS tracks the mouse even outside the game window. In Linux this
+	# doesn't happen.
 	last_mouse_motion_delta += delta
 	var mouse_has_changed_position = last_mouse_position != get_global_mouse_position()
 	if ((last_mouse_motion_delta < mouse_motion_threshold) or mouse_has_changed_position):
@@ -78,40 +78,27 @@ func _process(delta):
 		if (mouse_has_changed_position):
 			last_mouse_motion_delta = 0
 
-	if Input.is_action_pressed("aim_down") || Input.is_action_pressed("aim_top") || Input.is_action_pressed("aim_left") || Input.is_action_pressed("aim_right"):
-		if rot.length_squared() > JOYSTICK_DEAD_ZONE:
-	#		The ship's default direction is upwards. That's equivalent -90º, given 
-	#		Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
-			self.set_rotation_degrees(90 + rad2deg(rot.angle()))
-			
-			if (last_shoot >= shooting_speed):
-				last_shoot = 0;
-				shoot_bullet()
-			
-	_handle_power_up_usage()
+	# Right joystick aiming & shooting.
+	var aim_direction = Input.get_vector("aim_left", "aim_right", "aim_top", "aim_down")
+	if aim_direction.length() > 0:
+		# The ship's default direction is upwards. That's equivalent -90º, given
+		# Godot yAxis is top -> down. Add extra 90º to the rotation to compensate.
+		self.set_rotation_degrees(90 + rad2deg(aim_direction.angle()))
 
-	## MOVEMENT.
-	var velocity = Vector2()
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
+		if (last_shoot >= shooting_speed):
+			last_shoot = 0;
+			shoot_bullet(aim_direction)
+	else:
+		# If there wasn't movement in the joystick, get aim from the last mouse position.
+		aim_direction = position.direction_to(last_mouse_position)
+
+	# Button-triggered shooting.
 	if Input.is_action_pressed("shoot"):
 		if (last_shoot >= shooting_speed):
 			last_shoot = 0;
-			shoot_bullet()
+			shoot_bullet(aim_direction)
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-
-	position += velocity * delta
-	
-	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
-	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
+	_handle_power_up_usage()
 
 func _handle_power_up_usage():
 	if Input.is_action_pressed("PowerUp_1"):
@@ -123,15 +110,10 @@ func _handle_power_up_usage():
 	if Input.is_action_pressed("PowerUp_4"):
 		activate_power_up(POWER_UP_INDX.MRT)
 
-func shoot_bullet():
+func shoot_bullet(target_direction: Vector2):
 	var bullet = availableBullets[current_bullet_type].instance()
-
 	bullet.position = $Sprite.global_position
-	# https://godotengine.org/qa/9791/how-to-convert-a-radial-into-a-vector2
-	var bulletDirX = cos(self.rotation - deg2rad(90.0))
-	var bulletDirY = sin(self.rotation - deg2rad(90.0))
-	bullet.velocity = shooting_bullet_speed * Vector2(bulletDirX, bulletDirY)
-
+	bullet.velocity = shooting_bullet_speed * target_direction.normalized()
 	# Make sure the bullet doesn't move with the Player, by adding it as a child of the parent scene.
 	Main.add_child(bullet)
 
