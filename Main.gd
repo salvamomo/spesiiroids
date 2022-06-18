@@ -27,10 +27,10 @@ func pause(pause_value := true, toggle_text := true):
 	get_tree().paused = pause_value
 
 	if (toggle_text):
-		$PauseText.visible = pause_value
+		$PauseContainer/PauseText.visible = pause_value
 
 func pause_active_from_user() -> bool:
-	return $PauseText.visible
+	return $PauseContainer/PauseText.visible
 
 func grant_life_to_player():
 	$Player.acquire_extra_life()

@@ -40,12 +40,14 @@ pause_mode = 1
 [node name="DevControls" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[node name="PauseText" type="Label" parent="."]
+[node name="PauseContainer" type="Node2D" parent="."]
+position = Vector2( 150, 258 )
+z_index = 2
+
+[node name="PauseText" type="Label" parent="PauseContainer"]
 visible = false
-margin_left = 150.0
-margin_top = 258.0
-margin_right = 627.0
-margin_bottom = 355.0
+margin_right = 477.0
+margin_bottom = 97.0
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "PLAY: Press ENTER or Start.
