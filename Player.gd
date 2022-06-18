@@ -4,6 +4,7 @@ class_name Player
 
 ## START GAME SETTINGS
 const SCREEN_BOUNDARIES = 35
+const HUD_TOP_BAR_SIZE = 25
 ## START GAME SETTINGS
 
 enum POWER_UP_INDX {CHIQUITO, VICENTIN, TERESIICA, MRT}
@@ -62,7 +63,7 @@ func _process(delta):
 
 	position += velocity * delta
 	position.x = clamp(position.x, 0 + SCREEN_BOUNDARIES, screensize.x - SCREEN_BOUNDARIES);
-	position.y = clamp(position.y, 0 + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
+	position.y = clamp(position.y, HUD_TOP_BAR_SIZE + SCREEN_BOUNDARIES, screensize.y - SCREEN_BOUNDARIES);
 
 	# AIMING / SHOOTING
 	# Mouse aim: Rotate the ship if mouse has moved during the last few moments,
