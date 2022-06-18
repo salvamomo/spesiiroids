@@ -10,6 +10,9 @@ var PowerUpSpawner
 signal music_toggled
 
 func _ready():
+	if (!ProjectSettings.get_setting("application/run/enable_dev_controls")):
+		queue_free()
+
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node("Player")
 	SoundManager = Main.get_node("SoundManager")
