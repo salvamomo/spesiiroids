@@ -5,13 +5,7 @@ var Player
 var SoundManager
 var LevelManager
 var EnemyManager: EnemyManager
-
-const powerUps = [
-	preload("res://PowerUp_Chiquito.tscn"),
-	preload("res://PowerUp_Vicentin.tscn"),
-	preload("res://PowerUp_MrT.tscn"),
-	preload("res://PowerUp_Teresiica.tscn")
-]
+var PowerUpSpawner
 
 signal music_toggled
 
@@ -21,6 +15,7 @@ func _ready():
 	SoundManager = Main.get_node("SoundManager")
 	LevelManager = Main.get_node("LevelManager")
 	EnemyManager = Main.get_node("EnemyManager")
+	PowerUpSpawner = Main.get_node("PowerUpSpawner")
 	# warning-ignore:return_value_discarded
 	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
 	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
@@ -28,6 +23,9 @@ func _ready():
 	$Panel/VBoxContainer/ToggleEnemyMovement.set_pressed_no_signal(EnemyManager.enemies_can_move())
 
 func _process(_delta):
+	if (Input.is_action_just_pressed("Start_Pause")):
+		hide()
+
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
 
@@ -53,22 +51,22 @@ func _on_ToggleEnemyMovement_toggled(button_pressed):
 	EnemyManager.freeze_enemies(button_pressed)
 
 func _on_GenerateChiquito_pressed():
-	var powerUp = powerUps[0].instance()
+	var powerUp = PowerUpSpawner.powerUps[0].instance()
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
 
 func _on_GenerateVicentin_pressed():
-	var powerUp = powerUps[1].instance()
+	var powerUp = PowerUpSpawner.powerUps[1].instance()
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
 
 func _on_GenerateMrT_pressed():
-	var powerUp = powerUps[2].instance()
+	var powerUp = PowerUpSpawner.powerUps[2].instance()
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
 
 func _on_GenerateTeresiica_pressed():
-	var powerUp = powerUps[3].instance()
+	var powerUp = PowerUpSpawner.powerUps[3].instance()
 	.add_child(powerUp)
 	Player.add_power_up(powerUp)
 

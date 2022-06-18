@@ -10,10 +10,6 @@ func _ready():
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
-		# Hide dev controls if they're visible
-		if ($DevControls.visible):
-			$DevControls.visible = false
-
 		pause(!get_tree().paused, true)
 
 	if (Input.is_action_just_pressed("Exit_Back") and pause_active_from_user()):
