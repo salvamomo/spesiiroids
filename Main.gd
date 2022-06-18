@@ -16,7 +16,7 @@ func _process(_delta):
 
 		pause(!get_tree().paused, true)
 
-	if (Input.is_action_just_pressed("Exit_Back") and get_tree().paused):
+	if (Input.is_action_just_pressed("Exit_Back") and pause_active_from_user()):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://MainMenu.tscn")
