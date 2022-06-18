@@ -48,8 +48,8 @@ margin_right = 627.0
 margin_bottom = 355.0
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Play: Press ENTER or Start
-Main Menu: Press ESC or Back.
+text = "PLAY: Press ENTER or Start.
+START SCREEN: Press ESC or Back.
 
 Press R1 or F to switch fullscreen mode."
 __meta__ = {

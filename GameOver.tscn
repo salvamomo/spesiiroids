@@ -28,18 +28,18 @@ margin_left = 148.0
 margin_top = 262.0
 margin_right = 635.0
 margin_bottom = 314.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.960938, 0, 1 )
-text = "JUGAR: Pulsa ENTER o Start
-SALIR: Pulsa Esc o Back"
+custom_fonts/font = SubResource( 1 )
+text = "PLAY: Press ENTER or Start.
+QUIT GAME: Press ESC or Back."
 
 [node name="GameLabel" type="Label" parent="."]
 margin_left = 375.0
 margin_top = 177.0
 margin_right = 608.0
 margin_bottom = 221.0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.199356, 0.590374, 0.761719, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "SpESIIRoids"
 __meta__ = {
 "_edit_use_anchors_": false
