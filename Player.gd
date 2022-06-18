@@ -89,9 +89,12 @@ func _process(delta):
 		if (last_shoot >= shooting_speed):
 			last_shoot = 0;
 			shoot_bullet(aim_direction)
-	else:
-		# If there wasn't movement in the joystick, get aim from the last mouse position.
+	# If there wasn't movement in the joystick, get aim from the last mouse position.
+	elif last_mouse_position.length() > 0:
 		aim_direction = position.direction_to(last_mouse_position)
+	# If that wasn't possible, simply aim to wherever the ship is looking.
+	else:
+		aim_direction = Vector2(cos(self.rotation - deg2rad(90.0)), sin(self.rotation - deg2rad(90.0)))
 
 	# Button-triggered shooting.
 	if Input.is_action_pressed("shoot"):
