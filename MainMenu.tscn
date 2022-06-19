@@ -27,6 +27,7 @@ margin_bottom = 378.0
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "PLAY: Press ENTER or Start.
+CREDITS: Press C or Left Trigger (L1).
 QUIT GAME: Press ESC or Back.
 
 Press R1 or F to switch fullscreen mode."

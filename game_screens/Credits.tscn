@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://game_screens/Credits.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Stars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game_screens/ThankYouPage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/audio/music/melodiafondo.ogg" type="AudioStream" id=6]
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="Credits" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Stars" parent="." instance=ExtResource( 3 )]
+
+[node name="SceneTitle" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -58.5
+margin_top = 29.0
+margin_right = 58.5
+margin_bottom = 59.0
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "CREDITS"
+
+[node name="GameInfo" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -368.0
+margin_top = -229.5
+margin_right = 368.0
+margin_bottom = 229.5
+custom_colors/default_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "SpESIIroids
+
+A Twin stick shooter for pecadores de la pradera.
+
+This is a Godot port of a game built originally in XNA 3.0 around 2009. The goal of the port was to have it work on different operating systems and environments, and to learn the Godot engine fundamentals.
+
+The original game was completed in about 9-10 days for a university competition, without having prior knowledge of game frameworks or game development, and it was my first game ever developed. As such, you can expect to find elements, both in game mechanics and in graphics and design (just look at that starting screen!) that are, put softly... not great.
+
+Game mechanics have, for the most part, not been upgraded or altered in any way. Only minor changes have been done to certain sounds and graphics, as a consequence of revamping the game in a different engine, and to include a few sound effects that didn't make it into the first cut even though they were planned, due to time restrictions in the competition."
+
+[node name="AssetCredits_1" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -368.0
+margin_top = -171.0
+margin_right = 368.0
+margin_bottom = 171.0
+custom_colors/default_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "The list of assets and where they come from is below. Unfortunately, having lost the original CD that contained the README with the sources of the assets used for the game, I'm unable to point to the exact source of some of them.
+
+SPACESHIPS
+
+Player ship and most enemy designs were taken from an online blog. For the \"level 1\" enemy ships, design were kept as they were. For other levels, they were edited with photoshop to make them look... cool? :). 
+
+Enemy ships for final levels were done by myself, and yes, they're inspired by the Xbox 360 power button, with its infamous Red Ring of Death making a notorious appearance."
+
+[node name="AssetCredits_2" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -368.0
+margin_top = -200.5
+margin_right = 368.0
+margin_bottom = 200.5
+custom_colors/default_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "SOUND EFFECTS & MUSIC
+
+Sound effects were taken from free online resource pages. Background music was taken from different songs I found in an online blog from a Spanish guy called Manuel Mora. His website seems to be down now, but I've found his Youtube channel where he has some of the songs used in the game:
+
+Manuel Mora Youtube channel: https://www.youtube.com/user/MMiX2k.
+
+OTHER ASSETS
+
+All other graphic assets are made from scratch. All the code used in the game, both for the original version and the new one, with the exception of the particle effects used when destroying enemy ships on the original. For those, an open-source C# library was used.
+"
+
+[node name="ThankYouContainer" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="PagerPrev" type="LinkButton" parent="."]
+margin_left = 356.0
+margin_top = 555.0
+margin_right = 370.0
+margin_bottom = 580.0
+size_flags_vertical = 4
+custom_colors/font_color_focus = Color( 1, 0.960784, 0, 1 )
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "<"
+underline = 2
+
+[node name="PagerContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -27.5
+margin_top = -46.0
+margin_right = 27.5
+margin_bottom = -17.0
+alignment = 1
+
+[node name="Pager" type="Label" parent="PagerContainer"]
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 27.0
+rect_pivot_offset = Vector2( -1297.24, -653.48 )
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "1 / 4"
+
+[node name="PagerNext" type="LinkButton" parent="."]
+margin_left = 433.0
+margin_top = 554.0
+margin_right = 447.0
+margin_bottom = 579.0
+focus_mode = 2
+size_flags_vertical = 4
+custom_colors/font_color_focus = Color( 1, 0.960784, 0, 1 )
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+text = ">"
+underline = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -25.663
+autoplay = true
+
+[connection signal="pressed" from="PagerPrev" to="." method="_on_PagerArrow_pressed" binds= [ "prev" ]]
+[connection signal="pressed" from="PagerNext" to="." method="_on_PagerArrow_pressed" binds= [ "next" ]]
