@@ -68,6 +68,10 @@ config/icon="res://icon.png"
 run/enable_dev_controls=true
 run/enable_dev_controls.release=false
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [display]
 
 window/size/width=800
@@ -190,7 +194,7 @@ FullScreen={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-" Credits"={
+Credits={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)

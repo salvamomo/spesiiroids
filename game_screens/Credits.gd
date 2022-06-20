@@ -4,13 +4,9 @@ var current_page_index: int = 0
 var pages: Array
 
 func _ready():
-	var stars_velocity = Vector2(0, 30)
 	pages = [$GameInfo, $AssetCredits_1, $AssetCredits_2, $ThankYouContainer]
 	$PagerPrev.hide()
 	$PagerContainer/Pager.text = "1 / " + pages.size() as String
-	$Stars/stars_1.velocity = stars_velocity
-	$Stars/stars_2.velocity = stars_velocity
-	$Stars/stars_3.velocity = stars_velocity
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Exit_Back") or Input.is_action_just_pressed("Start_Pause"):

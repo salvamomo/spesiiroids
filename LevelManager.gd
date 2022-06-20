@@ -3,7 +3,7 @@ extends Node
 class_name LevelManager
 
 var kills
-var score
+var score: int
 
 signal level_transition_started()
 signal level_manager_life_acquired()
@@ -12,6 +12,7 @@ export (int) var level = 1
 export (int) var baseLevelPoints = 200 # Should start at 2000
 export (int) var extraPointsPerLevel = 175
 export (int) var bonusLifeScoreCycle = baseLevelPoints * 5
+export (int) var finalLevel = 31
 
 enum LEVEL_TRANSITION_PHASE {START, END}
 
@@ -55,6 +56,13 @@ func _on_Enemy_death(enemy: Enemy):
 
 func check_level_completed():
 	if (score > maxLevelPoints):
+		# If this was the last level, move to victory screen.
+		if (level == finalLevel):
+			Globals.set_final_score(score)
+			queue_free()
+			# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://game_screens/GameFinishedVictory.tscn")
+
 		print("Level Completed: Moving to level ", level + 1)
 		set_level(level + 1)
 

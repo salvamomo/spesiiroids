@@ -12,7 +12,7 @@ func _process(_delta):
 		get_tree().quit()
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
-	if (Input.is_action_just_pressed(" Credits")):
+	if (Input.is_action_just_pressed("Credits")):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://game_screens/Credits.tscn")
