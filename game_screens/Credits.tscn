@@ -55,11 +55,13 @@ text = "SpESIIroids
 
 A Twin stick shooter for pecadores de la pradera.
 
-This is a Godot port of a game built originally in XNA 3.0 around 2009. The goal of the port was to have it work on different operating systems and environments, and to learn the Godot engine fundamentals.
+This is a port of a game I developed around 2009, in the XNA Framework. The goal of the port was to have it work on different operating systems and environments, and to learn the Godot engine fundamentals.
 
-The original game was completed in about 9-10 days for a university competition, without having prior knowledge of game frameworks or game development, and it was my first game ever developed. As such, you can expect to find elements, both in game mechanics and in graphics and design (just look at that starting screen!) that are, put softly... not great.
+The original game was completed in about 9-10 days for a university competition, without having prior knowledge of game frameworks or game development, and it was the first game I developed. As such, you can expect to find elements, both in game mechanics and in graphics and design (just look at that starting screen!) that are not that great.
 
-Game mechanics have, for the most part, not been upgraded or altered in any way. Only minor changes have been done to certain sounds and graphics, as a consequence of revamping the game in a different engine, and to include a few sound effects that didn't make it into the first cut even though they were planned, due to time restrictions in the competition."
+Game mechanics have, for the most part, not been upgraded or altered in any way. Only minor changes have been done to some sounds and graphics in order to include a few sound effects that didn't make it into the first cut -even though they were planned-, due to time restrictions in the competition.
+
+Oh! The \"ESII\" part of the title comes from \"Escuela Superior de Ingeniería Informática\", the faculty I went to at university."
 
 [node name="AssetCredits_1" type="RichTextLabel" parent="."]
 visible = false
@@ -73,13 +75,13 @@ margin_right = 368.0
 margin_bottom = 171.0
 custom_colors/default_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "The list of assets and where they come from is below. Unfortunately, having lost the original CD that contained the README with the sources of the assets used for the game, I'm unable to point to the exact source of some of them.
+text = "The list of assets and where they come from is below. Unfortunately, having lost the original CD that contained the README with the sources of the assets used for the game, I'm unable to point to the exact source for some of them.
 
 SPACESHIPS
 
 Player ship and most enemy designs were taken from an online blog. For the \"level 1\" enemy ships, design were kept as they were. For other levels, they were edited with photoshop to make them look... cool? :). 
 
-Enemy ships for final levels were done by myself, and yes, they're inspired by the Xbox 360 power button, with its infamous Red Ring of Death making a notorious appearance."
+Enemy ships for final levels were done by myself. In case you're wondering: Yes, they're inspired by the Xbox 360 power button, with its infamous Red Ring of Death making a notorious appearance."
 
 [node name="AssetCredits_2" type="RichTextLabel" parent="."]
 visible = false
@@ -95,14 +97,17 @@ custom_colors/default_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/normal_font = SubResource( 1 )
 text = "SOUND EFFECTS & MUSIC
 
-Sound effects were taken from free online resource pages. Background music was taken from different songs I found in an online blog from a Spanish guy called Manuel Mora. His website seems to be down now, but I've found his Youtube channel where he has some of the songs used in the game:
+Sound effects were taken from free online resource websites. Background music was taken from different songs I found in an online blog from a Spanish guy called Manuel Mora. His website seems to be down now, but I've found his Youtube channel where he has some of the songs used in the game:
 
 Manuel Mora Youtube channel: https://www.youtube.com/user/MMiX2k.
 
 OTHER ASSETS
 
-All other graphic assets are made from scratch. All the code used in the game, both for the original version and the new one, with the exception of the particle effects used when destroying enemy ships on the original. For those, an open-source C# library was used.
-"
+All other graphic assets are made from scratch. The same goes for all the code used in the game, both for the original version and the new one, with the exception of the particle effects used when destroying enemy ships on the original. For those, an open-source C# library was used.
+
+SOURCE CODE
+
+You can find the source code for the game at https://github.com/salvamomo/spesiiroids."
 
 [node name="ThankYouContainer" parent="." instance=ExtResource( 4 )]
 visible = false
