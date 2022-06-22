@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SpESIIroids"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://game_screens/MainMenu.tscn"
 config/icon="res://icon.png"
 run/enable_dev_controls=true
 run/enable_dev_controls.release=false
