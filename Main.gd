@@ -7,6 +7,7 @@ var screen_size
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
+	Globals.reset_hits()
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):

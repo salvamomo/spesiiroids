@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	$ScoreBox/Score.text = Globals.get_final_score() as String
+	$ScoreBox/Hits_Count.text = Globals.get_hits() as String
 		
 
 func _process(_delta):

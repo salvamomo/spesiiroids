@@ -19,7 +19,11 @@ var screensize
 export (int) var speed
 
 var powerUpInUse: bool = false
+
+# Is immortal is a temporary state that can be caused by powerUps.
+# god_mode can only be enabled during development (or, maybe, cheat codes).
 var isImmortal: bool = false
+export (bool) var god_mode = false
 export (int) var lives = 3
 
 ## START MOVEMENT
@@ -134,7 +138,7 @@ func add_power_up(powerUp):
 	if (acquiredPowerUps[powerUp.TYPE] == null):
 		acquiredPowerUps[powerUp.TYPE] = powerUp
 		emit_signal("powerup_acquired", powerUp)
-	
+
 func has_power_up(powerUpType):
 	return acquiredPowerUps[powerUpType] != null
 
@@ -187,10 +191,10 @@ func hit_by_bullet():
 
 func _hit_by_enemy(body):
 	body.hit_by_player()
-	
+	Globals.add_hit()
+
 	if !is_immortal():
 		$HitTakenSound.play()
-		lives -= 1
 		var default_modulate = get_modulate()
 		# Original color was more like Color(0.69, 0.91, 0.2). (greenish)
 		var modulate_color = Color(0.91, 0.69, 0.2)
@@ -198,7 +202,10 @@ func _hit_by_enemy(body):
 		$Sprite/sprite_tweener.interpolate_property($Sprite, "modulate", default_modulate, modulate_color, 0.2)
 		$Sprite/sprite_tweener.interpolate_property($Sprite, "modulate", modulate_color, default_modulate, 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.2)
 		$Sprite/sprite_tweener.start()
-		_check_death()
+
+		if !god_mode:
+			lives -= 1
+			_check_death()
 
 	emit_signal("hit_by_enemy")
 
