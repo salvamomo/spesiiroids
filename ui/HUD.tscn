@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://HUD.gd" type="Script" id=1]
-[ext_resource path="res://assets/naveminiatura.png" type="Texture" id=2]
-[ext_resource path="res://assets/navevidas.png" type="Texture" id=3]
-[ext_resource path="res://assets/powerups/powerup1.png" type="Texture" id=4]
-[ext_resource path="res://assets/powerups/powerup2.png" type="Texture" id=5]
-[ext_resource path="res://assets/powerups/powerup3.png" type="Texture" id=6]
-[ext_resource path="res://assets/powerups/powerup4.png" type="Texture" id=7]
-[ext_resource path="res://assets/powerups/anim-1.jpg" type="Texture" id=8]
+[ext_resource path="res://ui/HUD.gd" type="Script" id=1]
+[ext_resource path="res://assets/powerups/powerup4.png" type="Texture" id=2]
+[ext_resource path="res://assets/powerups/powerup1.png" type="Texture" id=3]
+[ext_resource path="res://assets/powerups/powerup2.png" type="Texture" id=4]
+[ext_resource path="res://assets/powerups/powerup3.png" type="Texture" id=5]
+[ext_resource path="res://assets/powerups/anim-3.jpg" type="Texture" id=6]
+[ext_resource path="res://assets/naveminiatura.png" type="Texture" id=7]
+[ext_resource path="res://assets/navevidas.png" type="Texture" id=8]
 [ext_resource path="res://assets/powerups/anim-2.png" type="Texture" id=9]
-[ext_resource path="res://assets/powerups/anim-3.jpg" type="Texture" id=10]
-[ext_resource path="res://assets/powerups/anim-4.jpg" type="Texture" id=11]
+[ext_resource path="res://assets/powerups/anim-4.jpg" type="Texture" id=10]
+[ext_resource path="res://assets/powerups/anim-1.jpg" type="Texture" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -32,9 +32,6 @@ tracks/0/keys = {
 margin_right = 800.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RefreshTimer" type="Timer" parent="."]
 autostart = true
@@ -89,19 +86,19 @@ alignment = 1
 
 [node name="ship_life_1" type="Sprite" parent="bottom"]
 position = Vector2( 30.995, 40 )
-texture = ExtResource( 2 )
+texture = ExtResource( 7 )
 
 [node name="ship_life_2" type="Sprite" parent="bottom"]
 position = Vector2( 73.139, 50 )
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 
 [node name="ship_life_3" type="Sprite" parent="bottom"]
 position = Vector2( 108.139, 50 )
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 
 [node name="ship_life_4" type="Sprite" parent="bottom"]
 position = Vector2( 142.139, 50 )
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 
 [node name="ship_life_plus" type="Sprite" parent="bottom"]
 position = Vector2( 176.139, 50 )
@@ -133,28 +130,28 @@ __meta__ = {
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="powerup_2" type="TextureRect" parent="acquired_powerups"]
 visible = false
 margin_left = 22.0
 margin_right = 62.0
 margin_bottom = 40.0
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
 [node name="powerup_3" type="TextureRect" parent="acquired_powerups"]
 visible = false
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 40.0
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="powerup_4" type="TextureRect" parent="acquired_powerups"]
 visible = false
 margin_left = 66.0
 margin_right = 106.0
 margin_bottom = 40.0
-texture = ExtResource( 7 )
+texture = ExtResource( 2 )
 
 [node name="powerup_animation" type="HBoxContainer" parent="."]
 margin_left = 698.4
@@ -167,7 +164,7 @@ alignment = 2
 visible = false
 margin_right = 100.0
 margin_bottom = 141.0
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 
 [node name="powerup_2" type="TextureRect" parent="powerup_animation"]
 visible = false
@@ -192,13 +189,13 @@ visible = false
 margin_left = 117.0
 margin_right = 217.0
 margin_bottom = 141.0
-texture = ExtResource( 10 )
+texture = ExtResource( 6 )
 
 [node name="powerup_4" type="TextureRect" parent="powerup_animation"]
 visible = false
 margin_left = 117.0
 margin_right = 217.0
 margin_bottom = 141.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 
 [connection signal="timeout" from="RefreshTimer" to="." method="_on_RefreshTimer_timeout"]

@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Hud",
 "language": "GDScript",
-"path": "res://HUD.gd"
+"path": "res://ui/HUD.gd"
 }, {
 "base": "Node",
 "class": "LevelManager",
