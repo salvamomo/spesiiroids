@@ -66,4 +66,4 @@ func _on_Player_player_dies():
 	$HUD.queue_free()
 	self.queue_free()
 	# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://GameOver.tscn")
+	get_tree().change_scene("res://game_screens/GameOver.tscn")
