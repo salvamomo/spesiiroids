@@ -9,10 +9,10 @@ var Player
 var availablePowerUps = [null, null, null, null]
 
 const powerUps = [
-	preload("res://PowerUp_Chiquito.tscn"),
-	preload("res://PowerUp_Vicentin.tscn"),
-	preload("res://PowerUp_MrT.tscn"),
-	preload("res://PowerUp_Teresiica.tscn")
+	preload("res://powerups/PowerUp_Chiquito.tscn"),
+	preload("res://powerups/PowerUp_Vicentin.tscn"),
+	preload("res://powerups/PowerUp_MrT.tscn"),
+	preload("res://powerups/PowerUp_Teresiica.tscn")
 ]
 
 func _ready():

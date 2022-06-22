@@ -1,4 +1,4 @@
-extends "res://bullet.gd"
+extends "res://bullets/bullet.gd"
 
 func _on_Bullet_collision(body):
 	if (body.has_method('hit_by_bullet')):

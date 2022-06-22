@@ -40,8 +40,8 @@ var shooting_bullet_speed = 700
 enum BULLET_TYPE {DEFAULT, FIREBALL}
 export (BULLET_TYPE) var current_bullet_type
 var availableBullets = {
-	BULLET_TYPE.DEFAULT: preload("res://bullet.tscn"),
-	BULLET_TYPE.FIREBALL: preload("res://bullet_fire.tscn"),
+	BULLET_TYPE.DEFAULT: preload("res://bullets/bullet.tscn"),
+	BULLET_TYPE.FIREBALL: preload("res://bullets/bullet_fire.tscn"),
 }
 ## END SHOOTING
 

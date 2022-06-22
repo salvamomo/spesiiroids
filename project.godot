@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Enemy.gd"
+"path": "res://enemies/Enemy.gd"
 }, {
 "base": "Node",
 "class": "EnemyManager",
 "language": "GDScript",
-"path": "res://EnemyManager.gd"
+"path": "res://enemies/EnemyManager.gd"
 }, {
 "base": "Control",
 "class": "Hud",
@@ -42,12 +42,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "PowerUp",
 "language": "GDScript",
-"path": "res://PowerUp.gd"
+"path": "res://powerups/PowerUp.gd"
 }, {
 "base": "Area2D",
 "class": "PowerUp_Teresiica_Beacon",
 "language": "GDScript",
-"path": "res://PowerUp_Teresiica_Beacon.gd"
+"path": "res://powerups/PowerUp_Teresiica_Beacon.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",

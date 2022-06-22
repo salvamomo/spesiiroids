@@ -10,7 +10,7 @@ var Main
 var EnemyManager
 var LevelManager
 
-var bullet_scene = preload("res://bullet_purple.tscn")
+var bullet_scene = preload("res://bullets/bullet_purple.tscn")
 
 enum State {SPAWNING, ALIVE, DYING}
 var currentState = 0

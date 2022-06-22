@@ -4,10 +4,10 @@
 [ext_resource path="res://Stars.tscn" type="PackedScene" id=2]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PowerUpSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://powerups/PowerUpSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enemies/EnemyManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LevelManager.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DevControls.tscn" type="PackedScene" id=8]
+[ext_resource path="res://dev_tools/DevControls.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://SoundManager.tscn" type="PackedScene" id=10]
 

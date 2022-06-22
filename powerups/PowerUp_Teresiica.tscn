@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=1]
-[ext_resource path="res://PowerUp_Teresiica.gd" type="Script" id=2]
+[ext_resource path="res://powerups/PowerUp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://powerups/PowerUp_Teresiica.gd" type="Script" id=2]
 [ext_resource path="res://assets/powerups/powerup4.png" type="Texture" id=3]
 
 [node name="PowerUp_Teresiica" instance=ExtResource( 1 )]

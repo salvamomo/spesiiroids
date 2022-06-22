@@ -1,9 +1,9 @@
-extends "res://PowerUp.gd"
+extends "res://powerups/PowerUp.gd"
 
 const TYPE = 3
 const NAME = "TerESIIca"
 
-const BEACON_SCENE = preload("res://PowerUp_Teresiica_Beacon.tscn")
+const BEACON_SCENE = preload("res://powerups/PowerUp_Teresiica_Beacon.tscn")
 
 var active_beacon
 

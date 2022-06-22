@@ -1,4 +1,4 @@
-extends "res://PowerUp.gd"
+extends "res://powerups/PowerUp.gd"
 
 const TYPE = 0
 const NAME = "Chiquito"

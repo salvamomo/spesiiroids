@@ -39,6 +39,7 @@ color_ramp = SubResource( 12 )
 
 [node name="Explosion" type="Particles2D" groups=["Enemies"]]
 material = SubResource( 3 )
+emitting = false
 amount = 1
 lifetime = 2.0
 one_shot = true

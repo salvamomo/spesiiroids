@@ -2,7 +2,7 @@ extends Node
 
 class_name EnemyManager
 
-const ENEMY_SCENE = preload("res://Enemy.tscn")
+const ENEMY_SCENE = preload("res://enemies/Enemy.tscn")
 
 export (int) var MIN_VEL = 60 # Original was 0.5f
 export (int) var MAX_VEL = 90 # Original was 1.2f
