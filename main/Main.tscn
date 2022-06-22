@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://main/Main.gd" type="Script" id=1]
 [ext_resource path="res://stars/Stars.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://powerups/PowerUpSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/EnemyManager.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://level_manager/LevelManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dev_tools/DevControls.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://SoundManager.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sound_manager/SoundManager.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18

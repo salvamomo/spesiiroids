@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "LevelManager",
 "language": "GDScript",
-"path": "res://LevelManager.gd"
+"path": "res://level_manager/LevelManager.gd"
 }, {
 "base": "Node",
 "class": "Main",
 "language": "GDScript",
-"path": "res://Main.gd"
+"path": "res://main/Main.gd"
 }, {
 "base": "Area2D",
 "class": "Player",
