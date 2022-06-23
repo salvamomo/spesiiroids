@@ -71,6 +71,7 @@ run/enable_dev_controls.release=false
 [autoload]
 
 Globals="*res://Globals.gd"
+SoundManager="*res://sound_manager/SoundManager.tscn"
 
 [display]
 

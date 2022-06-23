@@ -2,7 +2,6 @@ extends Control
 
 var Main: Main
 var Player
-var SoundManager
 var LevelManager
 var EnemyManager: EnemyManager
 var PowerUpSpawner
@@ -15,13 +14,11 @@ func _ready():
 
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node("Player")
-	SoundManager = Main.get_node("SoundManager")
 	LevelManager = Main.get_node("LevelManager")
 	EnemyManager = Main.get_node("EnemyManager")
 	PowerUpSpawner = Main.get_node("PowerUpSpawner")
 	# warning-ignore:return_value_discarded
 	self.connect("music_toggled", SoundManager, "_toggle_music", [true])
-	$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager._is_music_playing())
 	$Panel/VBoxContainer/ToggleEnemySpawn.set_pressed_no_signal(EnemyManager.can_spawn)
 	$Panel/VBoxContainer/ToggleEnemyMovement.set_pressed_no_signal(EnemyManager.enemies_can_move())
 
@@ -31,6 +28,11 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("ToggleDevControls"):
 		self.visible = !self.visible
+
+		# Adding this here, because the true value of whether music is playing
+		# might not be final yet (Main scene may still be initializing it).
+		if (visible):
+			$Panel/VBoxContainer/ToggleMusic.set_pressed_no_signal(SoundManager.is_music_playing())
 
 		if (!Main.pause_active_from_user()):
 			Main.pause(self.visible, false)

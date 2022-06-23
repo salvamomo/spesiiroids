@@ -7,6 +7,8 @@ func _ready():
 	pages = [$GameInfo, $AssetCredits_1, $AssetCredits_2, $ThankYouContainer]
 	$PagerPrev.hide()
 	$PagerContainer/Pager.text = "1 / " + pages.size() as String
+	SoundManager.set_volume(-28.00)
+	SoundManager.restart_music()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Exit_Back") or Input.is_action_just_pressed("Start_Pause"):

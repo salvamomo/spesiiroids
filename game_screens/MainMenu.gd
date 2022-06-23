@@ -2,6 +2,8 @@ extends TextureRect
 
 func _ready():
 	get_tree().paused = false
+	# Stop music. It could be running from a recent run or coming from credits.
+	SoundManager.stop_music()
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):

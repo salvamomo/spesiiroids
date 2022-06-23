@@ -45,7 +45,6 @@ func reenable():
 
 func grant_effects(player: Player):
 	currentState = State.ACTIVATED
-	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
 		
 	if self.has_method("grant_bonus_to_player"):
 		self.call("grant_bonus_to_player", player)
@@ -57,7 +56,6 @@ func grant_effects(player: Player):
 		$EffectDurationTimer.start(self.duracion)
 
 func remove_effects(player: Player):
-	var SoundManager = get_tree().get_root().get_node("Main/SoundManager")
 	if (stopMusicOnUsage):
 		SoundManager.resume_music()
 

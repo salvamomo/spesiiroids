@@ -8,6 +8,7 @@ var screen_size
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 	Globals.reset_hits()
+	SoundManager.init_music()
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Start_Pause")):
