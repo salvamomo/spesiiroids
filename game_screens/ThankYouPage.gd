@@ -14,3 +14,4 @@ func _process(_delta):
 		$FadeInTweener.interpolate_property($ThorinAvatar, "modulate:a", 0, 1, 2, Tween.TRANS_LINEAR, Tween.EASE_IN, 2.3)
 		$FadeInTweener.start()
 		drawn = true
+		$ThankYouSoMuch.play()

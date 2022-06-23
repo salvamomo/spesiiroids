@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/thank_you_so_much.mp3-53f0d182ea6a6ba717309d77a7f5746b.mp3str"
+
+[deps]
+
+source_file="res://assets/credits/thank_you_so_much.mp3"
+dest_files=[ "res://.import/thank_you_so_much.mp3-53f0d182ea6a6ba717309d77a7f5746b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
