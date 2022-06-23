@@ -56,15 +56,17 @@ func _on_Enemy_death(enemy: Enemy):
 
 func check_level_completed():
 	if (score > maxLevelPoints):
-		# If this was the last level, move to victory screen.
-		if (level == finalLevel):
-			Globals.set_final_score(score)
-			queue_free()
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://game_screens/GameFinishedVictory.tscn")
-
+		check_player_victory()
 		print("Level Completed: Moving to level ", level + 1)
 		set_level(level + 1)
+
+func check_player_victory():
+	# If this was the last level, move to victory screen.
+	if (level == finalLevel):
+		Globals.set_final_score(score)
+		queue_free()
+		# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://game_screens/GameFinishedVictory.tscn")
 
 func check_acquire_extra_life():
 	if (score > (bonusLifeScoreCycle * (bonusLivesAcquired + 1))):
