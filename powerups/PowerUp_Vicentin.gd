@@ -12,12 +12,10 @@ func grant_bonus_to_player(player: Player):
 	player.speed += 400
 	player.shooting_speed = 0.1
 	
-	# Make player invulnerable for a second.
-	# In the original game, player was invulnerable for the duration of the
-	# power up.
+	# Make player invulnerable for a second. In the original game, player was
+	# invulnerable for the duration of the power up.
 	player.make_immortal()
-	yield(get_tree().create_timer(1), "timeout")
-	player.make_mortal()
+	$ImmortalityTimer.start()
 
 func remove_bonus_from_player(player: Player):
 	player.speed -= 400
@@ -29,3 +27,6 @@ func play_sound_effect():
 	var audio_sfx = load('res://assets/audio/effects/chimo/' + effect_to_play)
 	$AudioStreamPlayer.set_stream(audio_sfx)
 	$AudioStreamPlayer.play()
+
+func _on_ImmortalityTimer_timeout():
+	Player.make_mortal()

@@ -15,3 +15,8 @@ texture = ExtResource( 3 )
 [node name="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource( 4 )
 volume_db = -15.0
+
+[node name="ImmortalityTimer" type="Timer" parent="." index="8"]
+one_shot = true
+
+[connection signal="timeout" from="ImmortalityTimer" to="." method="_on_ImmortalityTimer_timeout"]
