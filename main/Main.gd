@@ -33,10 +33,10 @@ func pause_active_from_user() -> bool:
 func grant_life_to_player():
 	$Player.acquire_extra_life()
 
-func _on_Player_powerup_activated(powerup):
+func _on_Player_powerup_activated(powerUp):
 	# HUD Updates.
-	.get_node("HUD/acquired_powerups/powerup_" + (powerup.TYPE + 1) as String).hide()
-	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).show()
+	.get_node("HUD/acquired_powerups/powerup_" + (powerUp.TYPE + 1) as String).hide()
+	.get_node("HUD/powerup_animation/powerup_" + (powerUp.TYPE + 1) as String).show()
 
 	# @todo: If powerUp is TerESIIca, it has a special effect.
 	#   1.- Drop an instance of it for enemies to chase.
@@ -53,11 +53,11 @@ func _on_Player_powerup_activated(powerup):
 	#       - Call a fixEnemyMinDistanceToPlayer() on the manager that sets the distance given by the powerup.
 	#       - Make enemies use that distance when processing their movement.
 
-func _on_Player_powerup_acquired(powerup):
-	.get_node("HUD/acquired_powerups/powerup_" + (powerup.TYPE + 1) as String).show()
+func _on_Player_powerup_acquired(powerUp):
+	.get_node("HUD/acquired_powerups/powerup_" + (powerUp.TYPE + 1) as String).show()
 
-func _on_PowerUp_effects_expired(powerup):
-	.get_node("HUD/powerup_animation/powerup_" + (powerup.TYPE + 1) as String).hide()
+func _on_PowerUp_effects_expired(powerUp):
+	.get_node("HUD/powerup_animation/powerup_" + (powerUp.TYPE + 1) as String).hide()
 
 func _on_Player_hit_by_enemy():
 	$HUD.update_lives()

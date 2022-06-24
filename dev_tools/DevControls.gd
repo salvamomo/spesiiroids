@@ -4,7 +4,7 @@ var Main: Main
 var Player
 var LevelManager
 var EnemyManager: EnemyManager
-var PowerUpSpawner
+var PowerUpSpawner: PowerUpSpawner
 
 signal music_toggled
 
@@ -56,24 +56,21 @@ func _on_ToggleEnemyMovement_toggled(button_pressed):
 	EnemyManager.freeze_enemies(button_pressed)
 
 func _on_GenerateChiquito_pressed():
-	var powerUp = PowerUpSpawner.powerUps[0].instance()
-	.add_child(powerUp)
-	Player.add_power_up(powerUp)
+	add_power_up_to_player(PowerUpSpawner.powerUpsIdx.CHIQUITO)
 
 func _on_GenerateVicentin_pressed():
-	var powerUp = PowerUpSpawner.powerUps[1].instance()
-	.add_child(powerUp)
-	Player.add_power_up(powerUp)
+	add_power_up_to_player(PowerUpSpawner.powerUpsIdx.VICENTIN)
 
 func _on_GenerateMrT_pressed():
-	var powerUp = PowerUpSpawner.powerUps[2].instance()
-	.add_child(powerUp)
-	Player.add_power_up(powerUp)
+	add_power_up_to_player(PowerUpSpawner.powerUpsIdx.MRT)
 
 func _on_GenerateTeresiica_pressed():
-	var powerUp = PowerUpSpawner.powerUps[3].instance()
-	.add_child(powerUp)
+	add_power_up_to_player(PowerUpSpawner.powerUpsIdx.TERESIICA)
+
+func add_power_up_to_player(powerUpIndex: int):
+	var powerUp = PowerUpSpawner.get_power_up(powerUpIndex)
 	Player.add_power_up(powerUp)
+	powerUp.set_state_acquired()
 
 func _on_LevelUp_pressed():
 	LevelManager.level_up()

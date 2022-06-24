@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://powerups/PowerUp.gd"
 }, {
+"base": "Node",
+"class": "PowerUpSpawner",
+"language": "GDScript",
+"path": "res://powerups/PowerUpSpawner.gd"
+}, {
 "base": "Area2D",
 "class": "PowerUp_Teresiica_Beacon",
 "language": "GDScript",
@@ -57,6 +62,7 @@ _global_script_class_icons={
 "Main": "",
 "Player": "",
 "PowerUp": "",
+"PowerUpSpawner": "",
 "PowerUp_Teresiica_Beacon": ""
 }
 

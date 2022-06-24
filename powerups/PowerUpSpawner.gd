@@ -1,5 +1,7 @@
 extends Node
 
+class_name PowerUpSpawner
+
 const MIN_RESPAWN_TIME = 2
 const MAX_RESPAWN_TIME = 3
 
@@ -15,6 +17,8 @@ const powerUps = [
 	preload("res://powerups/PowerUp_Teresiica.tscn")
 ]
 
+enum powerUpsIdx {CHIQUITO, VICENTIN, MRT, TERESIICA}
+
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 	Player = get_tree().get_root().get_node("Main/Player")
@@ -29,6 +33,9 @@ func _ready():
 	.add_child(availablePowerUps[2])
 	.add_child(availablePowerUps[3])
 	
+func get_power_up(powerUpIdx: int) -> PowerUp:
+	return availablePowerUps[powerUpIdx]
+
 # This is a signal callback connected from LevelManager
 func level_transition(phase):
 	match phase:
