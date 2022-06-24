@@ -9,10 +9,11 @@ signal level_transition_started()
 signal level_manager_life_acquired()
 
 export (int) var level = 1
-export (int) var baseLevelPoints = 200 # Should start at 2000
+export (int) var baseLevelPoints = 800 # Should start at 2000
 export (int) var extraPointsPerLevel = 175
 export (int) var bonusLifeScoreCycle = baseLevelPoints * 5
 export (int) var finalLevel = 31
+var baseLevelPointsIncreasePerLevel = 50
 
 enum LEVEL_TRANSITION_PHASE {START, END}
 
@@ -81,8 +82,17 @@ func set_level(new_level):
 	emit_signal("level_transition_started", LEVEL_TRANSITION_PHASE.START)
 
 	level = new_level
-	maxLevelPoints = level * baseLevelPoints + (level * extraPointsPerLevel)
+	adjust_level_curve(level)
 	$LevelTransitionTimer.start()
+
+func adjust_level_curve(current_level):
+	if (current_level == 22):
+		baseLevelPointsIncreasePerLevel += 100
+
+	baseLevelPoints += baseLevelPointsIncreasePerLevel
+#	var previousMaxLevel = maxLevelPoints
+	maxLevelPoints = current_level * baseLevelPoints + (current_level * extraPointsPerLevel)
+#	print("Next Level at: " + maxLevelPoints as String + ". Difference with previous: " + (maxLevelPoints - previousMaxLevel) as String)
 
 func _on_LevelTransitionTimer_timeout():
 	$LevelStartLabel.visible = false
