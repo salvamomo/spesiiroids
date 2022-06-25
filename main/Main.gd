@@ -66,5 +66,6 @@ func _on_Player_player_dies():
 	$EnemyManager.queue_free()
 	$HUD.queue_free()
 	self.queue_free()
+	Globals.emit_signal("game_finished")
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://game_screens/GameOver.tscn")

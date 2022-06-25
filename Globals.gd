@@ -1,5 +1,8 @@
 extends Node
 
+# warning-ignore:unused_signal
+signal game_finished()
+
 var final_score: int = 0
 var hits: int = 0
 

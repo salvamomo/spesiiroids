@@ -65,6 +65,7 @@ func check_player_victory():
 	# If this was the last level, move to victory screen.
 	if (level == finalLevel):
 		Globals.set_final_score(score)
+		Globals.emit_signal("game_finished")
 		queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://game_screens/GameFinishedVictory.tscn")
