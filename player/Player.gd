@@ -171,7 +171,7 @@ func deactivate_bouncing_shield():
 func acquire_extra_life():
 	lives += 1
 	$ExtraLifeSound.play()
-	print("Granted life to player")
+	print("Granted life to player. Current lives: " + lives as String)
 
 func _on_Player_collision(body):
 	if body.is_in_group("Enemies"):
@@ -213,8 +213,5 @@ func _on_HitModulateTimer_timeout():
 	set_modulate(Color(1, 1, 1, 1))
 
 func _check_death():
-	if (lives > 0):
-		# Play live lost animation.
-		print("@todo: ", lives, " lives: hit animation")
-	else:
+	if (lives <= 0):
 		emit_signal("player_dies")	
