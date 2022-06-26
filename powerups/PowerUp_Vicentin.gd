@@ -3,13 +3,15 @@ extends "res://powerups/PowerUp.gd"
 const TYPE = 1
 const NAME = "Vicentin"
 
+var player_speed_up_modifier: float = 1.45
+
 func _ready():
 	stopMusicOnUsage = true
 	# https://godotengine.org/qa/9244/can-override-the-_ready-and-_process-functions-child-classes
 	._ready()
 	
 func grant_bonus_to_player(player: Player):
-	player.speed += 400
+	player.speed *= player_speed_up_modifier
 	player.shooting_speed = 0.1
 	
 	# Make player invulnerable for a second. In the original game, player was
@@ -18,7 +20,7 @@ func grant_bonus_to_player(player: Player):
 	$ImmortalityTimer.start()
 
 func remove_bonus_from_player(player: Player):
-	player.speed -= 400
+	player.speed /= player_speed_up_modifier
 	player.shooting_speed = 0.3
 
 func play_sound_effect():
