@@ -184,12 +184,16 @@ func _on_BouncingArea_body_exited(body):
 	body.set_bounce_back(false)
 
 func hit_by_bullet():
+	if (_ignore_hit_on_grace_period()):
+		return
+
 	if $BouncingArea/BouncingShield.disabled:
-		lives -= 1
-		emit_signal("hit_by_enemy")
-		_check_death()
+		take_hit()
 
 func _hit_by_enemy(body):
+	if (_ignore_hit_on_grace_period()):
+		return
+
 	body.hit_by_player()
 	Globals.add_hit()
 
@@ -204,10 +208,21 @@ func _hit_by_enemy(body):
 		$Sprite/sprite_tweener.start()
 
 		if !god_mode:
-			lives -= 1
-			_check_death()
+			take_hit()
 
+# If time left is > 0 it means the timer is running. Ignore hits in that case.
+# This is done instead of disabling the collision shape, because that one is also
+# used to grab powerups, etc. Additionally, disabling the shape wouldn't be
+# enough, because doing so with a deferred call can still lead to multiple hits
+# when enemies are piled up.
+func _ignore_hit_on_grace_period() -> bool:
+	return $HitTakenGracePeriod.get_time_left() > 0
+
+func take_hit():
+	lives -= 1
+	$HitTakenGracePeriod.start()
 	emit_signal("hit_by_enemy")
+	_check_death()
 
 func _on_HitModulateTimer_timeout():
 	set_modulate(Color(1, 1, 1, 1))
