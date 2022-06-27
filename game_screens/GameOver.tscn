@@ -19,9 +19,6 @@ margin_bottom = 600.0
 texture = ExtResource( 3 )
 expand = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Options" type="Label" parent="."]
 margin_left = 148.0

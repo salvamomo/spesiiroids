@@ -57,18 +57,15 @@ func _on_Enemy_death(enemy: Enemy):
 
 func check_level_completed():
 	if (score > maxLevelPoints):
-		check_player_victory()
+		check_last_level_completed()
 		print("Level Completed: Moving to level ", level + 1)
 		set_level(level + 1)
 
-func check_player_victory():
+func check_last_level_completed():
 	# If this was the last level, move to victory screen.
 	if (level == finalLevel):
 		Globals.set_final_score(score)
-		Globals.emit_signal("game_finished")
-		queue_free()
-		# warning-ignore:return_value_discarded
-		get_tree().change_scene("res://game_screens/GameFinishedVictory.tscn")
+		Globals.emit_signal("level_manager_last_level_completed")
 
 func check_acquire_extra_life():
 	if (score > (bonusLifeScoreCycle * (bonusLivesAcquired + 1))):
@@ -98,6 +95,9 @@ func adjust_level_curve(current_level):
 func _on_LevelTransitionTimer_timeout():
 	$LevelStartLabel.visible = false
 	emit_signal("level_transition_started", LEVEL_TRANSITION_PHASE.END)
+
+func get_score() -> int:
+	return score
 
 func level_up():
 	set_level(level + 1)
