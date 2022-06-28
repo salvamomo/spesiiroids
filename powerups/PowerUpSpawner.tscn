@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://powerups/PowerUpSpawner.gd" type="Script" id=1]
+[ext_resource path="res://powerups/PowerUp_Chiquito.tscn" type="PackedScene" id=2]
+[ext_resource path="res://powerups/PowerUp_MrT.tscn" type="PackedScene" id=3]
+[ext_resource path="res://powerups/PowerUp_Teresiica.tscn" type="PackedScene" id=4]
+[ext_resource path="res://powerups/PowerUp_Vicentin.tscn" type="PackedScene" id=5]
 
 [node name="PowerUpSpawner" type="Node"]
 script = ExtResource( 1 )
+powerUps = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 2.0

@@ -7,21 +7,17 @@ const MAX_RESPAWN_TIME = 3
 
 var screen_size
 var Player
+var LevelManager
 
 var availablePowerUps = [null, null, null, null]
-
-const powerUps = [
-	preload("res://powerups/PowerUp_Chiquito.tscn"),
-	preload("res://powerups/PowerUp_Vicentin.tscn"),
-	preload("res://powerups/PowerUp_MrT.tscn"),
-	preload("res://powerups/PowerUp_Teresiica.tscn")
-]
+export(Array, PackedScene) var powerUps
 
 enum powerUpsIdx {CHIQUITO, VICENTIN, MRT, TERESIICA}
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 	Player = get_tree().get_root().get_node("Main/Player")
+	LevelManager = get_tree().get_root().get_node("Main/LevelManager")
 	
 	# Instantiate all power ups up front (we just have 4) and add them to the scene.
 	availablePowerUps[0] = powerUps[0].instance()
@@ -33,7 +29,7 @@ func _ready():
 	.add_child(availablePowerUps[2])
 	.add_child(availablePowerUps[3])
 	
-func get_power_up(powerUpIdx: int) -> PowerUp:
+func get_power_up(powerUpIdx: int):
 	return availablePowerUps[powerUpIdx]
 
 # This is a signal callback connected from LevelManager
@@ -77,4 +73,3 @@ func spawn_powerup():
 
 func _on_RespawnTimer_timeout():
 	spawn_powerup()
-
