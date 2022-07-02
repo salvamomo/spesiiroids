@@ -10,8 +10,10 @@ signal powerup_effects_expired(powerup)
 
 const MIN_VEL = -20
 const MAX_VEL = 20
-const MIN_ROT = -2
-const MAX_ROT = 2
+const MIN_ROT = -0.1
+const MAX_ROT = 0.1
+
+var current_rotation: float
 
 enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, EFFECT_JUST_EXPIRED, TEMPORARILY_DISABLED}
 var currentState
@@ -74,6 +76,7 @@ func handle_powerup_sound_effect():
 		$AudioStreamPlayer.play()
 
 func _process(delta):
+	rotation += deg2rad(current_rotation)
 	if currentState == State.PICKABLE:
 		translate(velocity * delta)
 
@@ -103,6 +106,7 @@ func set_state_acquired():
 	
 func respawn():
 	currentState = State.PICKABLE
+	current_rotation = rand_range(MIN_ROT, MAX_ROT)
 	show()
 #	modulate = Color(0, 1, 0)
 	$CollisionBox.set_deferred("disabled", false)

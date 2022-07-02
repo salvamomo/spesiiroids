@@ -56,7 +56,6 @@ func spawn_powerup():
 
 	# @todo: connect powerups with spawner, to tell it when they get fetched from the map.
 	# @todo: connect powerups activation with spawner, to tell it when they're being used.
-	# @todo: Apply rotation to the powerup.
 	if (availableIndexes.empty() == false):
 		nextPowerUp = availablePowerUps[availableIndexes[randi() % availableIndexes.size()]]
 		nextPowerUp.position = Vector2(
