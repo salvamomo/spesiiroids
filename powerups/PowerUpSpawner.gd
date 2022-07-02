@@ -54,8 +54,6 @@ func spawn_powerup():
 		if availablePowerUps[i].is_ready_for_respawn():
 			availableIndexes.append(i) 
 
-	# @todo: connect powerups with spawner, to tell it when they get fetched from the map.
-	# @todo: connect powerups activation with spawner, to tell it when they're being used.
 	if (availableIndexes.empty() == false):
 		nextPowerUp = availablePowerUps[availableIndexes[randi() % availableIndexes.size()]]
 		nextPowerUp.position = Vector2(
