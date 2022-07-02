@@ -37,12 +37,11 @@ var last_shoot = 0.3
 var shooting_speed = 0.3
 var shooting_bullet_speed = 700
 
+# Bullet scenes are added as resources, in the order that matches BULLET_TYPE.
 enum BULLET_TYPE {DEFAULT, FIREBALL}
+export (Array, PackedScene) var availableBullets
+
 export (BULLET_TYPE) var current_bullet_type
-var availableBullets = {
-	BULLET_TYPE.DEFAULT: preload("res://bullets/bullet.tscn"),
-	BULLET_TYPE.FIREBALL: preload("res://bullets/bullet_fire.tscn"),
-}
 ## END SHOOTING
 
 var Main

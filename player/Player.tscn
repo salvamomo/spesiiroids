@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/BlueShipFinal.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/effects/extra_life.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/effects/player/hit_taken.wav" type="AudioStream" id=4]
+[ext_resource path="res://bullets/bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://bullets/bullet_fire.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -33,6 +35,7 @@ radius = 119.195
 [node name="Player" type="Area2D" groups=["Ship"]]
 script = ExtResource( 1 )
 speed = 400
+availableBullets = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" type="Sprite" parent="." groups=["Ship"]]
 texture = ExtResource( 2 )
