@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://enemies/EnemyManager.gd" type="Script" id=1]
+[ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/enemies/Enemy7.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/EnemySpawn5.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/EnemySpawn6.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemies/Enemy1.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemies/EnemySpawn1.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemies/Enemy4.png" type="Texture" id=8]
+[ext_resource path="res://assets/enemies/Enemy3.png" type="Texture" id=9]
+[ext_resource path="res://assets/enemies/EnemySpawn2.png" type="Texture" id=10]
+[ext_resource path="res://assets/enemies/Enemy2.png" type="Texture" id=11]
+[ext_resource path="res://assets/enemies/EnemySpawn4.png" type="Texture" id=12]
+[ext_resource path="res://assets/enemies/Enemy6.png" type="Texture" id=13]
+[ext_resource path="res://assets/enemies/EnemySpawn7.png" type="Texture" id=14]
+[ext_resource path="res://assets/enemies/Enemy5.png" type="Texture" id=15]
+[ext_resource path="res://assets/enemies/EnemySpawn3.png" type="Texture" id=16]
+[ext_resource path="res://assets/enemies/Enemy8.png" type="Texture" id=17]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource( 1 )
+ENEMY_SCENE = ExtResource( 2 )
+enemyTypesTextures = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 14 ) ]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.8

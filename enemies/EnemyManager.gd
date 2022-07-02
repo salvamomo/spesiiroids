@@ -2,7 +2,9 @@ extends Node
 
 class_name EnemyManager
 
-const ENEMY_SCENE = preload("res://enemies/Enemy.tscn")
+export (PackedScene) var ENEMY_SCENE
+
+export (Array, Texture) var enemyTypesTextures
 
 export (int) var MIN_VEL = 60 # Original was 0.5f
 export (int) var MAX_VEL = 80 # Original was 1.2f
@@ -14,25 +16,6 @@ export (float) var SPAWN_TIME_MINIMUM = 0.5
 export (float) var SPAWN_TIME_REDUCTION_PER_LEVEL = 0.1
 
 var MAX_ENEMIES_CURRENT
-
-var enemyTypesTextures = {
-	0: preload("res://assets/enemies/Enemy1.png"),
-	1: preload("res://assets/enemies/EnemySpawn1.png"),
-	2: preload("res://assets/enemies/Enemy2.png"),
-	3: preload("res://assets/enemies/EnemySpawn2.png"),
-	4: preload("res://assets/enemies/Enemy3.png"),
-	5: preload("res://assets/enemies/EnemySpawn3.png"),
-	6: preload("res://assets/enemies/Enemy4.png"),
-	7: preload("res://assets/enemies/EnemySpawn4.png"),
-	8: preload("res://assets/enemies/Enemy5.png"),
-	9: preload("res://assets/enemies/EnemySpawn5.png"),
-	10: preload("res://assets/enemies/Enemy6.png"),
-	11: preload("res://assets/enemies/EnemySpawn6.png"),
-	12: preload("res://assets/enemies/Enemy7.png"),
-	13: preload("res://assets/enemies/EnemySpawn7.png"),
-	14: preload("res://assets/enemies/Enemy8.png"),
-	15: preload("res://assets/enemies/EnemySpawn7.png"),
-}
 
 var Main
 var Player
