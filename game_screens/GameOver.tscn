@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game_screens/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/backgrounds/main_menu.jpg" type="Texture" id=3]
+[ext_resource path="res://main/Main.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -19,6 +20,7 @@ margin_bottom = 600.0
 texture = ExtResource( 3 )
 expand = true
 script = ExtResource( 1 )
+SCENE_MAIN = ExtResource( 4 )
 
 [node name="Options" type="Label" parent="."]
 margin_left = 148.0

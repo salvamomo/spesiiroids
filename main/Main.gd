@@ -2,6 +2,12 @@ extends Node
 
 class_name Main
 
+# This paths are kept as constants since they throw cyclic reference errors
+# when loaded as PackedTexture objects.
+const SCENE_MAIN: String = "res://game_screens/MainMenu.tscn"
+const SCENE_GAME_OVER: String = "res://game_screens/GameOver.tscn"
+const SCENE_GAME_FINISHED: String = "res://game_screens/GameFinishedVictory.tscn"
+
 var screen_size
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +25,7 @@ func _process(_delta):
 	if (Input.is_action_just_pressed("Exit_Back") and pause_active_from_user()):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
-		get_tree().change_scene("res://game_screens/MainMenu.tscn")
+		get_tree().change_scene(SCENE_MAIN)
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
 
@@ -66,10 +72,10 @@ func _on_Player_hit_by_enemy():
 
 func _on_Player_player_dies():
 	Globals.set_final_score($LevelManager.get_score())
-	finish_game("res://game_screens/GameOver.tscn")
+	finish_game(SCENE_GAME_OVER)
 
 func _on_last_level_completed():
-	finish_game("res://game_screens/GameFinishedVictory.tscn")
+	finish_game(SCENE_GAME_FINISHED)
 
 func finish_game(move_to_scene: String):
 	self.queue_free()

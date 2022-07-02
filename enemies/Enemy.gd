@@ -10,7 +10,7 @@ var Main
 var EnemyManager
 var LevelManager
 
-var bullet_scene = preload("res://bullets/bullet_purple.tscn")
+export (PackedScene) var SCENE_BULLET
 
 enum State {SPAWNING, ALIVE, DYING}
 var currentState = 0
@@ -133,7 +133,7 @@ func _on_ExplosionDisappearTimer_timeout():
 
 func hit_by_bullet():
 	die()
-	
+
 func hit_by_player():
 	die()
 
@@ -149,8 +149,8 @@ func _on_ShootCountdown_timeout():
 func shoot_bullet():
 	if (!can_shoot or randf() < shooting_chance_threshold):
 		return
-	
-	var bullet = bullet_scene.instance()
+
+	var bullet = SCENE_BULLET.instance()
 	bullet.bulletTarget = bullet.Target.PLAYER
 
 	bullet.position = $Sprite.global_position

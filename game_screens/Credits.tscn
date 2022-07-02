@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game_screens/Credits.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://stars/Stars.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game_screens/ThankYouPage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_screens/MainMenu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=5]
 size = 24
@@ -24,6 +25,7 @@ font_data = ExtResource( 2 )
 
 [node name="Credits" type="Node"]
 script = ExtResource( 1 )
+SCENE_MAIN_MENU = ExtResource( 5 )
 
 [node name="Stars" parent="." instance=ExtResource( 3 )]
 velocity = Vector2( 0, 30 )

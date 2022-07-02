@@ -1,4 +1,4 @@
-extends "res://powerups/PowerUp.gd"
+extends PowerUp
 
 const TYPE = 2
 const NAME = "MrT"

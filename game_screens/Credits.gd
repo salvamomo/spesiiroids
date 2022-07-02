@@ -3,6 +3,8 @@ extends Node
 var current_page_index: int = 0
 var pages: Array
 
+export (PackedScene) var SCENE_MAIN_MENU
+
 func _ready():
 	pages = [$GameInfo, $AssetCredits_1, $AssetCredits_2, $ThankYouContainer]
 	$PagerPrev.hide()
@@ -14,7 +16,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Exit_Back") or Input.is_action_just_pressed("Start_Pause"):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
-		get_tree().change_scene("res://game_screens/MainMenu.tscn")
+		get_tree().change_scene_to(SCENE_MAIN_MENU)
 	elif Input.is_action_just_pressed("ui_left"):
 		paginate_prev()
 	elif Input.is_action_just_pressed("ui_right"):

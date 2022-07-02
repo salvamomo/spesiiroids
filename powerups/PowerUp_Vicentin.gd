@@ -1,9 +1,11 @@
-extends "res://powerups/PowerUp.gd"
+extends PowerUp
 
 const TYPE = 1
 const NAME = "Vicentin"
 
 var player_speed_up_modifier: float = 1.45
+
+export (Array, Resource) var music_effects
 
 func _ready():
 	stopMusicOnUsage = true
@@ -24,10 +26,7 @@ func remove_bonus_from_player(player: Player):
 	player.shooting_speed = 0.3
 
 func play_sound_effect():
-	var sound_effects = ['chimo1.wav', 'chimo2.wav', 'chimo3.wav']
-	var effect_to_play = sound_effects[randi() % 3]
-	var audio_sfx = load('res://assets/audio/effects/chimo/' + effect_to_play)
-	$AudioStreamPlayer.set_stream(audio_sfx)
+	$AudioStreamPlayer.set_stream(music_effects[randi() % 3])
 	$AudioStreamPlayer.play()
 
 func _on_ImmortalityTimer_timeout():

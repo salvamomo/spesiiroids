@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Bullet
+
 export var velocity = Vector2()
 var alive: bool
 
