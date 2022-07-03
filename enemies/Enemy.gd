@@ -19,6 +19,7 @@ var can_shoot: bool = false
 
 # Enemies will shot only if they get a higher randf() result than this number.
 export (float) var shooting_chance_threshold = 0.6
+export (float) var shooting_distance_threshold = 350
 # Original threshold was type 6.
 export (int) var shooting_enemy_type_threshold = 3
 var shooting_bullet_speed = 700
@@ -147,7 +148,8 @@ func _on_ShootCountdown_timeout():
 	shoot_bullet()
 
 func shoot_bullet():
-	if (!can_shoot or randf() < shooting_chance_threshold):
+	var distance_to_player = Player.position - position
+	if (!can_shoot or randf() < shooting_chance_threshold or distance_to_player.length() < shooting_distance_threshold):
 		return
 
 	var bullet = SCENE_BULLET.instance()
