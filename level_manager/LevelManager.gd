@@ -49,7 +49,6 @@ func _on_Enemy_death(enemy: Enemy):
 	var enemTypeBonus = 1 if (enemType > 3) else 0
 
 	var addedPoints = (basePointsPerEnemy * playerPointBonus) * (2 + enemTypeBonus)
-	#	print("Added points: ", addedPoints)
 	kills += 1
 	score += addedPoints
 	check_level_completed()
