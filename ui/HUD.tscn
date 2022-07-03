@@ -32,6 +32,10 @@ tracks/0/keys = {
 margin_right = 800.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
+total_lives_path = NodePath("bottom/ship_life_plus/total_lives")
+kills_path = NodePath("top_bar/Kills")
+score_path = NodePath("top_bar/Score")
+timer_path = NodePath("top_bar/Timer")
 
 [node name="RefreshTimer" type="Timer" parent="."]
 autostart = true
