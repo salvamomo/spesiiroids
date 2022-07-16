@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/EnemySpawn1.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/enemies/Enemy1.png" type="Texture" id=4]
 [ext_resource path="res://assets/effects/smoke_particle.png" type="Texture" id=5]
 [ext_resource path="res://bullets/bullet_red.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=20]
+blend_mode = 1
 
 [sub_resource type="Animation" id=1]
 length = 2.7
@@ -38,7 +41,7 @@ gradient = SubResource( 11 )
 [sub_resource type="Curve" id=13]
 min_value = 1.0
 max_value = 1.5
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.433735, 1.36818 ), 0.491166, 0.491166, 0, 0, Vector2( 1, 1.5 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.266667, 1.31818 ), 1.0349, 1.0349, 0, 0, Vector2( 0.631373, 1.5 ), 0.024149, 0.024149, 0, 0, Vector2( 0.854902, 1.36818 ), -0.960389, -0.960389, 0, 0, Vector2( 1, 1.13182 ), -0.719437, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=10]
 curve = SubResource( 13 )
@@ -61,10 +64,11 @@ angle_random = 1.0
 scale_curve = SubResource( 10 )
 color_ramp = SubResource( 12 )
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id=19]
+blend_mode = 1
 
 [sub_resource type="Gradient" id=15]
-offsets = PoolRealArray( 0.159292, 0.380531, 0.566372, 0.70354, 0.863415, 1 )
+offsets = PoolRealArray( 0.142241, 0.258621, 0.366379, 0.469828, 0.607759, 1 )
 colors = PoolColorArray( 0.0722656, 0.0680313, 0.0680313, 1, 0.36282, 0.359912, 0.359912, 1, 0.537109, 0.537109, 0.537109, 1, 0.567383, 0.567383, 0.567383, 1, 0.62207, 0.62207, 0.62207, 0.752941, 0.968627, 0.968627, 0.968627, 0 )
 
 [sub_resource type="GradientTexture" id=16]
@@ -72,26 +76,24 @@ gradient = SubResource( 15 )
 
 [sub_resource type="Curve" id=9]
 max_value = 1.5
-_data = [ Vector2( 0, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.10966 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 0.694118, 1.10455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.971591 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=17]
 curve = SubResource( 9 )
 
 [sub_resource type="ParticlesMaterial" id=18]
 lifetime_randomness = 0.25
-emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
-angular_velocity = 25.0
+angular_velocity = 45.0
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 6.0
-damping = 5.64
 angle_random = 1.0
-scale = 0.5
+scale = 0.35
 scale_curve = SubResource( 17 )
 color_ramp = SubResource( 16 )
 
@@ -106,6 +108,7 @@ visible = false
 texture = ExtResource( 4 )
 
 [node name="SpawnSprite" type="Sprite" parent="."]
+material = SubResource( 20 )
 texture = ExtResource( 2 )
 hframes = 27
 
@@ -122,16 +125,20 @@ disabled = true
 material = SubResource( 3 )
 emitting = false
 amount = 1
+lifetime = 1.1
+one_shot = true
 visibility_rect = Rect2( 0, 0, 0, 196.091 )
 process_material = SubResource( 8 )
 texture = ExtResource( 5 )
 
 [node name="Explosion2" type="Particles2D" parent="."]
-material = SubResource( 14 )
+material = SubResource( 19 )
 emitting = false
-amount = 1
-lifetime = 2.0
-randomness = 0.94
+amount = 5
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.5
+randomness = 0.5
 visibility_rect = Rect2( 50, 50, 50, 196.091 )
 process_material = SubResource( 18 )
 texture = ExtResource( 3 )
@@ -141,6 +148,7 @@ wait_time = 6.0
 autostart = true
 
 [node name="ExplosionDisappearTimer" type="Timer" parent="."]
+wait_time = 1.1
 
 [node name="DebugSpeed" type="Label" parent="."]
 visible = false

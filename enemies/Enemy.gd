@@ -119,8 +119,10 @@ func die():
 	# suggested by the docs:
 	$CollisionShape2D.set_deferred("disabled", true)
 
-	$Explosion.set_emitting(true)
+	$Explosion2.set_emitting(true)
 	$Sprite.hide()
+	yield(get_tree().create_timer(0.6), "timeout")
+	$Explosion.set_emitting(true)
 
 	# Using a timer node for this instead of a yield, as it avoids possible
 	# errors with returning code after the instance is gone (can happen if die()
