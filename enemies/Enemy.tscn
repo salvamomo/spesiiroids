@@ -121,21 +121,19 @@ position = Vector2( -2, 1 )
 shape = SubResource( 2 )
 disabled = true
 
-[node name="Explosion" type="Particles2D" parent="."]
+[node name="ExplosionSmoke" type="Particles2D" parent="."]
 material = SubResource( 3 )
 emitting = false
 amount = 1
-lifetime = 1.1
 one_shot = true
 visibility_rect = Rect2( 0, 0, 0, 196.091 )
 process_material = SubResource( 8 )
 texture = ExtResource( 5 )
 
-[node name="Explosion2" type="Particles2D" parent="."]
+[node name="ExplosionFire" type="Particles2D" parent="."]
 material = SubResource( 19 )
 emitting = false
 amount = 5
-lifetime = 1.2
 one_shot = true
 explosiveness = 0.5
 randomness = 0.5
@@ -148,7 +146,6 @@ wait_time = 6.0
 autostart = true
 
 [node name="ExplosionDisappearTimer" type="Timer" parent="."]
-wait_time = 1.1
 
 [node name="DebugSpeed" type="Label" parent="."]
 visible = false
