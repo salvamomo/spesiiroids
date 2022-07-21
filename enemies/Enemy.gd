@@ -121,7 +121,7 @@ func die():
 
 	$ExplosionFire.set_emitting(true)
 	$Sprite.hide()
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	$ExplosionSmoke.set_emitting(true)
 
 	# Using a timer node for this instead of a yield, as it avoids possible

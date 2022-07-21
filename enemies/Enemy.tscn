@@ -123,6 +123,8 @@ disabled = true
 material = SubResource( 3 )
 emitting = false
 amount = 1
+lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2( 0, 0, 0, 196.091 )
 process_material = SubResource( 8 )
@@ -132,6 +134,7 @@ texture = ExtResource( 5 )
 material = SubResource( 19 )
 emitting = false
 amount = 5
+lifetime = 0.5
 one_shot = true
 explosiveness = 0.6
 randomness = 0.5
@@ -144,6 +147,7 @@ wait_time = 6.0
 autostart = true
 
 [node name="ExplosionDisappearTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="DebugSpeed" type="Label" parent="."]
 visible = false
