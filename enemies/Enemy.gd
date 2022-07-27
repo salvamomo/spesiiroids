@@ -121,15 +121,23 @@ func die():
 
 	$ExplosionFire.set_emitting(true)
 	$Sprite.hide()
-	yield(get_tree().create_timer(0.2), "timeout")
-	$ExplosionSmoke.set_emitting(true)
+	$ExplosionSmokeStartTimer.start()
 
 	# Using a timer node for this instead of a yield, as it avoids possible
 	# errors with returning code after the instance is gone (can happen if die()
 	# is called too quickly and the first call has already cleared the instance
 	# by the time the second returns from the yield).
 	# https://godotengine.org/qa/76800/resumed-function-after-yield-but-class-instance-is-gone.
-	$ExplosionDisappearTimer.start()
+
+	# Total time until enemy disappearance is 0.5 for the smoke effect to play,
+	# plus whatever is left on the just-started smoke timer. For some reason,
+	# starting the disappear timer on the smoke start timeout, it's not properly
+	# killing enemies, and they won't keep respawning.
+	var total_time_to_disappear: float = $ExplosionSmokeStartTimer.get_time_left() + 0.5
+	$ExplosionDisappearTimer.start(total_time_to_disappear)
+
+func _on_ExplosionSmokeStartTimer_timeout():
+	$ExplosionSmoke.set_emitting(true)
 
 func _on_ExplosionDisappearTimer_timeout():
 	queue_free()

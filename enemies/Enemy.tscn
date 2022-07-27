@@ -149,6 +149,9 @@ texture = ExtResource( 3 )
 wait_time = 6.0
 autostart = true
 
+[node name="ExplosionSmokeStartTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [node name="ExplosionDisappearTimer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -159,4 +162,5 @@ margin_bottom = 14.0
 
 [connection signal="animation_finished" from="SpawnSprite/SpawnAnimation" to="." method="_on_SpawnAnimation_animation_finished"]
 [connection signal="timeout" from="ShootCountdown" to="." method="_on_ShootCountdown_timeout"]
+[connection signal="timeout" from="ExplosionSmokeStartTimer" to="." method="_on_ExplosionSmokeStartTimer_timeout"]
 [connection signal="timeout" from="ExplosionDisappearTimer" to="." method="_on_ExplosionDisappearTimer_timeout"]
