@@ -22,10 +22,6 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("ui_right"):
 		paginate_next()
 
-	if (Input.is_action_just_pressed("FullScreen")):
-		OS.window_fullscreen = !OS.window_fullscreen
-
-
 func paginate_prev():
 	if (current_page_index == 0):
 		return

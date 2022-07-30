@@ -26,8 +26,6 @@ func _process(_delta):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene(SCENE_MAIN)
-	if (Input.is_action_just_pressed("FullScreen")):
-		OS.window_fullscreen = !OS.window_fullscreen
 
 func pause(pause_value := true, toggle_text := true):
 	get_tree().paused = pause_value

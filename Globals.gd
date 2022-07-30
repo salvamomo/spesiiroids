@@ -5,6 +5,14 @@ signal game_finished()
 # warning-ignore:unused_signal
 signal level_manager_last_level_completed()
 
+func _ready():
+	# Set pause mode to "process" so that full screen key work as expected.
+	pause_mode = PAUSE_MODE_PROCESS
+
+func _process(_delta):
+	if (Input.is_action_just_pressed("FullScreen")):
+		OS.window_fullscreen = !OS.window_fullscreen
+
 var final_score: int = 0
 var hits: int = 0
 

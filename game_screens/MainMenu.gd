@@ -18,8 +18,7 @@ func _process(_delta):
 		get_tree().change_scene_to(SCENE_MAIN)
 	if (Input.is_action_just_pressed("Exit_Back")):
 		get_tree().quit()
-	if (Input.is_action_just_pressed("FullScreen")):
-		OS.window_fullscreen = !OS.window_fullscreen
+
 	if (Input.is_action_just_pressed("Credits")):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
