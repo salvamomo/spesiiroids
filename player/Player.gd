@@ -217,6 +217,14 @@ func _hit_by_enemy(body):
 func _ignore_hit_on_grace_period() -> bool:
 	return $HitTakenGracePeriod.get_time_left() > 0
 
+# After grace period, check for any overlapping bodies. Those will
+# include any enemies who were already touching the player, hence won't
+# get picked up by the standard area_entered signals.
+func _on_HitTakenGracePeriod_timeout():
+	for body in .get_overlapping_bodies():
+		if body.is_in_group('Enemies'):
+			_hit_by_enemy(body)
+
 func take_hit():
 	lives -= 1
 	$HitTakenGracePeriod.start()
