@@ -15,7 +15,7 @@ const MAX_ROT = 0.1
 
 var current_rotation: float
 
-enum State {PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, EFFECT_JUST_EXPIRED, TEMPORARILY_DISABLED}
+enum State {RESETTING, PICKABLE, ACQUIRED, ACTIVATED, RESPAWN_READY, EFFECT_JUST_EXPIRED, TEMPORARILY_DISABLED}
 var currentState
 var stopMusicOnUsage = false
 
@@ -95,6 +95,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 func reset():
 	$RespawnCooldown.start()
 	$CollisionBox.set_deferred("disabled", true)
+	# Make sure a specific state is assigned for this. Otherwise logic like
+	# temporarily disable could make unpickable popups appear if they happened
+	# to expire during level transitiong.
+	currentState = State.RESETTING
 	hide()
 #	modulate = Color(1, 0, 0)
 
