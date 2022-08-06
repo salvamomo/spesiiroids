@@ -83,9 +83,14 @@ func _process(_delta):
 	if !EnemyManager.enemies_can_move():
 		return
 
+	var toTargetDirection = (EnemyManager.get_target_position() - self.position)
 	if (currentState == State.ALIVE):
-		var toTargetDirection = (EnemyManager.get_target_position() - self.position)
 		rotation = toTargetDirection.angle() - DEG2RAD90
+	elif (currentState == State.SPAWNING):
+		rotation = toTargetDirection.angle()
+		# Type 0 was originally oriented in a different angle in the spritesheet.
+		if (type == 0):
+			rotation = toTargetDirection.angle() - DEG2RAD90
 
 func set_type(enemy_type):
 	type = enemy_type
