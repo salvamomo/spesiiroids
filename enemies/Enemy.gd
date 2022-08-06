@@ -89,8 +89,11 @@ func _process(_delta):
 	elif (currentState == State.SPAWNING):
 		rotation = toTargetDirection.angle()
 		# Type 0 was originally oriented in a different angle in the spritesheet.
+		# Types 5, 6 and 7 were just a mess.
 		if (type == 0):
 			rotation = toTargetDirection.angle() - DEG2RAD90
+		elif (type in [5, 6, 7]):
+			rotation = toTargetDirection.angle() + DEG2RAD90
 
 func set_type(enemy_type):
 	type = enemy_type
