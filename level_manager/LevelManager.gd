@@ -11,7 +11,8 @@ signal level_manager_life_acquired()
 export (int) var level = 1
 export (int) var baseLevelPoints = 800 # Should start at 2000
 export (int) var extraPointsPerLevel = 175
-export (int) var bonusLifeScoreCycle = baseLevelPoints * 8 # Original game multiplied by 5.
+export (int) var bonusLifeCycleMultiplier = 10 # Original game multiplied by 5.
+export (int) var bonusLifeScoreCycle = baseLevelPoints * bonusLifeCycleMultiplier
 export (int) var finalLevel = 31
 var baseLevelPointsIncreasePerLevel = 50
 
