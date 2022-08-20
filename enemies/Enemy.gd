@@ -19,7 +19,7 @@ var can_shoot: bool = false
 
 # Enemies will shot only if they get a higher randf() result than this number.
 export (float) var shooting_chance_threshold = 0.6
-export (float) var shooting_distance_threshold = 350
+export (int) var shooting_distance_threshold = 350
 # Original threshold was type 6.
 export (int) var shooting_enemy_type_threshold = 3
 var shooting_bullet_speed = 700
