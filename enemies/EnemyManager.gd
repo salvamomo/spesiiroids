@@ -102,7 +102,7 @@ func get_target_object():
 
 func _resolve_new_enemy_type():
 	var level = LevelManager.level
-
+	return 4
 	if level <= 2:
 		return 0
 	elif level == 3:
