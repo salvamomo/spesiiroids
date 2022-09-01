@@ -74,7 +74,7 @@ func check_acquire_extra_life():
 		emit_signal("level_manager_life_acquired")
 
 func set_level(new_level):
-	$LevelStartLabel.text = 'Comenzando Nivel ' + new_level as String
+	$LevelStartLabel.text = 'Starting Level ' + new_level as String
 	$LevelStartLabel.visible = true
 
 	emit_signal("level_transition_started", LEVEL_TRANSITION_PHASE.START)
