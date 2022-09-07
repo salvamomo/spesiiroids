@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/BlueShipFinal.png" type="Texture" id=2]
+[ext_resource path="res://assets/BlueShipFinal_4x_1px_outline.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/effects/extra_life.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/effects/player/hit_taken.wav" type="AudioStream" id=4]
 [ext_resource path="res://bullets/bullet.tscn" type="PackedScene" id=5]
@@ -38,8 +38,10 @@ speed = 400
 availableBullets = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" type="Sprite" parent="." groups=["Ship"]]
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 hframes = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" groups=["Ship"]]
 autoplay = "default"
@@ -48,14 +50,17 @@ anims/default = SubResource( 1 )
 [node name="sprite_tweener" type="Tween" parent="Sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ship"]]
+visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
 [node name="BouncingArea" type="Area2D" parent="." groups=["Ship"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="BouncingShield" type="CollisionShape2D" parent="BouncingArea" groups=["Ship"]]
+visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 disabled = true
