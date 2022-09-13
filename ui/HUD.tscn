@@ -171,10 +171,12 @@ margin_bottom = 40.0
 texture = ExtResource( 2 )
 
 [node name="powerup_animation" type="HBoxContainer" parent="."]
-margin_left = 698.4
-margin_top = 462.0
-margin_right = 798.4
-margin_bottom = 600.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -138.0
 alignment = 2
 
 [node name="powerup_1" type="TextureRect" parent="powerup_animation"]
