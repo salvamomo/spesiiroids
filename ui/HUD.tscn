@@ -29,8 +29,8 @@ tracks/0/keys = {
 }
 
 [node name="HUD" type="Control"]
-margin_right = 800.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
 total_lives_path = NodePath("bottom/ship_life_plus/total_lives")
 kills_path = NodePath("top_bar/Kills")
@@ -41,37 +41,39 @@ timer_path = NodePath("top_bar/Timer")
 autostart = true
 
 [node name="top_bar" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -390.0
-margin_top = 10.0
-margin_right = 400.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_left = 0.01
+anchor_right = 0.99
+margin_bottom = 31.0
+size_flags_vertical = 0
+alignment = 1
 
 [node name="Kills" type="Label" parent="top_bar"]
-margin_right = 240.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_top = 8.0
+margin_right = 27.0
+margin_bottom = 22.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 2.75
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
 text = "Kills"
 
 [node name="Timer" type="Label" parent="top_bar"]
-margin_left = 244.0
-margin_right = 484.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_left = 618.0
+margin_top = 8.0
+margin_right = 650.0
+margin_bottom = 22.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 2.26
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
 text = "Time"
 align = 1
 
 [node name="Score" type="Label" parent="top_bar"]
-margin_left = 488.0
-margin_right = 728.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_left = 1126.0
+margin_top = 8.0
+margin_right = 1161.0
+margin_bottom = 22.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.57
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
 text = "Score"
 align = 1
