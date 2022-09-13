@@ -32,7 +32,7 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-total_lives_path = NodePath("bottom/ship_life_plus/total_lives")
+total_lives_path = NodePath("bottom/total_lives")
 kills_path = NodePath("top_bar/Kills")
 score_path = NodePath("top_bar/Score")
 timer_path = NodePath("top_bar/Timer")
@@ -79,53 +79,64 @@ text = "Score"
 align = 1
 
 [node name="bottom" type="HBoxContainer" parent="."]
-anchor_top = 0.878
-anchor_right = 0.312
-anchor_bottom = 1.0
-margin_top = 0.200012
-margin_right = 0.399994
-margin_bottom = -2.0
-rect_min_size = Vector2( 250, 0 )
+anchor_left = 0.005
+anchor_top = 0.9
+anchor_right = 0.005
+anchor_bottom = 0.994
+size_flags_horizontal = 0
 alignment = 1
 
 [node name="scale_effect" type="Tween" parent="bottom"]
 
-[node name="ship_life_1" type="Sprite" parent="bottom"]
-position = Vector2( 30.995, 40 )
+[node name="ship_life_1" type="TextureRect" parent="bottom"]
+margin_top = 10.0
+margin_right = 45.0
+margin_bottom = 67.0
+size_flags_vertical = 8
 texture = ExtResource( 7 )
 
-[node name="ship_life_2" type="Sprite" parent="bottom"]
-position = Vector2( 73.139, 50 )
+[node name="ship_life_2" type="TextureRect" parent="bottom"]
+margin_left = 49.0
+margin_top = 29.0
+margin_right = 79.0
+margin_bottom = 67.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_3" type="Sprite" parent="bottom"]
-position = Vector2( 108.139, 50 )
+[node name="ship_life_3" type="TextureRect" parent="bottom"]
+margin_left = 83.0
+margin_top = 29.0
+margin_right = 113.0
+margin_bottom = 67.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_4" type="Sprite" parent="bottom"]
-position = Vector2( 142.139, 50 )
+[node name="ship_life_4" type="TextureRect" parent="bottom"]
+margin_left = 117.0
+margin_top = 29.0
+margin_right = 147.0
+margin_bottom = 67.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_plus" type="Sprite" parent="bottom"]
-position = Vector2( 176.139, 50 )
-
-[node name="total_lives" type="Label" parent="bottom/ship_life_plus"]
-visible = false
-margin_left = -8.0
-margin_top = -6.0
+[node name="total_lives" type="Label" parent="bottom"]
+margin_left = 151.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 20, 40 )
 text = "x5"
 align = 1
-valign = 1
+valign = 2
 
 [node name="acquired_powerups" type="HBoxContainer" parent="."]
-anchor_left = 0.45
-anchor_top = 0.9
-anchor_right = 0.45
-anchor_bottom = 0.9
-margin_left = -47.0
-margin_top = 9.0
-margin_right = 125.0
-margin_bottom = 49.0
+anchor_left = 0.5
+anchor_top = 0.98
+anchor_right = 0.5
+anchor_bottom = 0.98
+margin_left = -86.0
+margin_top = -40.0
+margin_right = 86.0
 grow_horizontal = 0
 alignment = 1
 __meta__ = {

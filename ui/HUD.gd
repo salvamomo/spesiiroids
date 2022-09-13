@@ -49,8 +49,8 @@ func update_lives():
 				# Scale up life icon when making it visible.
 				if (!current_life_node.visible):
 					current_life_node.show()
-					$bottom/scale_effect.interpolate_property(current_life_node, "scale", Vector2(1.0, 1.0), scale_to_vector, 0.1, Tween.TRANS_LINEAR)
-					$bottom/scale_effect.interpolate_property(current_life_node, "scale", scale_to_vector, Vector2(1.0, 1.0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.1)
+					$bottom/scale_effect.interpolate_property(current_life_node, "rect_scale", Vector2(1.0, 1.0), scale_to_vector, 0.1, Tween.TRANS_LINEAR)
+					$bottom/scale_effect.interpolate_property(current_life_node, "rect_scale", scale_to_vector, Vector2(1.0, 1.0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.1)
 					$bottom/scale_effect.start()
 			else:
 				.get_node("bottom/ship_life_" + i as String).hide()
