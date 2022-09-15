@@ -137,38 +137,53 @@ anchor_bottom = 0.99
 margin_left = -86.0
 margin_top = -40.0
 margin_right = 86.0
-grow_horizontal = 0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="powerup_1" type="TextureRect" parent="acquired_powerups"]
-visible = false
-margin_left = 66.0
-margin_right = 106.0
+[node name="Control1" type="Control" parent="acquired_powerups"]
+margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_1" type="TextureRect" parent="acquired_powerups/Control1"]
+visible = false
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
-[node name="powerup_2" type="TextureRect" parent="acquired_powerups"]
+[node name="Control2" type="Control" parent="acquired_powerups"]
+margin_left = 44.0
+margin_right = 84.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_2" type="TextureRect" parent="acquired_powerups/Control2"]
 visible = false
+rect_scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Control3" type="Control" parent="acquired_powerups"]
 margin_left = 88.0
 margin_right = 128.0
 margin_bottom = 40.0
-texture = ExtResource( 4 )
+rect_min_size = Vector2( 40, 40 )
 
-[node name="powerup_3" type="TextureRect" parent="acquired_powerups"]
+[node name="powerup_3" type="TextureRect" parent="acquired_powerups/Control3"]
 visible = false
-margin_left = 110.0
-margin_right = 150.0
-margin_bottom = 40.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 5 )
 
-[node name="powerup_4" type="TextureRect" parent="acquired_powerups"]
-visible = false
+[node name="Control4" type="Control" parent="acquired_powerups"]
 margin_left = 132.0
 margin_right = 172.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_4" type="TextureRect" parent="acquired_powerups/Control4"]
+visible = false
+margin_bottom = 40.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
 [node name="powerup_animation" type="HBoxContainer" parent="."]

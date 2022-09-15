@@ -13,6 +13,7 @@ duracion = 8
 music_effects = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
 [node name="AudioStreamPlayer" parent="." index="3"]
