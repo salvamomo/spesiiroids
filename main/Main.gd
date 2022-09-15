@@ -41,13 +41,13 @@ func grant_life_to_player():
 
 func _on_Player_powerup_activated(powerUp):
 	.get_node("HUD/acquired_powerups/Control" + ((powerUp.TYPE + 1) as String) + "/powerup_" + (powerUp.TYPE + 1) as String).hide()
-	.get_node("HUD/powerup_animation/powerup_" + (powerUp.TYPE + 1) as String).show()
+	.get_node("HUD/powerup_animation/ImageContainer/powerup_" + (powerUp.TYPE + 1) as String).show()
 
 func _on_Player_powerup_acquired(powerUp):
 	.get_node("HUD/acquired_powerups/Control" + ((powerUp.TYPE + 1) as String) + "/powerup_" + (powerUp.TYPE + 1) as String).show()
 
 func _on_PowerUp_effects_expired(powerUp):
-	.get_node("HUD/powerup_animation/powerup_" + (powerUp.TYPE + 1) as String).hide()
+	.get_node("HUD/powerup_animation/ImageContainer/powerup_" + (powerUp.TYPE + 1) as String).hide()
 
 func _on_Player_hit_by_enemy():
 	$HUD.update_lives()

@@ -195,44 +195,53 @@ margin_left = -100.0
 margin_top = -138.0
 alignment = 2
 
-[node name="powerup_1" type="TextureRect" parent="powerup_animation"]
-visible = false
+[node name="ImageContainer" type="Control" parent="powerup_animation"]
 margin_right = 100.0
 margin_bottom = 138.0
+rect_min_size = Vector2( 100, 138 )
+
+[node name="powerup_1" type="TextureRect" parent="powerup_animation/ImageContainer"]
+visible = false
+margin_right = 300.0
+margin_bottom = 552.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 11 )
 
-[node name="powerup_2" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_2" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
+margin_left = -10.0
 margin_top = 18.0
-margin_right = 113.0
+margin_right = 13.0
 margin_bottom = 138.0
 rect_min_size = Vector2( 113, 120 )
+rect_scale = Vector2( 0.25, 0.25 )
 size_flags_vertical = 8
 
-[node name="Sprite" type="Sprite" parent="powerup_animation/powerup_2"]
+[node name="Sprite" type="Sprite" parent="powerup_animation/ImageContainer/powerup_2"]
 position = Vector2( -15, 2 )
 texture = ExtResource( 9 )
 centered = false
 hframes = 6
 frame = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="powerup_animation/powerup_2/Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="powerup_animation/ImageContainer/powerup_2/Sprite"]
 autoplay = "default"
 anims/default = SubResource( 1 )
 
-[node name="powerup_3" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_3" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
-margin_left = 117.0
 margin_top = 38.0
-margin_right = 217.0
-margin_bottom = 138.0
+margin_right = 400.0
+margin_bottom = 438.0
+rect_scale = Vector2( 0.25, 0.25 )
 size_flags_vertical = 8
 texture = ExtResource( 6 )
 
-[node name="powerup_4" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_4" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
-margin_right = 100.0
-margin_bottom = 141.0
+margin_right = 300.0
+margin_bottom = 564.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 
 [connection signal="timeout" from="RefreshTimer" to="." method="_on_RefreshTimer_timeout"]
