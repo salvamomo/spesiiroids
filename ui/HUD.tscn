@@ -32,7 +32,7 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-total_lives_path = NodePath("bottom/total_lives")
+total_lives_path = NodePath("bottom_label/total_lives")
 kills_path = NodePath("top_bar/Kills")
 score_path = NodePath("top_bar/Score")
 timer_path = NodePath("top_bar/Timer")
@@ -79,55 +79,62 @@ text = "Score"
 align = 1
 
 [node name="bottom" type="HBoxContainer" parent="."]
-anchor_left = 0.005
-anchor_top = 0.9
-anchor_right = 0.005
-anchor_bottom = 0.994
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = -70.0
+margin_right = 604.0
+margin_bottom = 186.0
+rect_scale = Vector2( 0.25, 0.25 )
 size_flags_horizontal = 0
-alignment = 1
 
 [node name="scale_effect" type="Tween" parent="bottom"]
 
 [node name="ship_life_1" type="TextureRect" parent="bottom"]
-margin_top = 10.0
-margin_right = 45.0
-margin_bottom = 67.0
+margin_top = 28.0
+margin_right = 180.0
+margin_bottom = 256.0
 size_flags_vertical = 8
 texture = ExtResource( 7 )
 
 [node name="ship_life_2" type="TextureRect" parent="bottom"]
-margin_left = 49.0
-margin_top = 29.0
-margin_right = 79.0
-margin_bottom = 67.0
+margin_left = 184.0
+margin_top = 104.0
+margin_right = 304.0
+margin_bottom = 256.0
 size_flags_vertical = 8
 texture = ExtResource( 8 )
 
 [node name="ship_life_3" type="TextureRect" parent="bottom"]
-margin_left = 83.0
-margin_top = 29.0
-margin_right = 113.0
-margin_bottom = 67.0
+margin_left = 308.0
+margin_top = 104.0
+margin_right = 428.0
+margin_bottom = 256.0
 size_flags_vertical = 8
 texture = ExtResource( 8 )
 
 [node name="ship_life_4" type="TextureRect" parent="bottom"]
-margin_left = 117.0
-margin_top = 29.0
-margin_right = 147.0
-margin_bottom = 67.0
+margin_left = 432.0
+margin_top = 104.0
+margin_right = 552.0
+margin_bottom = 256.0
 size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="total_lives" type="Label" parent="bottom"]
-margin_left = 151.0
-margin_top = 13.0
-margin_right = 171.0
-margin_bottom = 53.0
-rect_min_size = Vector2( 20, 40 )
+[node name="bottom_label" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 148.0
+margin_top = -48.0
+margin_right = 168.0
+margin_bottom = -4.0
+
+[node name="total_lives" type="Label" parent="bottom_label"]
+margin_top = 15.0
+margin_right = 15.0
+margin_bottom = 29.0
 text = "x5"
 align = 1
-valign = 2
 
 [node name="acquired_powerups" type="HBoxContainer" parent="."]
 anchor_left = 0.5
