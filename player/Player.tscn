@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/BlueShipFinal_4x_1px_outline.png" type="Texture" id=2]
+[ext_resource path="res://assets/BlueShipFinal.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/effects/extra_life.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/effects/player/hit_taken.wav" type="AudioStream" id=4]
 [ext_resource path="res://bullets/bullet.tscn" type="PackedScene" id=5]
@@ -38,7 +38,7 @@ speed = 400
 availableBullets = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" type="Sprite" parent="." groups=["Ship"]]
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 hframes = 6
 frame = 3
