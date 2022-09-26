@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/powerups/powerup4.png" type="Texture" id=2]
@@ -11,6 +11,19 @@
 [ext_resource path="res://assets/powerups/anim-2.png" type="Texture" id=9]
 [ext_resource path="res://assets/powerups/anim-4.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/powerups/anim-1.jpg" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=12]
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 12 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -48,33 +61,36 @@ size_flags_vertical = 0
 alignment = 1
 
 [node name="Kills" type="Label" parent="top_bar"]
-margin_top = 8.0
-margin_right = 27.0
-margin_bottom = 22.0
+margin_top = 2.0
+margin_right = 45.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_stretch_ratio = 2.75
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Kills"
 
 [node name="Timer" type="Label" parent="top_bar"]
-margin_left = 618.0
-margin_top = 8.0
-margin_right = 650.0
-margin_bottom = 22.0
+margin_left = 599.0
+margin_top = 2.0
+margin_right = 653.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
-size_flags_stretch_ratio = 2.26
+size_flags_stretch_ratio = 2.2
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Time"
 align = 1
 
 [node name="Score" type="Label" parent="top_bar"]
-margin_left = 1126.0
-margin_top = 8.0
-margin_right = 1161.0
-margin_bottom = 22.0
+margin_left = 1080.0
+margin_top = 2.0
+margin_right = 1147.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
-size_flags_stretch_ratio = 0.57
+size_flags_stretch_ratio = 0.8
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Score"
 align = 1
 
