@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/powerups/powerup4.png" type="Texture" id=2]
@@ -11,6 +11,19 @@
 [ext_resource path="res://assets/powerups/anim-2.png" type="Texture" id=9]
 [ext_resource path="res://assets/powerups/anim-4.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/powerups/anim-1.jpg" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=12]
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 12 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -29,10 +42,10 @@ tracks/0/keys = {
 }
 
 [node name="HUD" type="Control"]
-margin_right = 800.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
-total_lives_path = NodePath("bottom/ship_life_plus/total_lives")
+total_lives_path = NodePath("bottom_label/total_lives")
 kills_path = NodePath("top_bar/Kills")
 score_path = NodePath("top_bar/Score")
 timer_path = NodePath("top_bar/Timer")
@@ -41,165 +54,217 @@ timer_path = NodePath("top_bar/Timer")
 autostart = true
 
 [node name="top_bar" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -390.0
-margin_top = 10.0
-margin_right = 400.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_left = 0.01
+anchor_right = 0.99
+margin_bottom = 31.0
+size_flags_vertical = 0
+alignment = 1
 
 [node name="Kills" type="Label" parent="top_bar"]
-margin_right = 240.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_top = 2.0
+margin_right = 45.0
+margin_bottom = 29.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 2.75
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Kills"
 
 [node name="Timer" type="Label" parent="top_bar"]
-margin_left = 244.0
-margin_right = 484.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_left = 599.0
+margin_top = 2.0
+margin_right = 653.0
+margin_bottom = 29.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 2.2
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Time"
 align = 1
 
 [node name="Score" type="Label" parent="top_bar"]
-margin_left = 488.0
-margin_right = 728.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 240, 0 )
+margin_left = 1080.0
+margin_top = 2.0
+margin_right = 1147.0
+margin_bottom = 29.0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.8
 custom_colors/font_color = Color( 0.835294, 0.858824, 0.12549, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Score"
 align = 1
 
 [node name="bottom" type="HBoxContainer" parent="."]
-anchor_top = 0.878
-anchor_right = 0.312
+anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = 0.200012
-margin_right = 0.399994
-margin_bottom = -2.0
-rect_min_size = Vector2( 250, 0 )
-alignment = 1
+margin_left = 4.0
+margin_top = -70.0
+margin_right = 604.0
+margin_bottom = 186.0
+rect_scale = Vector2( 0.25, 0.25 )
+size_flags_horizontal = 0
 
 [node name="scale_effect" type="Tween" parent="bottom"]
 
-[node name="ship_life_1" type="Sprite" parent="bottom"]
-position = Vector2( 30.995, 40 )
+[node name="ship_life_1" type="TextureRect" parent="bottom"]
+margin_top = 28.0
+margin_right = 180.0
+margin_bottom = 256.0
+size_flags_vertical = 8
 texture = ExtResource( 7 )
 
-[node name="ship_life_2" type="Sprite" parent="bottom"]
-position = Vector2( 73.139, 50 )
+[node name="ship_life_2" type="TextureRect" parent="bottom"]
+margin_left = 184.0
+margin_top = 104.0
+margin_right = 304.0
+margin_bottom = 256.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_3" type="Sprite" parent="bottom"]
-position = Vector2( 108.139, 50 )
+[node name="ship_life_3" type="TextureRect" parent="bottom"]
+margin_left = 308.0
+margin_top = 104.0
+margin_right = 428.0
+margin_bottom = 256.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_4" type="Sprite" parent="bottom"]
-position = Vector2( 142.139, 50 )
+[node name="ship_life_4" type="TextureRect" parent="bottom"]
+margin_left = 432.0
+margin_top = 104.0
+margin_right = 552.0
+margin_bottom = 256.0
+size_flags_vertical = 8
 texture = ExtResource( 8 )
 
-[node name="ship_life_plus" type="Sprite" parent="bottom"]
-position = Vector2( 176.139, 50 )
+[node name="bottom_label" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 148.0
+margin_top = -48.0
+margin_right = 168.0
+margin_bottom = -4.0
 
-[node name="total_lives" type="Label" parent="bottom/ship_life_plus"]
-visible = false
-margin_left = -8.0
-margin_top = -6.0
+[node name="total_lives" type="Label" parent="bottom_label"]
+margin_top = 15.0
+margin_right = 15.0
+margin_bottom = 29.0
 text = "x5"
 align = 1
-valign = 1
 
 [node name="acquired_powerups" type="HBoxContainer" parent="."]
-anchor_left = 0.45
-anchor_top = 0.9
-anchor_right = 0.45
-anchor_bottom = 0.9
-margin_left = -47.0
-margin_top = 9.0
-margin_right = 125.0
-margin_bottom = 49.0
-grow_horizontal = 0
+anchor_left = 0.5
+anchor_top = 0.99
+anchor_right = 0.5
+anchor_bottom = 0.99
+margin_left = -86.0
+margin_top = -40.0
+margin_right = 86.0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="powerup_1" type="TextureRect" parent="acquired_powerups"]
+[node name="Control1" type="Control" parent="acquired_powerups"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_1" type="TextureRect" parent="acquired_powerups/Control1"]
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
-[node name="powerup_2" type="TextureRect" parent="acquired_powerups"]
-visible = false
-margin_left = 22.0
-margin_right = 62.0
-margin_bottom = 40.0
-texture = ExtResource( 4 )
-
-[node name="powerup_3" type="TextureRect" parent="acquired_powerups"]
+[node name="Control2" type="Control" parent="acquired_powerups"]
 visible = false
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 40.0
-texture = ExtResource( 5 )
+rect_min_size = Vector2( 40, 40 )
 
-[node name="powerup_4" type="TextureRect" parent="acquired_powerups"]
+[node name="powerup_2" type="TextureRect" parent="acquired_powerups/Control2"]
+rect_scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Control3" type="Control" parent="acquired_powerups"]
 visible = false
 margin_left = 66.0
 margin_right = 106.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_3" type="TextureRect" parent="acquired_powerups/Control3"]
+rect_scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+
+[node name="Control4" type="Control" parent="acquired_powerups"]
+visible = false
+margin_left = 66.0
+margin_right = 106.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="powerup_4" type="TextureRect" parent="acquired_powerups/Control4"]
+margin_bottom = 40.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
 [node name="powerup_animation" type="HBoxContainer" parent="."]
-margin_left = 698.4
-margin_top = 462.0
-margin_right = 798.4
-margin_bottom = 600.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -138.0
 alignment = 2
 
-[node name="powerup_1" type="TextureRect" parent="powerup_animation"]
-visible = false
+[node name="ImageContainer" type="Control" parent="powerup_animation"]
 margin_right = 100.0
-margin_bottom = 141.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 100, 138 )
+
+[node name="powerup_1" type="TextureRect" parent="powerup_animation/ImageContainer"]
+visible = false
+margin_right = 300.0
+margin_bottom = 552.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 11 )
 
-[node name="powerup_2" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_2" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
-margin_left = -15.0
-margin_top = -2.0
-margin_right = 98.0
-margin_bottom = 139.0
+margin_left = -10.0
+margin_top = 18.0
+margin_right = 13.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 113, 120 )
+rect_scale = Vector2( 0.25, 0.25 )
+size_flags_vertical = 8
 
-[node name="Sprite" type="Sprite" parent="powerup_animation/powerup_2"]
+[node name="Sprite" type="Sprite" parent="powerup_animation/ImageContainer/powerup_2"]
+position = Vector2( -15, 2 )
 texture = ExtResource( 9 )
 centered = false
 hframes = 6
 frame = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="powerup_animation/powerup_2/Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="powerup_animation/ImageContainer/powerup_2/Sprite"]
 autoplay = "default"
 anims/default = SubResource( 1 )
 
-[node name="powerup_3" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_3" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
-margin_left = 117.0
-margin_right = 217.0
-margin_bottom = 141.0
+margin_top = 38.0
+margin_right = 400.0
+margin_bottom = 438.0
+rect_scale = Vector2( 0.25, 0.25 )
+size_flags_vertical = 8
 texture = ExtResource( 6 )
 
-[node name="powerup_4" type="TextureRect" parent="powerup_animation"]
+[node name="powerup_4" type="TextureRect" parent="powerup_animation/ImageContainer"]
 visible = false
-margin_left = 117.0
-margin_right = 217.0
-margin_bottom = 141.0
+margin_right = 300.0
+margin_bottom = 564.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 
 [connection signal="timeout" from="RefreshTimer" to="." method="_on_RefreshTimer_timeout"]

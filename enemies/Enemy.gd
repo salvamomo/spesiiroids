@@ -98,6 +98,11 @@ func _process(_delta):
 func set_type(enemy_type):
 	type = enemy_type
 
+	# Scale first enemy type a bit further.
+	if type == 0:
+		$Sprite.scale = Vector2(0.45, 0.45)
+		$SpawnSprite.scale = Vector2(0.45, 0.45)
+
 	if (type >= shooting_enemy_type_threshold):
 		can_shoot = true
 

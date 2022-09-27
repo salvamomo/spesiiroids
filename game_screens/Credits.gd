@@ -3,11 +3,18 @@ extends Node
 var current_page_index: int = 0
 var pages: Array
 
+var pagerPrev: LinkButton
+var pagerNext: LinkButton
+
+
 export (PackedScene) var SCENE_MAIN_MENU
 
 func _ready():
 	pages = [$GameInfo, $AssetCredits_1, $AssetCredits_2, $ThankYouContainer]
-	$PagerPrev.hide()
+	pagerPrev = get_node('%PagerPrev');
+	pagerNext = get_node('%PagerNext');
+	pagerPrev.modulate.a = 0
+
 	$PagerContainer/Pager.text = "1 / " + pages.size() as String
 	SoundManager.set_volume(-28.00)
 	SoundManager.restart_music()
@@ -26,27 +33,27 @@ func paginate_prev():
 	if (current_page_index == 0):
 		return
 
-	$PagerNext.show()
+	pagerNext.modulate.a = 1
 	pages[current_page_index].hide()
 	current_page_index -= 1
 	pages[current_page_index].show()
 	$PagerContainer/Pager.text = (current_page_index + 1) as String + " / " + pages.size() as String
 
 	if (current_page_index == 0):
-		$PagerPrev.hide()
+		pagerPrev.modulate.a = 0
 
 func paginate_next():
 	if (current_page_index >= pages.size() - 1):
 		return
 
-	$PagerPrev.show()
+	pagerPrev.modulate.a = 1
 	pages[current_page_index].hide()
 	current_page_index += 1
 	pages[current_page_index].show()
 	$PagerContainer/Pager.text = (current_page_index + 1) as String + " / " + pages.size() as String
 
 	if (current_page_index == (pages.size() - 1)):
-		$PagerNext.hide()
+		pagerNext.modulate.a = 0
 
 func _on_PagerArrow_pressed(prev_next: String):
 	if (prev_next == 'prev'):

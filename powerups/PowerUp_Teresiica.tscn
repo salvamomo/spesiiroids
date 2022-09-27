@@ -11,4 +11,5 @@ duracion = 7
 SCENE_BEACON = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )

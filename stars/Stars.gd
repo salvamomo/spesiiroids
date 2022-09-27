@@ -10,4 +10,4 @@ func _process(delta):
 	translate(velocity * delta)
 	
 	if (position.y >= screensize.y):
-		position = Vector2(0, -600)
+		position = Vector2(0, -screensize.y)

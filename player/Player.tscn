@@ -38,8 +38,10 @@ speed = 400
 availableBullets = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" type="Sprite" parent="." groups=["Ship"]]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 hframes = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" groups=["Ship"]]
 autoplay = "default"
@@ -48,14 +50,17 @@ anims/default = SubResource( 1 )
 [node name="sprite_tweener" type="Tween" parent="Sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ship"]]
+visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
 [node name="BouncingArea" type="Area2D" parent="." groups=["Ship"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="BouncingShield" type="CollisionShape2D" parent="BouncingArea" groups=["Ship"]]
+visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 disabled = true
