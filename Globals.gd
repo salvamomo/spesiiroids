@@ -6,6 +6,17 @@ signal game_finished()
 signal level_manager_last_level_completed()
 
 func _ready():
+	SilentWolf.configure({
+		"api_key": "{{API_KEY}}",
+		"game_id": "spesiiroids",
+		"game_version": "1.0.2",
+		"log_level": 0,
+	})
+
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://game_screens/MainMenu.tscn"
+	})
+
 	# Set pause mode to "process" so that full screen key work as expected.
 	pause_mode = PAUSE_MODE_PROCESS
 

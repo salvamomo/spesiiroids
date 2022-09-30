@@ -5,6 +5,7 @@ export (PackedScene) var SCENE_MAIN
 # Replacing this with a packed scene results in cyclic reference errors, because
 # MainMenu is also loaded from the credits.
 const SCENE_CREDITS_PATH: String = "res://game_screens/Credits.tscn"
+const SCENE_LEADERBOARD: String = "res://game_screens/Leaderboard.tscn"
 
 func _ready():
 	get_tree().paused = false
@@ -16,6 +17,10 @@ func _process(_delta):
 		self.queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene_to(SCENE_MAIN)
+	if (Input.is_action_just_pressed("Leaderboard") or Input.is_action_just_pressed("ui_up")):
+		self.queue_free()
+		# warning-ignore:return_value_discarded
+		get_tree().change_scene(SCENE_LEADERBOARD)
 	if (Input.is_action_just_pressed("Exit_Back")):
 		get_tree().quit()
 
