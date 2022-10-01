@@ -38,7 +38,7 @@ LEADERBOARD: Press L, Up Arrow Key or D-pad UP.
 CREDITS: Press C or Left Trigger (L1).
 QUIT GAME: Press ESC or Back.
 
-Press R1 or F to switch fullscreen mode."
+Press R1 or F11 to switch fullscreen mode."
 
 [node name="GameLabel" type="Label" parent="."]
 anchor_left = 0.62
