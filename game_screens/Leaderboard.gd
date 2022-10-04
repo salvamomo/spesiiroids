@@ -29,12 +29,24 @@ func _ready():
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Exit_Back") or Input.is_action_just_pressed("Start_Pause")):
-		change_to_main_scene()
-		
-func change_to_main_scene():
+		change_to_next_scene()
+
+func change_to_next_scene():
+	var game_is_finished = Globals.is_game_finished()
+	game_is_finished = true
+	# Go to credits if player beat the game.
+	if (game_is_finished):
+		queue_free()
+		# warning-ignore:return_value_discarded
+		get_tree().change_scene_to(SCENE_CREDITS)
+		SWLogger.info("Closing SilentWolf leaderboard, switching to CREDITS scene.")
+		return
+
+	# Go to main screen if the player reached the leaderboard from the game over screen.
 	var scene_name = SilentWolf.scores_config.open_scene_on_close
 	SWLogger.info("Closing SilentWolf leaderboard, switching to scene: " + str(scene_name))
 	# warning-ignore:return_value_discarded
+	queue_free()
 	get_tree().change_scene(scene_name)
 
 func render_board(scores, local_scores):
