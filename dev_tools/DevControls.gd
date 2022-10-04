@@ -88,6 +88,6 @@ func _on_LevelDown_pressed():
 func _on_GrantLife_pressed():
 	Main.grant_life_to_player()
 
-func _on_Game_Finished():
+func _on_Game_Finished(_player_wins):
 	var game_time = (OS.get_unix_time() - time_start) as String
 	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + game_time + " seconds.")

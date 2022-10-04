@@ -32,10 +32,10 @@ func _process(_delta):
 		change_to_next_scene()
 
 func change_to_next_scene():
-	var game_is_finished = Globals.is_game_finished()
+	var player_won = Globals.did_player_win()
 
 	# Go to credits if player beat the game.
-	if (game_is_finished):
+	if (player_won):
 		queue_free()
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene_to(SCENE_CREDITS)

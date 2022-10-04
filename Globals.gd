@@ -7,7 +7,7 @@ signal level_manager_last_level_completed()
 
 var final_score: int = 0
 var hits: int = 0
-var game_finished: bool = false
+var player_won: bool = false
 
 func _ready():
 	# warning-ignore:return_value_discarded
@@ -46,8 +46,8 @@ func get_final_score() -> int:
 func set_final_score(score: int):
 	final_score = score
 
-func _on_Game_Finished():
-	game_finished = true
+func _on_Game_Finished(player_wins):
+	player_won = player_wins
 
-func is_game_finished() -> bool:
-	return game_finished
+func did_player_win() -> bool:
+	return player_won
