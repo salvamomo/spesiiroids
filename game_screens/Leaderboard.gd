@@ -1,5 +1,7 @@
 extends Node
 
+export (PackedScene) var SCENE_CREDITS
+
 const ScoreItem = preload("../addons/silent_wolf/Scores/ScoreItem.tscn")
 const SWLogger = preload("../addons/silent_wolf/utils/SWLogger.gd")
 
@@ -20,9 +22,9 @@ func _ready():
 		render_board(scores, local_scores)
 	else:
 		# use a signal to notify when the high scores have been returned, and show a "loading" animation until it's the case...
-#		add_loading_scores_message()
+		add_loading_scores_message()
 		yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
-#		hide_message()
+		hide_message()
 		render_board(SilentWolf.Scores.scores, local_scores)
 
 func _process(_delta):
@@ -52,7 +54,14 @@ func render_board(scores, local_scores):
 			add_item(score.player_name, str(int(score.score)))
 			
 	$Board/Continue.show()
+	$Board/Continue/BlinkTimer.start()
 
+func _on_BlinkTimer_timeout():
+	if ($Board/Continue.visible):
+		$Board/Continue.hide()
+		return
+
+	$Board/Continue.show()
 
 func is_default_leaderboard(ld_config):
 	var default_insert_opt = (ld_config.insert_opt == "keep")
@@ -81,7 +90,7 @@ func sort_by_score(a, b):
 			return true;
 
 func score_in_score_array(scores, new_score):
-	var in_score_array =  false
+	var in_score_array = false
 	if new_score and scores:
 		for score in scores:
 			if score.score_id == new_score.score_id: # score.player_name == new_score.player_name and score.score == new_score.score:
@@ -97,19 +106,17 @@ func add_item(player_name, score):
 	$"Board/HighScores/ScoreItemContainer".add_child(item)
 
 func add_no_scores_message():
-	var item = $"Board/MessageContainer/TextMessage"
+	var item = $"Board/HighScores/StatusNoticeContainer/StatusNotice"
 	item.text = "No scores yet!"
-	$"Board/MessageContainer".show()
-	item.margin_top = 135
+	$"Board/HighScores/StatusNoticeContainer/StatusNotice".show()
 
 func add_loading_scores_message():
-	var item = $"Board/MessageContainer/TextMessage"
+	var item = $"Board/HighScores/StatusNoticeContainer/StatusNotice"
 	item.text = "Loading scores..."
-	$"Board/MessageContainer".show()
-	item.margin_top = 135
+	$"Board/HighScores/StatusNoticeContainer/StatusNotice".show()
 
 func hide_message():
-	$"Board/MessageContainer".hide()
+	$"Board/HighScores/StatusNoticeContainer/StatusNotice".hide()
 
 func clear_leaderboard():
 	var score_item_container = $"Board/HighScores/ScoreItemContainer"

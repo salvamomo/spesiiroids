@@ -1,5 +1,5 @@
-extends VBoxContainer
+extends HBoxContainer
 
 func _ready():
-	$Score.text = Globals.get_final_score() as String
-	$Hits_Count.text = Globals.get_hits() as String
+	$FinalScoreBox/Score.text = Globals.get_final_score() as String
+	$HitsBox/Hits_Count.text = Globals.get_hits() as String

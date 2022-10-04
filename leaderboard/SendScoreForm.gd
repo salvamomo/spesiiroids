@@ -1,12 +1,23 @@
 extends Control
 
+export (PackedScene) var SCENE_LEADERBOARD
+
+var score_sent: bool
+var final_score: int
+
 func _ready():
+	score_sent = false
+	final_score = Globals.get_final_score()
 	$Name.grab_focus()
 
 func _process(_delta):
 	if (!$Name.has_focus()):
 		$Name.grab_focus()	
 
-	if (Input.is_action_just_pressed("Start_Pause") or Input.is_action_just_pressed("PowerUp_1")):
-		var score = Globals.get_final_score()
-		SilentWolf.Scores.persist_score($Name.text, score, "main")
+	var username = $Name.text
+
+	if ((Input.is_action_just_pressed("Start_Pause") or Input.is_action_just_pressed("PowerUp_1")) and !score_sent and (username.length() > 3)):
+		SilentWolf.Scores.persist_score(username, final_score, "main")
+		score_sent = true
+		# warning-ignore:return_value_discarded
+		get_tree().change_scene_to(SCENE_LEADERBOARD);

@@ -11,19 +11,24 @@ font_data = ExtResource( 1 )
 size = 24
 font_data = ExtResource( 1 )
 
-[node name="ScoreBox" type="VBoxContainer"]
+[node name="ScoreBox" type="HBoxContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -114.0
-margin_top = -86.0
-margin_right = 114.0
-margin_bottom = 86.0
+margin_left = -172.0
+margin_top = -50.0
+margin_right = 172.0
+margin_bottom = 50.0
 script = ExtResource( 2 )
 
-[node name="ScoreLabel" type="Label" parent="."]
-margin_right = 228.0
+[node name="FinalScoreBox" type="VBoxContainer" parent="."]
+margin_right = 170.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 170, 100 )
+
+[node name="ScoreLabel" type="Label" parent="FinalScoreBox"]
+margin_right = 170.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
@@ -32,10 +37,9 @@ text = "Score:"
 align = 1
 valign = 1
 
-[node name="Score" type="Label" parent="."]
-margin_left = 29.0
+[node name="Score" type="Label" parent="FinalScoreBox"]
 margin_top = 44.0
-margin_right = 199.0
+margin_right = 170.0
 margin_bottom = 84.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 40 )
@@ -47,11 +51,16 @@ text = "1234567890"
 align = 1
 valign = 1
 
-[node name="Hits_Label" type="Label" parent="."]
-margin_left = 85.0
-margin_top = 88.0
-margin_right = 143.0
-margin_bottom = 128.0
+[node name="HitsBox" type="VBoxContainer" parent="."]
+margin_left = 174.0
+margin_right = 344.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 170, 100 )
+
+[node name="Hits_Label" type="Label" parent="HitsBox"]
+margin_left = 56.0
+margin_right = 114.0
+margin_bottom = 40.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 4
@@ -60,11 +69,11 @@ custom_fonts/font = SubResource( 1 )
 text = "Hits:"
 valign = 1
 
-[node name="Hits_Count" type="Label" parent="."]
-margin_left = 105.0
-margin_top = 132.0
-margin_right = 122.0
-margin_bottom = 172.0
+[node name="Hits_Count" type="Label" parent="HitsBox"]
+margin_left = 76.0
+margin_top = 44.0
+margin_right = 93.0
+margin_bottom = 84.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 4

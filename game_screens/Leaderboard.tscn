@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game_screens/Leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://stars/Stars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game_screens/Credits.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=5]
-size = 28
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="Leaderboard" type="Node"]
 script = ExtResource( 1 )
+SCENE_CREDITS = ExtResource( 4 )
 
 [node name="Stars" parent="." instance=ExtResource( 3 )]
 velocity = Vector2( 0, 30 )
@@ -27,31 +33,51 @@ rect_min_size = Vector2( 580, 0 )
 
 [node name="SceneTitle" type="Label" parent="Board"]
 margin_right = 580.0
-margin_bottom = 35.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "LEADERBOARD"
 align = 1
 
-[node name="HighScores" type="CenterContainer" parent="Board"]
-margin_top = 39.0
+[node name="HighScores" type="VBoxContainer" parent="Board"]
+margin_top = 79.0
 margin_right = 580.0
 margin_bottom = 539.0
-rect_min_size = Vector2( 580, 500 )
+rect_min_size = Vector2( 580, 460 )
 size_flags_vertical = 0
 
 [node name="ScoreItemContainer" type="VBoxContainer" parent="Board/HighScores"]
-margin_left = 290.0
-margin_top = 250.0
-margin_right = 290.0
-margin_bottom = 250.0
+margin_right = 580.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="StatusNoticeContainer" type="CenterContainer" parent="Board/HighScores"]
+margin_top = 204.0
+margin_right = 580.0
+margin_bottom = 204.0
+size_flags_vertical = 4
+
+[node name="StatusNotice" type="Label" parent="Board/HighScores/StatusNoticeContainer"]
+visible = false
+margin_left = 177.0
+margin_top = -15.0
+margin_right = 402.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Loading scores..."
 
 [node name="Continue" type="Label" parent="Board"]
-visible = false
 margin_top = 543.0
 margin_right = 580.0
-margin_bottom = 578.0
-custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+margin_bottom = 582.0
+custom_colors/font_color = Color( 0.294118, 0.905882, 0.0705882, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "PRESS START TO CONTINUE"
 align = 1
+
+[node name="BlinkTimer" type="Timer" parent="Board/Continue"]
+wait_time = 0.7
+
+[connection signal="timeout" from="Board/Continue/BlinkTimer" to="." method="_on_BlinkTimer_timeout"]

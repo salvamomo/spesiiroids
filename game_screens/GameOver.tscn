@@ -8,11 +8,10 @@
 [ext_resource path="res://leaderboard/ScoreBox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
+size = 30
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 18
 font_data = ExtResource( 2 )
 
 [node name="GameOver" type="Node"]
@@ -23,11 +22,12 @@ SCENE_MAIN = ExtResource( 4 )
 
 [node name="SceneTitle" type="Label" parent="."]
 anchor_left = 0.5
+anchor_top = 0.1
 anchor_right = 0.5
-margin_left = -202.0
-margin_top = 132.0
-margin_right = 202.0
-margin_bottom = 162.0
+anchor_bottom = 0.1
+margin_left = -247.5
+margin_right = 247.5
+margin_bottom = 37.0
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "DON'T GIVE UP! KEEP TRYING!"
@@ -47,10 +47,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
+margin_left = 197.0
 margin_top = 0.0
-margin_right = 738.0
-margin_bottom = 172.0
+margin_right = 541.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 130 )
+size_flags_horizontal = 4
 
 [node name="SendScoreForm" parent="ScoreContainer" instance=ExtResource( 5 )]
 anchor_left = 0.0
@@ -58,15 +60,19 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 176.0
+margin_top = 134.0
 margin_right = 738.0
-margin_bottom = 276.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 0, 150 )
 
 [node name="PlayAgainLabel" type="Label" parent="ScoreContainer"]
-margin_top = 280.0
+margin_top = 288.0
 margin_right = 738.0
-margin_bottom = 302.0
-custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+margin_bottom = 338.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 8
+custom_colors/font_color = Color( 0, 0.858824, 1, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Press ESC or Back button to play again"
 align = 1
+valign = 2
