@@ -33,7 +33,7 @@ func _process(_delta):
 
 func change_to_next_scene():
 	var game_is_finished = Globals.is_game_finished()
-	game_is_finished = true
+
 	# Go to credits if player beat the game.
 	if (game_is_finished):
 		queue_free()
