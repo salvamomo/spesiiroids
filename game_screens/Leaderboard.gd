@@ -23,6 +23,7 @@ func _ready():
 	else:
 		# use a signal to notify when the high scores have been returned, and show a "loading" animation until it's the case...
 		add_loading_scores_message()
+		$LoadingScoresMaxTimeout.start()
 		yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
 		hide_message()
 		render_board(SilentWolf.Scores.scores, local_scores)
@@ -126,6 +127,9 @@ func add_loading_scores_message():
 	var item = $"Board/HighScores/StatusNoticeContainer/StatusNotice"
 	item.text = "Loading scores..."
 	$"Board/HighScores/StatusNoticeContainer/StatusNotice".show()
+
+func _on_LoadingScoresMaxTimeout_timeout():
+	$"Board/HighScores/StatusNoticeContainer/StatusNotice".text = "Couldn't load scores. Check your connection."
 
 func hide_message():
 	$"Board/HighScores/StatusNoticeContainer/StatusNotice".hide()

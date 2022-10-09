@@ -80,4 +80,8 @@ align = 1
 [node name="BlinkTimer" type="Timer" parent="Board/Continue"]
 wait_time = 0.7
 
+[node name="LoadingScoresMaxTimeout" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="Board/Continue/BlinkTimer" to="." method="_on_BlinkTimer_timeout"]
+[connection signal="timeout" from="LoadingScoresMaxTimeout" to="." method="_on_LoadingScoresMaxTimeout_timeout"]
