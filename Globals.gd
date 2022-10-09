@@ -13,11 +13,12 @@ var leaderboard_id: String
 
 func _ready():
 	leaderboard_id = ProjectSettings.get_setting("game/leaderboard/board_id")
+	var leaderboard_api_key = ProjectSettings.get_setting("game/leaderboard/api_key")
 	# warning-ignore:return_value_discarded
 	self.connect("game_finished", self, "_on_Game_Finished")
 
 	SilentWolf.configure({
-		"api_key": "{{API_KEY}}",
+		"api_key": leaderboard_api_key,
 		"game_id": ProjectSettings.get_setting("game/leaderboard/game_id"),
 		"game_version": ProjectSettings.get_setting("game/leaderboard/board_version"),
 		"log_level": 0,
