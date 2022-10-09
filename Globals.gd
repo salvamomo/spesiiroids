@@ -9,14 +9,17 @@ var final_score: int = 0
 var hits: int = 0
 var player_won: bool = false
 
+var leaderboard_id: String
+
 func _ready():
+	leaderboard_id = ProjectSettings.get_setting("game/leaderboard/board_id")
 	# warning-ignore:return_value_discarded
 	self.connect("game_finished", self, "_on_Game_Finished")
 
 	SilentWolf.configure({
 		"api_key": "{{API_KEY}}",
-		"game_id": "spesiiroids",
-		"game_version": "1.0.2",
+		"game_id": ProjectSettings.get_setting("game/leaderboard/game_id"),
+		"game_version": ProjectSettings.get_setting("game/leaderboard/board_version"),
 		"log_level": 0,
 	})
 
@@ -30,6 +33,9 @@ func _ready():
 func _process(_delta):
 	if (Input.is_action_just_pressed("FullScreen")):
 		OS.window_fullscreen = !OS.window_fullscreen
+
+func get_leaderboard_id() -> String:
+	return leaderboard_id
 
 func add_hit():
 	hits += 1

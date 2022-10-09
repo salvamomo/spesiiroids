@@ -61,7 +61,7 @@ func _ready():
 	#connect("request_completed", self, "_on_Scores_request_completed")
 	#setup_request_timer()
 	
-func get_score_position(score, ldboard_name="main"):
+func get_score_position(score, ldboard_name=Globals.get_leaderboard_id()):
 	var score_id = null
 	var score_value = null
 	print("score: " + str(score))
@@ -88,7 +88,7 @@ func get_score_position(score, ldboard_name="main"):
 	return self
 
 
-func get_scores_around(score, scores_to_fetch=3, ldboard_name="main"):
+func get_scores_around(score, scores_to_fetch=3, ldboard_name=Globals.get_leaderboard_id()):
 	var score_id = null
 	var score_value = null
 	print("score: " + str(score))
@@ -111,7 +111,7 @@ func get_scores_around(score, scores_to_fetch=3, ldboard_name="main"):
 	send_get_request(ScoresAround, request_url)
 	return self
 
-func get_high_scores(maximum=10, ldboard_name="main", period_offset=0):
+func get_high_scores(maximum=10, ldboard_name=Globals.get_leaderboard_id(), period_offset=0):
 	HighScores = HTTPRequest.new()
 	wrHighScores = weakref(HighScores)
 	if OS.get_name() != "HTML5":
@@ -127,10 +127,10 @@ func get_high_scores(maximum=10, ldboard_name="main", period_offset=0):
 	send_get_request(HighScores, request_url)
 	return self
 	
-func add_to_local_scores(game_result, ld_name="main"):
+func add_to_local_scores(game_result, ld_name=Globals.get_leaderboard_id()):
 	var local_score = { "score_id": game_result.score_id, "game_id_version" : game_result.game_id + ";"  + game_result.game_version, "player_name": game_result.player_name, "score": game_result.score }
 	local_scores.append(local_score)
-	#if ld_name == "main":
+	#if ld_name == Globals.get_leaderboard_id():
 		# TODO: even here, since the main leader board can be customized, we can't just blindly write to the local_scores variable and pull up the scores later
 		# we need to know what type of leader board it is, or local caching is useless
 		#local_scores.append(local_score)
@@ -145,7 +145,7 @@ func add_to_local_scores(game_result, ld_name="main"):
 
 
 # metadata, if included should be a dictionary
-func persist_score(player_name, score, ldboard_name="main", metadata={}):
+func persist_score(player_name, score, ldboard_name=Globals.get_leaderboard_id(), metadata={}):
 	# player_name must be present
 	if player_name == null or player_name == "":
 		SWLogger.error("ERROR in SilentWolf.Scores.persist_score - please enter a valid player name")
@@ -189,7 +189,7 @@ func persist_score(player_name, score, ldboard_name="main", metadata={}):
 		
 # Deletes all your scores for your game and version
 # Scores are permanently deleted, no going back!
-func wipe_leaderboard(ldboard_name='main'):
+func wipe_leaderboard(ldboard_name=Globals.get_leaderboard_id()):
 	WipeLeaderboard = HTTPRequest.new()
 	wrWipeLeaderboard = weakref(WipeLeaderboard)
 	if OS.get_name() != "HTML5":

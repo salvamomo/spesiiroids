@@ -91,3 +91,11 @@ func _on_GrantLife_pressed():
 func _on_Game_Finished(_player_wins):
 	var game_time = (OS.get_unix_time() - time_start) as String
 	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + game_time + " seconds.")
+
+func _on_WipeLeaderboardScores_pressed():
+	SilentWolf.Scores.wipe_leaderboard(Globals.get_leaderboard_id())
+
+func _on_Button_pressed():
+	var name = $Panel/VBoxContainer/TestScoreSend/Name.text
+	var score = $Panel/VBoxContainer/TestScoreSend/Score.text
+	SilentWolf.Scores.persist_score(name, score, Globals.get_leaderboard_id())
