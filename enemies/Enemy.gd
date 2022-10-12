@@ -22,7 +22,7 @@ export (float) var shooting_chance_threshold = 0.6
 export (int) var shooting_distance_threshold = 350
 # Original threshold was type 6.
 export (int) var shooting_enemy_type_threshold = 3
-var shooting_bullet_speed = 700
+var shooting_bullet_speed = 910
 
 # This is used to adjust the bouncing velocity by multiplying it for the enemy
 # speed. It's used to make sure enemies with low speed don't get close to the
