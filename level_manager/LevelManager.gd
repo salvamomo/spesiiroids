@@ -4,7 +4,7 @@ class_name LevelManager
 
 var kills
 var score: int
-var time_start = 0
+var game_lenth = 0
 
 signal level_transition_started()
 signal level_manager_life_acquired()
@@ -32,7 +32,6 @@ var PowerUpSpawner
 func _ready():
 	score = 0
 	kills = 0
-	time_start = OS.get_unix_time()
 	maxLevelPoints = baseLevelPoints
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node('Player')
@@ -45,6 +44,10 @@ func _ready():
 	self.connect("level_transition_started", PowerUpSpawner, 'level_transition')
 	# warning-ignore:return_value_discarded
 	self.connect("level_manager_life_acquired", Hud, '_on_Player_life_acquired')
+
+func _process(delta):
+	if (get_tree().paused == false):
+		game_lenth += delta
 
 func _on_Enemy_death(enemy: Enemy):
 	var playerPointBonus = 3 if Player.has_powerup_in_use() else 1
@@ -64,8 +67,7 @@ func check_level_completed():
 		set_level(level + 1)
 
 func check_last_level_completed():
-	var game_time = (OS.get_unix_time() - time_start)
-	Globals.set_final_time(game_time)
+	Globals.set_final_time(game_lenth)
 
 	# If this was the last level, move to victory screen.
 	var run_length_baseline = 20 * 60
