@@ -4,6 +4,7 @@ class_name LevelManager
 
 var kills
 var score: int
+var time_start = 0
 
 signal level_transition_started()
 signal level_manager_life_acquired()
@@ -31,6 +32,7 @@ var PowerUpSpawner
 func _ready():
 	score = 0
 	kills = 0
+	time_start = OS.get_unix_time()
 	maxLevelPoints = baseLevelPoints
 	Main = get_tree().get_root().get_node("Main")
 	Player = Main.get_node('Player')
@@ -62,8 +64,24 @@ func check_level_completed():
 		set_level(level + 1)
 
 func check_last_level_completed():
+	var game_time = (OS.get_unix_time() - time_start)
+	Globals.set_final_time(game_time)
+
 	# If this was the last level, move to victory screen.
+	var run_length_baseline = 20 * 60
 	if (level == finalLevel):
+		# Apply bonus, accounting for hits taken.
+		print("Score before bonus: ", score)
+		score = score + (40000 - (Globals.get_hits() * 2000))
+		print("Score after hits bonus: ", score)
+		# Apply bonus based on enemies killed.
+		score = score + (kills * 10)
+		print("Score after kills bonus: ", score)
+		# Apply bonus based on time spent.
+		if (run_length_baseline - Globals.get_final_time() > 0):
+			score = score + ((run_length_baseline - Globals.get_final_time()) * 50)
+
+		print("Score after time bonus: ", score)
 		Globals.set_final_score(score)
 		Globals.emit_signal("level_manager_last_level_completed")
 

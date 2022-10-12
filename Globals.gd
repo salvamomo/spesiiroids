@@ -6,6 +6,7 @@ signal game_finished()
 signal level_manager_last_level_completed()
 
 var final_score: int = 0
+var final_time: int = 0
 var hits: int = 0
 var player_won: bool = false
 
@@ -13,7 +14,7 @@ var leaderboard_id: String
 
 func _ready():
 	leaderboard_id = ProjectSettings.get_setting("game/leaderboard/board_id")
-	var leaderboard_api_key = ProjectSettings.get_setting("game/leaderboard/api_key")
+	var leaderboard_api_key: String = ProjectSettings.get_setting("game/leaderboard/api_key")
 	# warning-ignore:return_value_discarded
 	self.connect("game_finished", self, "_on_Game_Finished")
 
@@ -46,6 +47,12 @@ func get_hits() -> int:
 
 func reset_hits():
 	hits = 0
+
+func get_final_time() -> int:
+	return final_time;
+
+func set_final_time(time):
+	final_time = time
 
 func get_final_score() -> int:
 	return final_score

@@ -8,13 +8,10 @@ var PowerUpSpawner: PowerUpSpawner
 
 signal music_toggled
 
-var time_start = 0
-
 func _ready():
 	if (!ProjectSettings.get_setting("application/run/enable_dev_controls")):
 		queue_free()
 
-	time_start = OS.get_unix_time()
 	# warning-ignore:return_value_discarded
 	Globals.connect("game_finished", self, "_on_Game_Finished")
 
@@ -89,8 +86,7 @@ func _on_GrantLife_pressed():
 	Main.grant_life_to_player()
 
 func _on_Game_Finished(_player_wins):
-	var game_time = (OS.get_unix_time() - time_start) as String
-	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + game_time + " seconds.")
+	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + (Globals.get_final_time() as String) + " seconds.")
 
 func _on_WipeLeaderboardScores_pressed():
 	SilentWolf.Scores.wipe_leaderboard(Globals.get_leaderboard_id())
