@@ -99,6 +99,8 @@ leaderboard/board_id="main"
 leaderboard/board_id.debug="debug"
 leaderboard/board_id.editor="tests"
 leaderboard/board_version="1.0.2"
+leaderboard/api_key="SPESIIROIDS_LEADERBOARD_API_KEY"
+leaderboard/api_key.editor=".env:SPESIIROIDS_LEADERBOARD_API_KEY"
 
 [input]
 
