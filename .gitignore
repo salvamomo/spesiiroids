@@ -2,4 +2,4 @@
 .import/*
 .idea
 
-.env
+.env.json

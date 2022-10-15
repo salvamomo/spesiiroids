@@ -14,21 +14,17 @@ var leaderboard_id: String
 
 func _ready():
 	leaderboard_id = ProjectSettings.get_setting("game/leaderboard/board_id")
-	var leaderboard_api_key_variable: String = ProjectSettings.get_setting("game/leaderboard/api_key")
-	var leaderboard_api_key: String
+	var leaderboard_api_key: String = ProjectSettings.get_setting("game/leaderboard/api_key")
 
+	var local_config = File.new()
+	if (leaderboard_api_key == '.env_json') and local_config.file_exists("./.env.json"):
+		local_config.open("./.env.json", File.READ)
+		var data = parse_json(local_config.get_as_text())
+		local_config.close()
 
-	if (leaderboard_api_key_variable.begins_with('.env:')):
-		var env_var_name = leaderboard_api_key_variable.get_slice('.env:', 1)
-		leaderboard_api_key = OS.get_environment(env_var_name)
-		print(env_var_name)
-		print(leaderboard_api_key)
-	else:
-		leaderboard_api_key = leaderboard_api_key_variable
+		if (data.has("LEADERBOARD_API_KEY")):
+			leaderboard_api_key = data.get("LEADERBOARD_API_KEY")
 
-
-	print("leaderboard_api_keyd")
-	print(leaderboard_api_key)
 	# warning-ignore:return_value_discarded
 	self.connect("game_finished", self, "_on_Game_Finished")
 
