@@ -89,9 +89,17 @@ func _on_Game_Finished(_player_wins):
 	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + (Globals.get_final_time() as String) + " seconds.")
 
 func _on_WipeLeaderboardScores_pressed():
-	SilentWolf.Scores.wipe_leaderboard(Globals.get_leaderboard_id())
+	var board_to_wipe = Globals.get_leaderboard_id()
+	if $Panel/VBoxContainer/BoardName.text != "":
+		board_to_wipe = $Panel/VBoxContainer/BoardName.text
+
+	SilentWolf.Scores.wipe_leaderboard(board_to_wipe)
 
 func _on_Button_pressed():
+	var board_to_send_to = Globals.get_leaderboard_id()
+	if $Panel/VBoxContainer/BoardName.text != "":
+		board_to_send_to = $Panel/VBoxContainer/BoardName.text
+
 	var name = $Panel/VBoxContainer/TestScoreSend/Name.text
 	var score = $Panel/VBoxContainer/TestScoreSend/Score.text
-	SilentWolf.Scores.persist_score(name, score, Globals.get_leaderboard_id())
+	SilentWolf.Scores.persist_score(name, score, board_to_send_to)

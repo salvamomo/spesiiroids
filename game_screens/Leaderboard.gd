@@ -94,10 +94,10 @@ func merge_scores_with_local_scores(scores, local_scores, max_scores=10):
 	return return_scores
 
 func sort_by_score(a, b):
-	if a.score > b.score:
+	if a.score as int > b.score as int:
 		return true;
 	else:
-		if a.score < b.score:
+		if a.score as int < b.score as int:
 			return false;
 		else:
 			return true;
