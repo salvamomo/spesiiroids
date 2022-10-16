@@ -15,7 +15,6 @@ jobs:
         env:
           LEADERBOARD_API_KEY: ${{ secrets.SILENTWOLF_LEADERBOARD_API_KEY }}
         run: |
-          cd spesiiroids
           sed -i "s/{{LEADERBOARD_API_KEY}}/${{ env.LEADERBOARD_API_KEY }}/" project.godot
 
       - name: export
