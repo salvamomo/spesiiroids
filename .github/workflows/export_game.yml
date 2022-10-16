@@ -11,6 +11,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2.1.0
 
+      - name: Insert Leaderboard API Key
+        env:
+          LEADERBOARD_API_KEY: ${{ secrets.SILENTWOLF_LEADERBOARD_API_KEY }}
+        run: |
+          cd spesiiroids
+          sed -i "s/{{LEADERBOARD_API_KEY}}/${{ env.LEADERBOARD_API_KEY }}/" project.godot
+
       - name: export
         uses: firebelley/godot-export@v3.0.0
         with:
