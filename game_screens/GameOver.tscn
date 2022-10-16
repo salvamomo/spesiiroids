@@ -1,50 +1,78 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game_screens/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/backgrounds/main_menu.jpg" type="Texture" id=3]
+[ext_resource path="res://stars/Stars.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/Main.tscn" type="PackedScene" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-size = 18
-extra_spacing_bottom = -2
-font_data = ExtResource( 2 )
+[ext_resource path="res://leaderboard/SendScoreForm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://leaderboard/ScoreBox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=2]
-size = 52
+size = 30
 font_data = ExtResource( 2 )
 
-[node name="GameOver" type="TextureRect"]
-margin_right = 1280.0
-margin_bottom = 720.0
-texture = ExtResource( 3 )
-expand = true
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[node name="GameOver" type="Node"]
 script = ExtResource( 1 )
 SCENE_MAIN = ExtResource( 4 )
 
-[node name="Options" type="Label" parent="."]
+[node name="StarsBackground" parent="." instance=ExtResource( 3 )]
+
+[node name="SceneTitle" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+margin_left = -247.5
+margin_right = 247.5
+margin_bottom = 37.0
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "DON'T GIVE UP! KEEP TRYING!"
+
+[node name="ScoreContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -197.0
-margin_top = -26.0
-margin_right = 197.0
-margin_bottom = 26.0
-custom_colors/font_color = Color( 1, 0.960938, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "PLAY: Press ENTER or Start.
-QUIT GAME: Press ESC or Back."
+margin_left = -369.0
+margin_top = -176.0
+margin_right = 369.0
+margin_bottom = 176.0
 
-[node name="GameLabel" type="Label" parent="."]
-anchor_left = 0.62
-anchor_top = 0.281
-anchor_right = 0.62
-anchor_bottom = 0.281
-margin_left = -167.0
-margin_top = -32.0
-margin_right = 167.0
-margin_bottom = 32.0
-custom_colors/font_color = Color( 0, 0.788235, 1, 1 )
-custom_fonts/font = SubResource( 2 )
-text = "SpESIIRoids"
+[node name="ScoreBox" parent="ScoreContainer" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 197.0
+margin_top = 0.0
+margin_right = 541.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 130 )
+size_flags_horizontal = 4
+
+[node name="SendScoreForm" parent="ScoreContainer" instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 134.0
+margin_right = 738.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="PlayAgainLabel" type="Label" parent="ScoreContainer"]
+margin_top = 288.0
+margin_right = 738.0
+margin_bottom = 338.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 8
+custom_colors/font_color = Color( 0, 0.858824, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Press ESC or Back button to play again"
+align = 1
+valign = 2

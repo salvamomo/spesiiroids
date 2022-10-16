@@ -4,6 +4,7 @@ class_name LevelManager
 
 var kills
 var score: int
+var game_lenth = 0
 
 signal level_transition_started()
 signal level_manager_life_acquired()
@@ -44,6 +45,10 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	self.connect("level_manager_life_acquired", Hud, '_on_Player_life_acquired')
 
+func _process(delta):
+	if (get_tree().paused == false):
+		game_lenth += delta
+
 func _on_Enemy_death(enemy: Enemy):
 	var playerPointBonus = 3 if Player.has_powerup_in_use() else 1
 	var enemType = enemy.get_type()
@@ -62,8 +67,23 @@ func check_level_completed():
 		set_level(level + 1)
 
 func check_last_level_completed():
+	Globals.set_final_time(game_lenth)
+
 	# If this was the last level, move to victory screen.
+	var run_length_baseline = 20 * 60
 	if (level == finalLevel):
+		# Apply bonus, accounting for hits taken.
+		print("Score before bonus: ", score)
+		score = score + (40000 - (Globals.get_hits() * 2000))
+		print("Score after hits bonus: ", score)
+		# Apply bonus based on enemies killed.
+		score = score + (kills * 10)
+		print("Score after kills bonus: ", score)
+		# Apply bonus based on time spent.
+		if (run_length_baseline - Globals.get_final_time() > 0):
+			score = score + ((run_length_baseline - Globals.get_final_time()) * 50)
+
+		print("Score after time bonus: ", score)
 		Globals.set_final_score(score)
 		Globals.emit_signal("level_manager_last_level_completed")
 

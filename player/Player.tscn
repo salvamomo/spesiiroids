@@ -34,7 +34,7 @@ radius = 119.195
 
 [node name="Player" type="Area2D" groups=["Ship"]]
 script = ExtResource( 1 )
-speed = 400
+speed = 520
 availableBullets = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" type="Sprite" parent="." groups=["Ship"]]

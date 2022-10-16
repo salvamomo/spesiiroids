@@ -35,7 +35,7 @@ var last_mouse_position: Vector2
 ## START SHOOTING
 var last_shoot = 0.3
 var shooting_speed = 0.3
-var shooting_bullet_speed = 700
+var shooting_bullet_speed = 910
 
 # Bullet scenes are added as resources, in the order that matches BULLET_TYPE.
 enum BULLET_TYPE {DEFAULT, FIREBALL}

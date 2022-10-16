@@ -33,10 +33,12 @@ margin_bottom = 61.0
 custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "PLAY: Press ENTER or Start.
+LEADERBOARD: Press L, Up Arrow Key or D-pad UP.
+
 CREDITS: Press C or Left Trigger (L1).
 QUIT GAME: Press ESC or Back.
 
-Press R1 or F to switch fullscreen mode."
+Press R1 or F11 to switch fullscreen mode."
 
 [node name="GameLabel" type="Label" parent="."]
 anchor_left = 0.62

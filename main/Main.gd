@@ -61,6 +61,7 @@ func _on_last_level_completed():
 
 func finish_game(move_to_scene: String):
 	self.queue_free()
-	Globals.emit_signal("game_finished")
+	var player_wins = true if (move_to_scene == SCENE_GAME_FINISHED) else false
+	Globals.emit_signal("game_finished", player_wins)
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(move_to_scene)

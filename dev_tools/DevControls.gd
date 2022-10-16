@@ -8,13 +8,10 @@ var PowerUpSpawner: PowerUpSpawner
 
 signal music_toggled
 
-var time_start = 0
-
 func _ready():
 	if (!ProjectSettings.get_setting("application/run/enable_dev_controls")):
 		queue_free()
 
-	time_start = OS.get_unix_time()
 	# warning-ignore:return_value_discarded
 	Globals.connect("game_finished", self, "_on_Game_Finished")
 
@@ -88,6 +85,21 @@ func _on_LevelDown_pressed():
 func _on_GrantLife_pressed():
 	Main.grant_life_to_player()
 
-func _on_Game_Finished():
-	var game_time = (OS.get_unix_time() - time_start) as String
-	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + game_time + " seconds.")
+func _on_Game_Finished(_player_wins):
+	print("Game Over. Score: " + Globals.get_final_score() as String + ". Time: " + (Globals.get_final_time() as String) + " seconds.")
+
+func _on_WipeLeaderboardScores_pressed():
+	var board_to_wipe = Globals.get_leaderboard_id()
+	if $Panel/VBoxContainer/BoardName.text != "":
+		board_to_wipe = $Panel/VBoxContainer/BoardName.text
+
+	SilentWolf.Scores.wipe_leaderboard(board_to_wipe)
+
+func _on_Button_pressed():
+	var board_to_send_to = Globals.get_leaderboard_id()
+	if $Panel/VBoxContainer/BoardName.text != "":
+		board_to_send_to = $Panel/VBoxContainer/BoardName.text
+
+	var name = $Panel/VBoxContainer/TestScoreSend/Name.text
+	var score = $Panel/VBoxContainer/TestScoreSend/Score.text
+	SilentWolf.Scores.persist_score(name, score, board_to_send_to)
