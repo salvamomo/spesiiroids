@@ -7,7 +7,7 @@ export (PackedScene) var ENEMY_SCENE
 export (Array, Texture) var enemyTypesTextures
 
 export (int) var MIN_VEL = 80 # Original was 0.5f
-export (int) var MAX_VEL = 115 # Original was 1.2f
+export (int) var MAX_VEL = 120 # Original was 1.2f
 
 export (int) var MAX_ENEMIES_LIMIT = 50
 export (int) var MAX_ENEMIES_INITIAL = 5
