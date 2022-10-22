@@ -102,4 +102,7 @@ func _on_Button_pressed():
 
 	var name = $Panel/VBoxContainer/TestScoreSend/Name.text
 	var score = $Panel/VBoxContainer/TestScoreSend/Score.text
-	SilentWolf.Scores.persist_score(name, score, board_to_send_to)
+
+	var metadata = {}
+	metadata["hits"] = Globals.get_hits()
+	SilentWolf.Scores.persist_score(name, score, board_to_send_to, metadata)

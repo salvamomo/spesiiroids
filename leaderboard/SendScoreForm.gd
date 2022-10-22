@@ -16,8 +16,11 @@ func _process(_delta):
 
 	var username = $Name.text
 
-	if ((Input.is_action_just_pressed("Start_Pause") or Input.is_action_just_pressed("PowerUp_1")) and !score_sent and (username.length() > 3)):
-		SilentWolf.Scores.persist_score(username, final_score, Globals.get_leaderboard_id())
+	if (Input.is_action_just_pressed("Start_Pause") and !score_sent and (username.length() > 3)):
+		var metadata = {}
+		metadata["hits"] = Globals.get_hits()
+
+		SilentWolf.Scores.persist_score(username, final_score, Globals.get_leaderboard_id(), metadata)
 		score_sent = true
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene_to(SCENE_LEADERBOARD);
