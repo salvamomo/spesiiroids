@@ -60,7 +60,7 @@ custom_fonts/font = SubResource( 1 )
 text = "PLAY: Press ENTER or Start.
 START SCREEN: Press ESC or Back.
 
-Press R1 or F to switch fullscreen mode."
+Press R1 or F11 to switch fullscreen mode."
 __meta__ = {
 "_edit_use_anchors_": false
 }
